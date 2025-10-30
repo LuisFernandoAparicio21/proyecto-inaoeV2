@@ -1,0 +1,38 @@
+# --- Framework Principal de la Aplicación ---
+streamlit
+
+# --- Ecosistema de LangChain ---
+langchain
+langchain-community
+langchain-core
+
+# --- Integraciones de Modelos de Lenguaje ---
+langchain-google-genai
+langchain-ollama
+langchain-huggingface  # Para embeddings y pipelines
+
+# --- Base de Datos Vectorial ---
+# faiss-cpu es la versión más compatible. Si tienes GPU con CUDA, podría ser faiss-gpu.
+faiss-cpu
+
+# --- Procesamiento de Documentos ---
+pypdf           # Para cargar el contenido de los PDFs
+unstructured    # Dependencia de algunos loaders de LangChain
+
+# --- Enriquecimiento NLU (Las nuevas que faltaban) ---
+spacy           # Para la Estación 1 de análisis (NER general)
+transformers    # Para la Estación 2 (NER especializado de Hugging Face)
+torch           # El motor de Deep Learning para Transformers
+
+# --- Utilidades Adicionales ---
+requests        # Para verificar si el servidor de Ollama está activo
+toml            # Para que scripts puedan leer el archivo secrets.toml
+duckduckgo-search==5.3.1  # Búsqueda web para fallback
+
+
+# --- Herramientas de Oracle Cloud ---
+oci
+ads
+
+
+

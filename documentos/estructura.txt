@@ -1,0 +1,8 @@
+La estructura de un cohete es un componente fundamental que debe ser a la vez ligero y extremadamente resistente. Su función principal es albergar el combustible, los motores, la carga útil y los sistemas de aviónica. La estructura debe soportar las fuerzas aerodinámicas durante el ascenso a través de la atmósfera y las vibraciones del motor.
+
+Los materiales utilizados en la estructura suelen ser aleaciones de aluminio, titanio y compuestos de fibra de carbono. La selección del material depende de la relación resistencia-peso y del coste. La aerodinámica del cohete también es crucial; la forma de la estructura, incluyendo la cofia (la punta), está diseñada para minimizar la resistencia del aire.
+
+El diseño estructural se divide en etapas. Cada etapa tiene su propio motor y tanque de combustible, y se desecha una vez que su propelente se ha agotado. Esto reduce la masa total del cohete, permitiendo que las etapas superiores alcancen una mayor altitud y velocidad orbital. La integridad de la estructura es vital para la seguridad. 
+motor
+
+motor motor motor

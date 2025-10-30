@@ -1,0 +1,33 @@
+﻿# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+env/
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Virtualenv dentro del proyecto
+proyecto_rag_inaoe/venv/
+
+# Modelos y binarios grandes
+proyecto_rag_inaoe/models/
+models/
+*.bin
+*.safetensors
+
+# Índices FAISS y data derivada
+*.faiss
+*.pkl
+indice_faiss/
+proyecto_rag_inaoe/indice_faiss/
+
+# Streamlit cache
+.streamlit/

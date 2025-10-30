@@ -1,0 +1,5 @@
+El motor de cohete es el corazón de cualquier misión espacial. La propulsión de cohetes se basa en la tercera ley de Newton. El motor expulsa masa a alta velocidad (el propelente) en una dirección para generar un empuje en la dirección opuesta.
+
+Existen varios tipos de motores. Los motores de combustible sólido son más simples y fiables. El propelente es una mezcla sólida que contiene tanto el combustible como el oxidante. Una vez encendido, el motor no puede ser apagado.
+
+Por otro lado, los motores de combustible líquido ofrecen mayor control. Permiten regular el empuje y pueden ser apagados y reencendidos. Utilizan tanques separados para el combustible (como hidrógeno líquido) y el oxidante (como oxígeno líquido). La ingeniería de la propulsión es compleja y crítica para el éxito de un lanzamiento. La estructura del motor debe soportar temperaturas y presiones extremas. 
