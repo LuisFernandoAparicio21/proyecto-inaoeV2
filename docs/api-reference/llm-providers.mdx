@@ -1,0 +1,241 @@
+---
+title: 'LLM Providers'
+description: 'Documentación de los proveedores de modelos de lenguaje'
+---
+
+## get_llm()
+
+Fábrica que crea instancias de LLM según el proveedor configurado.
+
+```python
+def get_llm(modelo: str, temperature: float, timeout: int) -> Optional[BaseLLM]
+```
+
+### Parámetros
+
+<ParamField path="modelo" type="str" required>
+  Nombre del modelo a instanciar. Debe estar definido en `MODEL_CONFIG`.
+  
+  Ejemplos: `"deepseek-r1:1.5b"`, `"gemini-1.5-flash"`, `"mistral:7b"`
+</ParamField>
+
+<ParamField path="temperature" type="float" required>
+  Controla la creatividad/aleatoriedad de las respuestas.
+  
+  - `0.0`: Respuestas determinísticas
+  - `0.5`: Balance
+  - `1.0`: Máxima creatividad
+</ParamField>
+
+<ParamField path="timeout" type="int" required>
+  Tiempo máximo de espera en segundos para la respuesta del LLM.
+</ParamField>
+
+### Retorno
+
+<ResponseField name="llm" type="BaseLLM | None">
+  Instancia del LLM configurado, o `None` si hay error en la configuración.
+</ResponseField>
+
+### Ejemplo de Uso
+
+```python
+from app import get_llm
+
+# Crear instancia de Gemini
+llm = get_llm("gemini-1.5-flash", temperature=0.2, timeout=120)
+
+if llm:
+    response = llm.invoke("¿Qué es un quaternión?")
+    print(response.content)
+```
+
+---
+
+## Proveedores Soportados
+
+### Google Gemini
+
+<Tabs>
+  <Tab title="Configuración">
+    ```python
+    MODEL_CONFIG = {
+        "gemini-1.5-flash": {
+            "provider": "google",
+            "info": "🟢 API Google - Rápido, 15 req/min gratis"
+        },
+        "gemini-1.5-pro": {
+            "provider": "google",
+            "info": "✨ API Google - Máxima calidad"
+        }
+    }
+    ```
+  </Tab>
+  <Tab title="Requisitos">
+    - API Key en `.streamlit/secrets.toml`
+    - `langchain-google-genai` instalado
+  </Tab>
+  <Tab title="Implementación">
+    ```python
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    
+    return ChatGoogleGenerativeAI(
+        model=modelo,
+        api_key=st.secrets["GOOGLE_API_KEY"],
+        temperature=temperature
+    )
+    ```
+  </Tab>
+</Tabs>
+
+### Ollama (Local)
+
+<Tabs>
+  <Tab title="Configuración">
+    ```python
+    MODEL_CONFIG = {
+        "deepseek-r1:1.5b": {
+            "provider": "ollama",
+            "info": "🚀 Local - Razonamiento, ~2GB RAM"
+        },
+        "mistral:7b": {
+            "provider": "ollama",
+            "info": "🏆 Local - Investigación, 4GB RAM"
+        }
+    }
+    ```
+  </Tab>
+  <Tab title="Requisitos">
+    - Ollama instalado y ejecutándose
+    - Modelo descargado: `ollama pull modelo`
+    - `langchain-ollama` instalado
+  </Tab>
+  <Tab title="Implementación">
+    ```python
+    from langchain_ollama import ChatOllama
+    
+    if not verificar_ollama():
+        return None
+        
+    return ChatOllama(
+        model=modelo,
+        temperature=temperature,
+        timeout=timeout
+    )
+    ```
+  </Tab>
+</Tabs>
+
+### Groq (Preparado)
+
+<Tabs>
+  <Tab title="Configuración">
+    ```python
+    MODEL_CONFIG = {
+        "llama3-8b-8192": {
+            "provider": "groq",
+            "info": "🟡 API Groq - Muy rápido"
+        }
+    }
+    ```
+  </Tab>
+  <Tab title="Requisitos">
+    - API Key en `.streamlit/secrets.toml`
+    - `langchain-groq` instalado
+  </Tab>
+  <Tab title="Implementación">
+    ```python
+    from langchain_groq import ChatGroq
+    
+    return ChatGroq(
+        api_key=st.secrets["GROQ_API_KEY"],
+        model=modelo,
+        temperature=temperature
+    )
+    ```
+  </Tab>
+</Tabs>
+
+### Together AI (Preparado)
+
+<Tabs>
+  <Tab title="Configuración">
+    ```python
+    MODEL_CONFIG = {
+        "together/llama-2-7b-chat": {
+            "provider": "together",
+            "info": "🟢 API Together - $25 gratis"
+        }
+    }
+    ```
+  </Tab>
+  <Tab title="Requisitos">
+    - API Key en `.streamlit/secrets.toml`
+    - `langchain-together` instalado
+  </Tab>
+  <Tab title="Implementación">
+    ```python
+    from langchain_together import Together
+    
+    return Together(
+        model=modelo,
+        api_key=st.secrets["TOGETHER_API_KEY"],
+        temperature=temperature
+    )
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## MODEL_CONFIG
+
+Diccionario central que define todos los modelos disponibles:
+
+```python
+MODEL_CONFIG = {
+    "modelo-id": {
+        "provider": str,  # "ollama", "google", "groq", "together"
+        "info": str       # Descripción para UI
+    }
+}
+```
+
+### Esquema
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `provider` | str | Identificador del proveedor LLM |
+| `info` | str | Texto descriptivo mostrado en UI |
+
+---
+
+## verificar_ollama()
+
+Verifica si el servicio de Ollama está activo.
+
+```python
+@st.cache_data(ttl=300)
+def verificar_ollama() -> bool
+```
+
+### Retorno
+
+<ResponseField name="activo" type="bool">
+  `True` si Ollama responde en `localhost:11434`, `False` si no.
+</ResponseField>
+
+### Implementación
+
+```python
+def verificar_ollama():
+    try:
+        requests.get("http://localhost:11434", timeout=3)
+        return True
+    except requests.ConnectionError:
+        return False
+```
+
+<Note>
+  El resultado se cachea por 5 minutos (`ttl=300`) para evitar verificaciones constantes.
+</Note>

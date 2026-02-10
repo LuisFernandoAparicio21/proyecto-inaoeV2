@@ -1,0 +1,236 @@
+---
+title: 'Deployment'
+description: 'Opciones para desplegar el Asistente INAOE en producción'
+---
+
+## Opciones de Deployment
+
+<CardGroup cols={2}>
+  <Card title="Streamlit Cloud" icon="cloud">
+    Gratis, fácil, ideal para demos
+  </Card>
+  <Card title="Oracle Cloud" icon="building">
+    Robusto, con GPU disponible
+  </Card>
+  <Card title="Docker" icon="docker">
+    Portátil, reproducible
+  </Card>
+  <Card title="Servidor Local" icon="server">
+    Control total, sin dependencias cloud
+  </Card>
+</CardGroup>
+
+## Streamlit Cloud
+
+La forma más sencilla de desplegar:
+
+<Steps>
+  <Step title="Push a GitHub">
+    ```bash
+    git add .
+    git commit -m "Ready for deployment"
+    git push origin main
+    ```
+  </Step>
+  <Step title="Conectar en Streamlit">
+    1. Ve a [share.streamlit.io](https://share.streamlit.io)
+    2. Conecta tu cuenta de GitHub
+    3. Selecciona el repositorio
+    4. Main file: `src/app.py`
+  </Step>
+  <Step title="Configurar Secretos">
+    En la configuración de la app:
+    ```toml
+    GOOGLE_API_KEY = "tu-api-key"
+    ```
+  </Step>
+</Steps>
+
+<Warning>
+  Streamlit Cloud no soporta Ollama. Solo podrás usar modelos cloud (Gemini, Groq).
+</Warning>
+
+## Docker
+
+### Dockerfile
+
+```dockerfile
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar requirements primero (para cachear)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Descargar modelo spaCy
+RUN python -m spacy download es_core_news_lg
+
+# Copiar código
+COPY . .
+
+# Exponer puerto de Streamlit
+EXPOSE 8501
+
+# Comando de inicio
+CMD ["streamlit", "run", "src/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+```
+
+### docker-compose.yml
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./documentos:/app/documentos
+      - ./indice_faiss:/app/indice_faiss
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+    restart: unless-stopped
+    
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+```
+
+### Comandos
+
+```bash
+# Construir
+docker-compose build
+
+# Ejecutar
+docker-compose up -d
+
+# Ver logs
+docker-compose logs -f app
+```
+
+## Oracle Cloud
+
+El proyecto incluye scripts para OCI:
+
+### Requisitos
+
+1. Cuenta de Oracle Cloud
+2. OCI CLI configurado
+3. Claves RSA generadas
+
+### Generar Claves
+
+```powershell
+.\generate_keys.ps1
+```
+
+### Configurar Passphrase
+
+```powershell
+.\set_passphrase.ps1
+```
+
+### Deployer (en desarrollo)
+
+```python
+# src/deploy_oci.py
+import oci
+
+# Configuración de OCI
+config = oci.config.from_file()
+
+# Crear instancia de compute
+# ...
+```
+
+## Servidor Local (Producción)
+
+### Con Gunicorn
+
+```bash
+pip install gunicorn
+
+streamlit run src/app.py --server.port 8501 --server.headless true
+```
+
+### Con Nginx (Reverse Proxy)
+
+```nginx
+# /etc/nginx/sites-available/inaoe
+
+server {
+    listen 80;
+    server_name tu-dominio.com;
+
+    location / {
+        proxy_pass http://localhost:8501;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+    }
+}
+```
+
+### Con SSL (Let's Encrypt)
+
+```bash
+sudo certbot --nginx -d tu-dominio.com
+```
+
+## Monitoreo
+
+### Logs de Streamlit
+
+```bash
+streamlit run src/app.py --logger.level=debug 2>&1 | tee app.log
+```
+
+### Health Check
+
+```python
+# health_check.py
+import requests
+
+def check_health():
+    try:
+        r = requests.get("http://localhost:8501/_stcore/health")
+        return r.status_code == 200
+    except:
+        return False
+```
+
+## Consideraciones de Producción
+
+<AccordionGroup>
+  <Accordion title="Seguridad">
+    - Usa HTTPS siempre
+    - No expongas secrets en logs
+    - Limita acceso con autenticación
+  </Accordion>
+  <Accordion title="Escalabilidad">
+    - Considera múltiples instancias
+    - Usa Redis para sesiones compartidas
+    - Implementa rate limiting
+  </Accordion>
+  <Accordion title="Backup">
+    - Backup de `indice_faiss/` regularmente
+    - Backup de `processed_files.json`
+    - Backup de documentos originales
+  </Accordion>
+</AccordionGroup>

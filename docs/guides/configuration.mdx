@@ -1,0 +1,167 @@
+---
+title: 'Configuración'
+description: 'Personalización de modelos LLM, parámetros y secretos'
+---
+
+## Archivo de Secretos
+
+Crea el archivo `.streamlit/secrets.toml` para configurar API keys:
+
+```toml
+# .streamlit/secrets.toml
+
+# Google Gemini API
+GOOGLE_API_KEY = "tu-api-key-de-google"
+
+# Groq API (opcional)
+GROQ_API_KEY = "tu-api-key-de-groq"
+
+# Together AI (opcional)
+TOGETHER_API_KEY = "tu-api-key-de-together"
+```
+
+<Warning>
+  Nunca subas `secrets.toml` a un repositorio público. Está excluido en `.gitignore`.
+</Warning>
+
+## Obtener API Keys
+
+<CardGroup cols={2}>
+  <Card title="Google Gemini" icon="google" href="https://makersuite.google.com/app/apikey">
+    1. Ve a Google AI Studio
+    2. Crea una API key
+    3. Copia y pega en secrets.toml
+  </Card>
+  <Card title="Groq" icon="bolt" href="https://console.groq.com">
+    1. Regístrate en Groq Console
+    2. Crea una API key
+    3. Copia y pega en secrets.toml
+  </Card>
+</CardGroup>
+
+## Configurar Modelos
+
+### Activar Modelos Adicionales
+
+En `app.py`, descomenta los modelos que desees usar:
+
+```python
+MODEL_CONFIG = {
+    # Modelos activos por defecto
+    "deepseek-r1:1.5b": {...},
+    "mistral:7b": {...},
+    "gemini-1.5-flash": {...},
+    "gemini-1.5-pro": {...},
+    
+    # Descomenta para activar:
+    # "llama3.2:3b": {
+    #     "provider": "ollama", 
+    #     "info": "🟢 Local - Buen balance calidad/velocidad"
+    # },
+    # "llama3-8b-8192": {
+    #     "provider": "groq", 
+    #     "info": "🟡 API Groq - Muy rápido"
+    # },
+}
+```
+
+### Añadir Nuevo Modelo
+
+```python
+MODEL_CONFIG = {
+    # ... modelos existentes ...
+    
+    "mi-modelo-custom": {
+        "provider": "ollama",  # o "google", "groq", "together"
+        "info": "📦 Descripción de mi modelo"
+    },
+}
+```
+
+## Parámetros de la Aplicación
+
+### Sidebar Configuration
+
+| Parámetro | Rango | Default | Descripción |
+|-----------|-------|---------|-------------|
+| Documentos a consultar | 3-10 | 5 | Número de chunks a recuperar |
+| Creatividad | 0.0-1.0 | 0.2 | Temperature del LLM |
+| Timeout | 30-300s | 120s | Tiempo máximo de espera |
+
+### Modificar Valores por Defecto
+
+En `app.py`, línea 229:
+
+```python
+with st.sidebar.expander("🔧 Configuración Avanzada"):
+    chunk_size = st.slider("Documentos a consultar", 3, 10, 5)  # Cambiar 5
+    temperature = st.slider("Creatividad", 0.0, 1.0, 0.2)       # Cambiar 0.2
+    timeout = st.slider("Timeout (segundos)", 30, 300, 120)     # Cambiar 120
+```
+
+## Configurar Procesamiento de Documentos
+
+### Parámetros del Text Splitter
+
+En `procesar_docs.py`, línea 88:
+
+```python
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,      # Tamaño de cada chunk
+    chunk_overlap=200,    # Overlap entre chunks
+    length_function=len
+)
+```
+
+| Parámetro | Recomendado | Efecto |
+|-----------|-------------|--------|
+| chunk_size=500 | Más chunks, búsqueda precisa | Más lento |
+| chunk_size=1500 | Menos chunks, más contexto | Respuestas largas |
+| chunk_overlap=100 | Menos redundancia | Puede perder contexto |
+| chunk_overlap=300 | Más redundancia | Mejor continuidad |
+
+### Cambiar Modelo de Embeddings
+
+```python
+EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # Default
+
+# Alternativas:
+# EMBEDDING_MODEL = "all-mpnet-base-v2"  # Mejor calidad, más lento
+# EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"  # Multilingüe
+```
+
+## Modo Offline
+
+Para entornos sin internet, descomenta en `app.py` y `procesar_docs.py`:
+
+```python
+os.environ["HF_HUB_OFFLINE"] = "1"
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
+```
+
+<Note>
+  En modo offline, los modelos deben estar previamente descargados en `models/`.
+</Note>
+
+## Configuración de VS Code
+
+El proyecto incluye `.vscode/settings.json`:
+
+```json
+{
+  "python.analysis.typeCheckingMode": "off",
+  "pyright.disableDiagnostics": true,
+  "files.watcherExclude": {
+    "**/venv/**": true,
+    "**/__pycache__/**": true
+  }
+}
+```
+
+Para habilitar type checking:
+
+```json
+{
+  "python.analysis.typeCheckingMode": "basic"
+}
+```

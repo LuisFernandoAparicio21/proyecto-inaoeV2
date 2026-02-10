@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Asistente INAOE</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Asistente INAOE</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documentacion-tecnica-detallada"
+id="toc-documentacion-tecnica-detallada">Documentacion Tecnica
+Detallada</a>
+<ul>
+<li><a href="#proyecto-rag-inaoe---explicacion-codigo-por-codigo"
+id="toc-proyecto-rag-inaoe---explicacion-codigo-por-codigo">Proyecto RAG
+INAOE - Explicacion Codigo por Codigo</a></li>
+<li><a href="#contenido-de-esta-seccion"
+id="toc-contenido-de-esta-seccion">Contenido de esta seccion</a></li>
+<li><a href="#app.py---aplicacion-principal"
+id="toc-app.py---aplicacion-principal">app.py - Aplicacion Principal</a>
+<ul>
+<li><a href="#encabezado-del-módulo-líneas-1-26"
+id="toc-encabezado-del-módulo-líneas-1-26">Encabezado del Módulo (Líneas
+1-26)</a></li>
+<li><a href="#imports-líneas-27-40"
+id="toc-imports-líneas-27-40">Imports (Líneas 27-40)</a></li>
+<li><a href="#imports-de-proveedores-llm-líneas-42-55"
+id="toc-imports-de-proveedores-llm-líneas-42-55">Imports de Proveedores
+LLM (Líneas 42-55)</a></li>
+<li><a href="#configuración-de-página-streamlit-líneas-57-63"
+id="toc-configuración-de-página-streamlit-líneas-57-63">Configuración de
+Página Streamlit (Líneas 57-63)</a></li>
+<li><a href="#configuración-de-rutas-líneas-65-67"
+id="toc-configuración-de-rutas-líneas-65-67">Configuración de Rutas
+(Líneas 65-67)</a></li>
+<li><a href="#configuración-de-modelos-líneas-70-102"
+id="toc-configuración-de-modelos-líneas-70-102">Configuración de Modelos
+(Líneas 70-102)</a></li>
+<li><a href="#template-del-prompt-líneas-104-143"
+id="toc-template-del-prompt-líneas-104-143">Template del Prompt (Líneas
+104-143)</a></li>
+<li><a href="#función-buscar_en_internet-líneas-145-195"
+id="toc-función-buscar_en_internet-líneas-145-195">Función:
+buscar_en_internet() (Líneas 145-195)</a></li>
+<li><a href="#función-cargar_base_datos-líneas-197-240"
+id="toc-función-cargar_base_datos-líneas-197-240">Función:
+cargar_base_datos() (Líneas 197-240)</a></li>
+<li><a href="#función-verificar_ollama-líneas-242-268"
+id="toc-función-verificar_ollama-líneas-242-268">Función:
+verificar_ollama() (Líneas 242-268)</a></li>
+<li><a href="#función-get_llm---factory-pattern-líneas-292-356"
+id="toc-función-get_llm---factory-pattern-líneas-292-356">Función:
+get_llm() - Factory Pattern (Líneas 292-356)</a></li>
+<li><a href="#función-render_sidebar-líneas-358-394"
+id="toc-función-render_sidebar-líneas-358-394">Función: render_sidebar()
+(Líneas 358-394)</a></li>
+<li><a href="#función-main---flujo-principal-líneas-396-480"
+id="toc-función-main---flujo-principal-líneas-396-480">Función: main() -
+Flujo Principal (Líneas 396-480)</a></li>
+</ul></li>
+<li><a href="#procesar_docs.py---pipeline-de-procesamiento"
+id="toc-procesar_docs.py---pipeline-de-procesamiento">procesar_docs.py -
+Pipeline de Procesamiento</a>
+<ul>
+<li><a href="#módulo-docstring-líneas-1-32"
+id="toc-módulo-docstring-líneas-1-32">Módulo Docstring (Líneas
+1-32)</a></li>
+<li><a href="#configuración-centralizada-líneas-50-66"
+id="toc-configuración-centralizada-líneas-50-66">Configuración
+Centralizada (Líneas 50-66)</a></li>
+<li><a href="#sistema-de-registro-incremental-líneas-68-118"
+id="toc-sistema-de-registro-incremental-líneas-68-118">Sistema de
+Registro Incremental (Líneas 68-118)</a></li>
+<li><a href="#procesamiento-de-documentos-líneas-163-209"
+id="toc-procesamiento-de-documentos-líneas-163-209">Procesamiento de
+Documentos (Líneas 163-209)</a></li>
+<li><a
+href="#enriquecimiento-nlp---analizar_chunks_batch-líneas-213-291"
+id="toc-enriquecimiento-nlp---analizar_chunks_batch-líneas-213-291">Enriquecimiento
+NLP - analizar_chunks_batch() (Líneas 213-291)</a></li>
+<li><a href="#actualización-atómica-de-faiss-líneas-340-380"
+id="toc-actualización-atómica-de-faiss-líneas-340-380">Actualización
+Atómica de FAISS (Líneas 340-380)</a></li>
+</ul></li>
+<li><a href="#utils.py---funciones-auxiliares"
+id="toc-utils.py---funciones-auxiliares">utils.py - Funciones
+Auxiliares</a>
+<ul>
+<li><a href="#verificar_configuracion-líneas-37-95"
+id="toc-verificar_configuracion-líneas-37-95">verificar_configuracion()
+(Líneas 37-95)</a></li>
+<li><a href="#validar_pregunta-líneas-230-270"
+id="toc-validar_pregunta-líneas-230-270">validar_pregunta() (Líneas
+230-270)</a></li>
+</ul></li>
+<li><a href="#flujo-de-ejecucion-completo"
+id="toc-flujo-de-ejecucion-completo">Flujo de Ejecucion Completo</a>
+<ul>
+<li><a href="#primer-uso-procesamiento-inicial"
+id="toc-primer-uso-procesamiento-inicial">Primer Uso (Procesamiento
+Inicial)</a></li>
+<li><a href="#uso-normal-consulta" id="toc-uso-normal-consulta">Uso
+Normal (Consulta)</a></li>
+<li><a href="#flujo-de-interaccion-entre-componentes"
+id="toc-flujo-de-interaccion-entre-componentes">Flujo de Interaccion
+Entre Componentes</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documentacion-tecnica-detallada">Documentacion Tecnica
+Detallada</h1>
+<h2 id="proyecto-rag-inaoe---explicacion-codigo-por-codigo">Proyecto RAG
+INAOE - Explicacion Codigo por Codigo</h2>
+<p><strong>Version:</strong> 1.0.0<br />
+<strong>Fecha:</strong> 26 de Diciembre, 2025<br />
+<strong>Autor:</strong> Proyecto INAOE</p>
+<hr />
+<h2 id="contenido-de-esta-seccion">Contenido de esta seccion</h2>
+<ul>
+<li>app.py - Aplicacion Principal</li>
+<li>procesar_docs.py - Pipeline de Procesamiento</li>
+<li>utils.py - Funciones Auxiliares</li>
+<li>Flujo de Ejecucion Completo</li>
+</ul>
+<hr />
+<h2 id="app.py---aplicacion-principal">app.py - Aplicacion
+Principal</h2>
+<p><strong>Propósito:</strong> Interfaz web con Streamlit para consultas
+RAG sobre documentos científicos.</p>
+<p><strong>Líneas totales:</strong> ~420</p>
+<hr />
+<h3 id="encabezado-del-módulo-líneas-1-26">Encabezado del Módulo (Líneas
+1-26)</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;Asistente de Investigación INAOE - Aplicación RAG con Streamlit.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">Esta aplicación proporciona una interfaz web para consultar documentos</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">científicos del INAOE utilizando Retrieval-Augmented Generation (RAG).</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span></code></pre></div>
+<p><strong>Explicación:</strong> - El <strong>docstring del
+módulo</strong> describe el propósito general del archivo - Sirve como
+documentación que aparece cuando ejecutas <code>help(app)</code></p>
+<hr />
+<h3 id="imports-líneas-27-40">Imports (Líneas 27-40)</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_community.vectorstores <span class="im">import</span> FAISS</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_huggingface <span class="im">import</span> HuggingFaceEmbeddings</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.prompts <span class="im">import</span> PromptTemplate</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableParallel, RunnablePassthrough</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.output_parsers <span class="im">import</span> StrOutputParser</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> List, Dict, Any, Optional, Callable</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code></pre></div>
+<p><strong>Explicación de cada import:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Import</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>streamlit</code></td>
+<td>Framework para crear la interfaz web</td>
+</tr>
+<tr>
+<td><code>FAISS</code></td>
+<td>Base de datos vectorial para búsqueda semántica</td>
+</tr>
+<tr>
+<td><code>HuggingFaceEmbeddings</code></td>
+<td>Convierte texto a vectores numéricos</td>
+</tr>
+<tr>
+<td><code>PromptTemplate</code></td>
+<td>Plantilla para formatear prompts al LLM</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td>Manejo de rutas de archivos multiplataforma</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Medir tiempo de respuesta</td>
+</tr>
+<tr>
+<td><code>torch</code></td>
+<td>Detectar si hay GPU disponible</td>
+</tr>
+<tr>
+<td><code>requests</code></td>
+<td>Verificar si Ollama está activo</td>
+</tr>
+<tr>
+<td><code>typing</code></td>
+<td>Anotaciones de tipos para mejor documentación</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="imports-de-proveedores-llm-líneas-42-55">Imports de Proveedores
+LLM (Líneas 42-55)</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> langchain_google_genai <span class="im">import</span> ChatGoogleGenerativeAI</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> langchain_ollama <span class="im">import</span> ChatOllama</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> langchain_groq <span class="im">import</span> ChatGroq</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> langchain_together <span class="im">import</span> Together</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span> <span class="im">as</span> e:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    st.error(<span class="ss">f&quot;Error al importar: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    st.stop()</span></code></pre></div>
+<p><strong>Explicación:</strong> - <strong>try/except:</strong> Captura
+errores si falta alguna dependencia - Si falla, muestra error en
+Streamlit y detiene la ejecución - Esto evita que la app crashee sin dar
+información al usuario</p>
+<hr />
+<h3 id="configuración-de-página-streamlit-líneas-57-63">Configuración de
+Página Streamlit (Líneas 57-63)</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>st.set_page_config(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    page_title<span class="op">=</span><span class="st">&quot;Asistente INAOE 🚀&quot;</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    page_icon<span class="op">=</span><span class="st">&quot;🤖&quot;</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    layout<span class="op">=</span><span class="st">&quot;wide&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    initial_sidebar_state<span class="op">=</span><span class="st">&quot;expanded&quot;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Explicación:</strong> - <code>page_title</code>: Título que
+aparece en la pestaña del navegador - <code>page_icon</code>:
+Emoji/icono de la pestaña - <code>layout="wide"</code>: Usa todo el
+ancho de la pantalla - <code>initial_sidebar_state</code>: El sidebar se
+muestra expandido al inicio</p>
+<hr />
+<h3 id="configuración-de-rutas-líneas-65-67">Configuración de Rutas
+(Líneas 65-67)</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>RUTA_PROYECTO <span class="op">=</span> Path(<span class="va">__file__</span>).resolve().parent.parent</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>RUTA_DB <span class="op">=</span> RUTA_PROYECTO <span class="op">/</span> <span class="st">&quot;indice_faiss&quot;</span></span></code></pre></div>
+<p><strong>Explicación:</strong> - <code>Path(__file__)</code>: Ruta del
+archivo actual (app.py) - <code>.resolve()</code>: Convierte a ruta
+absoluta - <code>.parent.parent</code>: Sube dos niveles (src →
+proyecto_rag_inaoe) - <code>/</code>: Operador de Path para unir rutas
+de forma segura</p>
+<p><strong>Ejemplo:</strong></p>
+<pre><code>__file__ = C:/proyecto/src/app.py
+.parent = C:/proyecto/src
+.parent.parent = C:/proyecto
+/ &quot;indice_faiss&quot; = C:/proyecto/indice_faiss</code></pre>
+<hr />
+<h3 id="configuración-de-modelos-líneas-70-102">Configuración de Modelos
+(Líneas 70-102)</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>MODEL_CONFIG <span class="op">=</span> {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;deepseek-r1:1.5b&quot;</span>: {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;provider&quot;</span>: <span class="st">&quot;ollama&quot;</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;info&quot;</span>: <span class="st">&quot;🚀 Local DeepSeek - Razonamiento avanzado, ~2GB RAM.&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;mistral:7b&quot;</span>: {</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;provider&quot;</span>: <span class="st">&quot;ollama&quot;</span>, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;info&quot;</span>: <span class="st">&quot;🏆 Local - Excelente para investigación, 4GB RAM.&quot;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;gemini-1.5-flash&quot;</span>: {</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;provider&quot;</span>: <span class="st">&quot;google&quot;</span>, </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;info&quot;</span>: <span class="st">&quot;🟢 API Google - Rápido, 15 req/min gratis.&quot;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;gemini-1.5-pro&quot;</span>: {</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;provider&quot;</span>: <span class="st">&quot;google&quot;</span>, </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;info&quot;</span>: <span class="st">&quot;✨ API Google - Máxima calidad de razonamiento.&quot;</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Explicación:</strong> - <strong>Diccionario</strong> que
+mapea IDs de modelos a sus configuraciones - <code>provider</code>:
+Indica qué API/servicio usar (ollama, google, groq, together) -
+<code>info</code>: Texto descriptivo que se muestra al usuario en el
+sidebar - Para agregar un nuevo modelo, solo se añade una entrada
+aquí</p>
+<hr />
+<h3 id="template-del-prompt-líneas-104-143">Template del Prompt (Líneas
+104-143)</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>PROMPT_TEMPLATE <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">Eres un Asistente de Investigación Senior del INAOE...</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">**MISIÓN PRINCIPAL:**</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">1. PRIORIDAD 1: El CONTEXTO de documentos INAOE</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">2. PRIORIDAD 2: Conocimiento general del modelo</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">3. PRIORIDAD 3: Fuentes verificables</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">4. PRIORIDAD 4: Búsqueda en internet</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">**FORMATO DE SALIDA:**</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="st">- Resumen Ejecutivo (TL;DR)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="st">- Análisis Detallado</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">- Conclusión e Implicaciones</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">- Fuentes Consultadas</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="st">---</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="st">**CONTEXTO PROPORCIONADO:**</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="sc">{context}</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="st">**PREGUNTA DEL INVESTIGADOR:**</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="sc">{question}</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span></code></pre></div>
+<p><strong>Explicación:</strong> - <strong>Prompt Engineering:</strong>
+Define cómo el LLM debe responder - <code>{context}</code>: Placeholder
+que se reemplaza con documentos recuperados - <code>{question}</code>:
+Placeholder para la pregunta del usuario - El formato estructurado
+garantiza respuestas consistentes</p>
+<hr />
+<h3 id="función-buscar_en_internet-líneas-145-195">Función:
+buscar_en_internet() (Líneas 145-195)</h3>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> buscar_en_internet(consulta: <span class="bu">str</span>, max_resultados: <span class="bu">int</span> <span class="op">=</span> <span class="dv">5</span>) <span class="op">-&gt;</span> List[<span class="bu">str</span>]:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Realiza una búsqueda web usando DuckDuckGo como fallback.&quot;&quot;&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="im">from</span> duckduckgo_search <span class="im">import</span> DDGS</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [<span class="ss">f&quot;[Fallback deshabilitado] </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        resultados <span class="op">=</span> []</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> DDGS() <span class="im">as</span> ddgs:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> item <span class="kw">in</span> ddgs.text(consulta, region<span class="op">=</span><span class="st">&quot;wt-wt&quot;</span>, </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>                                   safesearch<span class="op">=</span><span class="st">&quot;moderate&quot;</span>, </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                                   max_results<span class="op">=</span>max_resultados):</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                titulo <span class="op">=</span> item.get(<span class="st">&quot;title&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                cuerpo <span class="op">=</span> item.get(<span class="st">&quot;body&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                link <span class="op">=</span> item.get(<span class="st">&quot;href&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                resultados.append(<span class="ss">f&quot;Título: </span><span class="sc">{</span>titulo<span class="sc">}</span><span class="ch">\n</span><span class="ss">Resumen: </span><span class="sc">{</span>cuerpo<span class="sc">}</span><span class="ch">\n</span><span class="ss">Fuente: </span><span class="sc">{</span>link<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> resultados <span class="cf">if</span> resultados <span class="cf">else</span> [<span class="st">&quot;No se encontraron resultados.&quot;</span>]</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [<span class="ss">f&quot;Error en búsqueda web: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>]</span></code></pre></div>
+<p><strong>Explicación línea por línea:</strong></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 28%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr>
+<th>Línea</th>
+<th>Código</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>def buscar_en_internet(...)</code></td>
+<td>Define función con tipos de parámetros</td>
+</tr>
+<tr>
+<td>2-4</td>
+<td><code>try: from duckduckgo...</code></td>
+<td>Importa la librería bajo demanda</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>resultados = []</code></td>
+<td>Lista vacía para almacenar resultados</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>with DDGS() as ddgs:</code></td>
+<td>Context manager para manejar conexión</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>for item in ddgs.text(...)</code></td>
+<td>Itera sobre resultados de búsqueda</td>
+</tr>
+<tr>
+<td>8-10</td>
+<td><code>item.get(...)</code></td>
+<td>Extrae campos de forma segura (evita KeyError)</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>resultados.append(...)</code></td>
+<td>Formatea y agrega cada resultado</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>return resultados if...</code></td>
+<td>Retorna resultados o mensaje de error</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="función-cargar_base_datos-líneas-197-240">Función:
+cargar_base_datos() (Líneas 197-240)</h3>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="at">@st.cache_resource</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cargar_base_datos() <span class="op">-&gt;</span> Optional[FAISS]:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Carga la base de datos vectorial FAISS de forma segura.&quot;&quot;&quot;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> RUTA_DB.exists():</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        st.error(<span class="ss">f&quot;❌ No se encontró la base de datos en: </span><span class="sc">{</span>RUTA_DB<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        st.info(<span class="st">&quot;💡 Ejecuta primero: `python procesar_docs.py`&quot;</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        device <span class="op">=</span> <span class="st">&#39;cuda&#39;</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">&#39;cpu&#39;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        embeddings <span class="op">=</span> HuggingFaceEmbeddings(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>            model_name<span class="op">=</span><span class="st">&quot;all-MiniLM-L6-v2&quot;</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>            model_kwargs<span class="op">=</span>{<span class="st">&#39;device&#39;</span>: device},</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            cache_folder<span class="op">=</span><span class="bu">str</span>(RUTA_PROYECTO <span class="op">/</span> <span class="st">&quot;models&quot;</span>),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            encode_kwargs<span class="op">=</span>{<span class="st">&#39;normalize_embeddings&#39;</span>: <span class="va">True</span>}</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> FAISS.load_local(<span class="bu">str</span>(RUTA_DB), embeddings, </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                                 allow_dangerous_deserialization<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        st.error(<span class="ss">f&quot;Error al cargar la base de datos: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span></code></pre></div>
+<p><strong>Explicación:</strong></p>
+<table>
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@st.cache_resource</code></td>
+<td><strong>Decorador</strong> que cachea el resultado. La función solo
+se ejecuta una vez por sesión</td>
+</tr>
+<tr>
+<td><code>Optional[FAISS]</code></td>
+<td>Puede retornar una instancia de FAISS o None</td>
+</tr>
+<tr>
+<td><code>RUTA_DB.exists()</code></td>
+<td>Verifica si el directorio existe</td>
+</tr>
+<tr>
+<td><code>torch.cuda.is_available()</code></td>
+<td>Detecta si hay GPU NVIDIA disponible</td>
+</tr>
+<tr>
+<td><code>HuggingFaceEmbeddings(...)</code></td>
+<td>Crea el modelo de embeddings</td>
+</tr>
+<tr>
+<td><code>model_kwargs={'device': device}</code></td>
+<td>Indica si usar GPU o CPU</td>
+</tr>
+<tr>
+<td><code>cache_folder=...</code></td>
+<td>Guarda modelos localmente para no re-descargar</td>
+</tr>
+<tr>
+<td><code>normalize_embeddings=True</code></td>
+<td>Normaliza vectores para mejor similitud coseno</td>
+</tr>
+<tr>
+<td><code>FAISS.load_local(...)</code></td>
+<td>Carga el índice desde disco</td>
+</tr>
+<tr>
+<td><code>allow_dangerous_deserialization=True</code></td>
+<td>Necesario para cargar objetos pickle</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="función-verificar_ollama-líneas-242-268">Función:
+verificar_ollama() (Líneas 242-268)</h3>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="at">@st.cache_data</span>(ttl<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> verificar_ollama() <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Verifica si el servicio de Ollama está activo en localhost.&quot;&quot;&quot;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        requests.get(<span class="st">&quot;http://localhost:11434&quot;</span>, timeout<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> requests.<span class="pp">ConnectionError</span>:</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span></code></pre></div>
+<p><strong>Explicación:</strong></p>
+<table>
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@st.cache_data(ttl=300)</code></td>
+<td>Cachea el resultado por 5 minutos (300 segundos)</td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td>Time To Live - después de 300s, vuelve a verificar</td>
+</tr>
+<tr>
+<td><code>requests.get(...)</code></td>
+<td>Hace petición HTTP GET al puerto de Ollama</td>
+</tr>
+<tr>
+<td><code>timeout=3</code></td>
+<td>Espera máximo 3 segundos</td>
+</tr>
+<tr>
+<td><code>ConnectionError</code></td>
+<td>Se lanza si Ollama no está corriendo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="función-get_llm---factory-pattern-líneas-292-356">Función:
+get_llm() - Factory Pattern (Líneas 292-356)</h3>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_llm(modelo: <span class="bu">str</span>, temperature: <span class="bu">float</span>, timeout: <span class="bu">int</span>) <span class="op">-&gt;</span> Optional[Any]:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Factory que crea instancias de LLM según el proveedor.&quot;&quot;&quot;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    config <span class="op">=</span> MODEL_CONFIG.get(modelo, {})</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    provider <span class="op">=</span> config.get(<span class="st">&quot;provider&quot;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> provider <span class="op">==</span> <span class="st">&quot;google&quot;</span>:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">&#39;GOOGLE_API_KEY&#39;</span> <span class="kw">not</span> <span class="kw">in</span> st.secrets:</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            st.error(<span class="st">&quot;🚨 Falta la API Key de Google&quot;</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ChatGoogleGenerativeAI(</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            model<span class="op">=</span>modelo.split(<span class="st">&#39;/&#39;</span>)[<span class="op">-</span><span class="dv">1</span>], </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            api_key<span class="op">=</span>st.secrets[<span class="st">&quot;GOOGLE_API_KEY&quot;</span>], </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            temperature<span class="op">=</span>temperature</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> provider <span class="op">==</span> <span class="st">&quot;ollama&quot;</span>:</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> verificar_ollama():</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            st.error(<span class="st">&quot;🚨 Ollama no está ejecutándose&quot;</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ChatOllama(</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>            model<span class="op">=</span>modelo, </span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>            temperature<span class="op">=</span>temperature, </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            timeout<span class="op">=</span>timeout</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> provider <span class="op">==</span> <span class="st">&quot;groq&quot;</span>:</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Similar a Google...</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> provider <span class="op">==</span> <span class="st">&quot;together&quot;</span>:</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Similar a Google...</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>        st.error(<span class="ss">f&quot;🚨 Proveedor &#39;</span><span class="sc">{</span>provider<span class="sc">}</span><span class="ss">&#39; no configurado&quot;</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span></code></pre></div>
+<p><strong>Explicación del Patrón Factory:</strong></p>
+<pre><code>+-------------------+
+|  get_llm()        | &lt;-- Entrada: modelo, temperature, timeout
++-------------------+
+| if google:        | --&gt; ChatGoogleGenerativeAI
+| elif ollama:      | --&gt; ChatOllama
+| elif groq:        | --&gt; ChatGroq
+| elif together:    | --&gt; Together
+| else:             | --&gt; None + Error
++-------------------+</code></pre>
+<p><strong>Ventajas del Factory Pattern:</strong> 1.
+<strong>Centralizado:</strong> Solo un lugar para crear LLMs 2.
+<strong>Extensible:</strong> Agregar nuevo proveedor = agregar elif 3.
+<strong>Encapsulado:</strong> La lógica de creación está oculta del
+resto del código</p>
+<hr />
+<h3 id="función-render_sidebar-líneas-358-394">Función: render_sidebar()
+(Líneas 358-394)</h3>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> render_sidebar() <span class="op">-&gt;</span> <span class="bu">tuple</span>[<span class="bu">str</span>, <span class="bu">int</span>, <span class="bu">float</span>, <span class="bu">int</span>]:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Renderiza la barra lateral con opciones de configuración.&quot;&quot;&quot;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    st.sidebar.header(<span class="st">&quot;⚙️ Configuración&quot;</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    modelo_seleccionado <span class="op">=</span> st.sidebar.selectbox(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Selecciona el modelo:&quot;</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">list</span>(MODEL_CONFIG.keys()),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    st.sidebar.info(MODEL_CONFIG[modelo_seleccionado][<span class="st">&quot;info&quot;</span>])</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> st.sidebar.expander(<span class="st">&quot;🔧 Configuración Avanzada&quot;</span>):</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        chunk_size <span class="op">=</span> st.slider(<span class="st">&quot;Documentos a consultar&quot;</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">5</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        temperature <span class="op">=</span> st.slider(<span class="st">&quot;Creatividad&quot;</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.2</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        timeout <span class="op">=</span> st.slider(<span class="st">&quot;Timeout (segundos)&quot;</span>, <span class="dv">30</span>, <span class="dv">300</span>, <span class="dv">120</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> modelo_seleccionado, chunk_size, temperature, timeout</span></code></pre></div>
+<p><strong>Explicación de Widgets:</strong></p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 27%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr>
+<th>Widget</th>
+<th>Código</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>selectbox</code></td>
+<td>Dropdown para seleccionar modelo</td>
+<td>Muestra lista de modelos</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td>Cuadro informativo</td>
+<td>Muestra descripción del modelo</td>
+</tr>
+<tr>
+<td><code>expander</code></td>
+<td>Sección colapsable</td>
+<td>Oculta configuración avanzada</td>
+</tr>
+<tr>
+<td><code>slider</code></td>
+<td>Deslizador</td>
+<td>Permite seleccionar valores numéricos</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Valores de retorno:</strong> -
+<code>modelo_seleccionado</code>: String con ID del modelo -
+<code>chunk_size</code>: Entero (3-10) - <code>temperature</code>: Float
+(0.0-1.0) - <code>timeout</code>: Entero (30-300)</p>
+<hr />
+<h3 id="función-main---flujo-principal-líneas-396-480">Función: main() -
+Flujo Principal (Líneas 396-480)</h3>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    st.title(<span class="st">&quot;Asistente de Investigación INAOE 🤖&quot;</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    st.write(<span class="st">&quot;Hazme preguntas sobre los documentos del INAOE...&quot;</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Configuración del sidebar</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    modelo_sel, chunk_size, temp, timeout <span class="op">=</span> render_sidebar()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Cargar base de datos</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> cargar_base_datos()</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> db <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Crear LLM</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    llm <span class="op">=</span> get_llm(modelo_sel, temp, timeout)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> llm <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Crear retriever</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    retriever <span class="op">=</span> db.as_retriever(search_kwargs<span class="op">=</span>{<span class="st">&quot;k&quot;</span>: chunk_size})</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Crear prompt</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> PromptTemplate.from_template(PROMPT_TEMPLATE)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 6. Crear cadena RAG</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> create_rag_chain():</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> rag_invoke(question):</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>            docs <span class="op">=</span> retriever.get_relevant_documents(question)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>            context <span class="op">=</span> format_docs(docs)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Fallback a internet si contexto insuficiente</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> context <span class="kw">or</span> <span class="bu">len</span>(context.strip()) <span class="op">&lt;</span> <span class="dv">50</span>:</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>                resultados_web <span class="op">=</span> buscar_en_internet(question)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>                context <span class="op">=</span> <span class="ss">f&quot;[Fuente: Internet]</span><span class="ch">\n</span><span class="sc">{</span><span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="sc">.</span>join(resultados_web)<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>            formatted_prompt <span class="op">=</span> prompt.<span class="bu">format</span>(context<span class="op">=</span>context, question<span class="op">=</span>question)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> llm.invoke(formatted_prompt)</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> {</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;context&quot;</span>: context,</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;question&quot;</span>: question,</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;answer&quot;</span>: response.content</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> rag_invoke</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>    rag_chain <span class="op">=</span> create_rag_chain()</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 7. Interfaz de entrada</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    pregunta <span class="op">=</span> st.text_input(<span class="st">&quot;🤔 ¿Qué te gustaría saber?&quot;</span>)</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> st.button(<span class="st">&quot;🔍 Buscar respuesta&quot;</span>) <span class="kw">and</span> pregunta:</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> st.spinner(<span class="ss">f&quot;🤖 Buscando respuesta con </span><span class="sc">{</span>modelo_sel<span class="sc">}</span><span class="ss">...&quot;</span>):</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>            start_time <span class="op">=</span> time.time()</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>            result <span class="op">=</span> rag_chain(pregunta)</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>            end_time <span class="op">=</span> time.time()</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>            st.markdown(<span class="st">&quot;### 📝 Respuesta:&quot;</span>)</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>            st.write(result[<span class="st">&quot;answer&quot;</span>])</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>            st.metric(<span class="st">&quot;⏱️ Tiempo&quot;</span>, <span class="ss">f&quot;</span><span class="sc">{</span>end_time <span class="op">-</span> start_time<span class="sc">:.2f}</span><span class="ss">s&quot;</span>)</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div>
+<p><strong>Diagrama de Flujo:</strong></p>
+<pre><code>main()
+  |
+  +-- render_sidebar() --&gt; Configuracion
+  |
+  +-- cargar_base_datos() --&gt; FAISS DB
+  |         |
+  |         +-- Si falla --&gt; return
+  |
+  +-- get_llm() --&gt; Instancia LLM
+  |         |
+  |         +-- Si falla --&gt; return
+  |
+  +-- as_retriever() --&gt; Retriever configurado
+  |
+  +-- create_rag_chain() --&gt; Funcion RAG
+  |
+  +-- st.button() --&gt; Si click:
+            |
+            +-- rag_chain(pregunta)
+            |       |
+            |       +-- Recuperar documentos
+            |       +-- Verificar contexto
+            |       +-- Fallback a web si necesario
+            |       +-- Formatear prompt
+            |       +-- Invocar LLM
+            |
+            +-- Mostrar respuesta + tiempo</code></pre>
+<hr />
+<h2 id="procesar_docs.py---pipeline-de-procesamiento">procesar_docs.py -
+Pipeline de Procesamiento</h2>
+<p><strong>Propósito:</strong> Pipeline ETL para procesar PDFs con
+enriquecimiento NLP</p>
+<p><strong>Líneas totales:</strong> ~400</p>
+<hr />
+<h3 id="módulo-docstring-líneas-1-32">Módulo Docstring (Líneas
+1-32)</h3>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;Pipeline de procesamiento de documentos para el sistema RAG INAOE.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">Este módulo implementa un pipeline ETL (Extract, Transform, Load) para:</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">- Extract: Cargar documentos PDF</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">- Transform: Dividir en chunks y enriquecer con NLP</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">- Load: Almacenar en base de datos vectorial FAISS</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span></code></pre></div>
+<hr />
+<h3 id="configuración-centralizada-líneas-50-66">Configuración
+Centralizada (Líneas 50-66)</h3>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rutas</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>RUTA_PROYECTO <span class="op">=</span> Path(<span class="va">__file__</span>).resolve().parent.parent</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>DIR_DOCS <span class="op">=</span> RUTA_PROYECTO <span class="op">/</span> <span class="st">&quot;documentos&quot;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>DIR_DB_FAISS <span class="op">=</span> RUTA_PROYECTO <span class="op">/</span> <span class="st">&quot;indice_faiss&quot;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>DIR_DB_TEMP <span class="op">=</span> RUTA_PROYECTO <span class="op">/</span> <span class="st">&quot;indice_faiss_temp&quot;</span>  <span class="co"># Para atomicidad</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>ARCHIVO_REGISTRO <span class="op">=</span> RUTA_PROYECTO <span class="op">/</span> <span class="st">&quot;processed_files.json&quot;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelos</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>EMBEDDING_MODEL <span class="op">=</span> <span class="st">&quot;all-MiniLM-L6-v2&quot;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>SPACY_MODEL <span class="op">=</span> <span class="st">&quot;es_core_news_lg&quot;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>RUTA_MODELO_HF <span class="op">=</span> RUTA_PROYECTO <span class="op">/</span> <span class="st">&quot;models&quot;</span> <span class="op">/</span> <span class="st">&quot;bert-spanish-ner&quot;</span></span></code></pre></div>
+<p><strong>Explicación:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DIR_DOCS</code></td>
+<td>Carpeta con PDFs de entrada</td>
+</tr>
+<tr>
+<td><code>DIR_DB_FAISS</code></td>
+<td>Carpeta con índice FAISS final</td>
+</tr>
+<tr>
+<td><code>DIR_DB_TEMP</code></td>
+<td>Carpeta temporal para actualización atómica</td>
+</tr>
+<tr>
+<td><code>ARCHIVO_REGISTRO</code></td>
+<td>JSON que trackea archivos procesados</td>
+</tr>
+<tr>
+<td><code>EMBEDDING_MODEL</code></td>
+<td>Modelo para convertir texto a vectores</td>
+</tr>
+<tr>
+<td><code>SPACY_MODEL</code></td>
+<td>Modelo de spaCy para NER español</td>
+</tr>
+<tr>
+<td><code>RUTA_MODELO_HF</code></td>
+<td>Carpeta local con modelo BERT</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sistema-de-registro-incremental-líneas-68-118">Sistema de
+Registro Incremental (Líneas 68-118)</h3>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cargar_registro_archivos() <span class="op">-&gt;</span> Dict[<span class="bu">str</span>, <span class="bu">float</span>]:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Carga el registro de archivos procesados desde JSON.&quot;&quot;&quot;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ARCHIVO_REGISTRO.exists():</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(ARCHIVO_REGISTRO, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> json.load(f)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> guardar_registro_archivos(registro: Dict[<span class="bu">str</span>, <span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Guarda el registro actualizado.&quot;&quot;&quot;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(ARCHIVO_REGISTRO, <span class="st">&#39;w&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        json.dump(registro, f, indent<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> obtener_archivos_a_procesar(registro: Dict[<span class="bu">str</span>, <span class="bu">float</span>]) <span class="op">-&gt;</span> List[<span class="bu">str</span>]:</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Determina qué archivos son nuevos o modificados.&quot;&quot;&quot;</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    archivos_nuevos <span class="op">=</span> []</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> archivo_pdf <span class="kw">in</span> DIR_DOCS.glob(<span class="st">&quot;*.pdf&quot;</span>):</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        nombre_archivo <span class="op">=</span> <span class="bu">str</span>(archivo_pdf)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        ultima_modificacion <span class="op">=</span> os.path.getmtime(nombre_archivo)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Comparar timestamp</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nombre_archivo <span class="kw">not</span> <span class="kw">in</span> registro <span class="kw">or</span> registro[nombre_archivo] <span class="op">&lt;</span> ultima_modificacion:</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>            archivos_nuevos.append(nombre_archivo)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>            registro[nombre_archivo] <span class="op">=</span> ultima_modificacion</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> archivos_nuevos</span></code></pre></div>
+<p><strong>Estructura del JSON de registro:</strong></p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;C:/proyecto/docs/paper1.pdf&quot;</span><span class="fu">:</span> <span class="fl">1702857600.0</span><span class="fu">,</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;C:/proyecto/docs/paper2.pdf&quot;</span><span class="fu">:</span> <span class="fl">1702944000.0</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Lógica de detección:</strong></p>
+<pre><code>archivo en disco    registro JSON         acción
+─────────────────   ───────────────       ──────
+timestamp: 1000     no existe             PROCESAR (nuevo)
+timestamp: 2000     timestamp: 1000       PROCESAR (modificado)
+timestamp: 1000     timestamp: 1000       IGNORAR (sin cambios)</code></pre>
+<hr />
+<h3 id="procesamiento-de-documentos-líneas-163-209">Procesamiento de
+Documentos (Líneas 163-209)</h3>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> procesar_lote_documentos(rutas_archivos: List[<span class="bu">str</span>]) <span class="op">-&gt;</span> List[Any]:</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Carga y divide en chunks un lote de documentos PDF.&quot;&quot;&quot;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    documentos <span class="op">=</span> []</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cargar cada PDF</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ruta <span class="kw">in</span> rutas_archivos:</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            loader <span class="op">=</span> PyPDFLoader(ruta)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>            documentos.extend(loader.load())</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>            logging.info(<span class="ss">f&quot;Cargado: </span><span class="sc">{</span>Path(ruta)<span class="sc">.</span>name<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>            logging.error(<span class="ss">f&quot;Error cargando </span><span class="sc">{</span>ruta<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span>  <span class="co"># Continúa con el siguiente</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> documentos:</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dividir en chunks</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    splitter <span class="op">=</span> RecursiveCharacterTextSplitter(</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>        chunk_size<span class="op">=</span><span class="dv">1000</span>,      <span class="co"># Caracteres por chunk</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>        chunk_overlap<span class="op">=</span><span class="dv">200</span>,    <span class="co"># Overlap entre chunks</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>        length_function<span class="op">=</span><span class="bu">len</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> splitter.split_documents(documentos)</span></code></pre></div>
+<p><strong>Visualización del Splitting:</strong></p>
+<pre><code>Documento Original:
+┌────────────────────────────────────────────────────────────┐
+│ Lorem ipsum dolor sit amet, consectetur adipiscing elit.   │
+│ Sed do eiusmod tempor incididunt ut labore et dolore...    │
+│ [... 5000 caracteres ...]                                  │
+└────────────────────────────────────────────────────────────┘
+
+Después de split (chunk_size=1000, overlap=200):
+
+Chunk 1:                    Chunk 2:                    Chunk 3:
+┌──────────────────┐       ┌──────────────────┐       ┌──────────────────┐
+│ Lorem ipsum...   │       │ ...tempor inci...│       │ ...et dolore...  │
+│ (1000 chars)     │       │ (1000 chars)     │       │ (1000 chars)     │
+└──────────────────┘       └──────────────────┘       └──────────────────┘
+         │                          │                          │
+         └──────── 200 chars ───────┘──────── 200 chars ───────┘
+                   (overlap)                   (overlap)</code></pre>
+<p><strong>¿Por qué overlap?</strong> - Mantiene contexto entre chunks -
+Evita cortar ideas a la mitad - Mejora la recuperación de
+información</p>
+<hr />
+<h3
+id="enriquecimiento-nlp---analizar_chunks_batch-líneas-213-291">Enriquecimiento
+NLP - analizar_chunks_batch() (Líneas 213-291)</h3>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="at">@torch.no_grad</span>()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analizar_chunks_batch(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    chunks_texto: List[<span class="bu">str</span>],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    spacy_nlp: Any,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    hf_pipeline: Any</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> List[Dict[<span class="bu">str</span>, Dict[<span class="bu">str</span>, List[<span class="bu">str</span>]]]]:</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Analiza un lote de textos con spaCy y HuggingFace.&quot;&quot;&quot;</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    metadatos_enriquecidos <span class="op">=</span> []</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Estación 1: spaCy - Procesamiento batch</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    spacy_docs <span class="op">=</span> <span class="bu">list</span>(spacy_nlp.pipe(chunks_texto))</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Estación 2: HuggingFace - Procesamiento batch</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        hf_results <span class="op">=</span> hf_pipeline(chunks_texto)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        logging.error(<span class="ss">f&quot;Error en HuggingFace: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        hf_results <span class="op">=</span> [[] <span class="cf">for</span> _ <span class="kw">in</span> chunks_texto]</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Combinar resultados</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, doc <span class="kw">in</span> <span class="bu">enumerate</span>(spacy_docs):</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extraer entidades de spaCy</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        entidades_spacy: Dict[<span class="bu">str</span>, List[<span class="bu">str</span>]] <span class="op">=</span> {}</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> ent <span class="kw">in</span> doc.ents:</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ent.label_ <span class="kw">not</span> <span class="kw">in</span> entidades_spacy:</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>                entidades_spacy[ent.label_] <span class="op">=</span> []</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>            entidades_spacy[ent.label_].append(ent.text)</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extraer entidades de HuggingFace</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>        entidades_hf: Dict[<span class="bu">str</span>, List[<span class="bu">str</span>]] <span class="op">=</span> {}</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> hf_results[i]:</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>            label <span class="op">=</span> entity.get(<span class="st">&#39;entity_group&#39;</span>, <span class="st">&#39;MISC&#39;</span>)</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> label <span class="kw">not</span> <span class="kw">in</span> entidades_hf:</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>                entidades_hf[label] <span class="op">=</span> []</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>            entidades_hf[label].append(entity[<span class="st">&#39;word&#39;</span>])</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>        metadatos_enriquecidos.append({</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;spacy_entities&quot;</span>: entidades_spacy,</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;hf_entities&quot;</span>: entidades_hf</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> metadatos_enriquecidos</span></code></pre></div>
+<p><strong>Diagrama del Pipeline NLP:</strong></p>
+<pre><code>                    Chunks de Texto
+                          │
+          ┌───────────────┴───────────────┐
+          ▼                               ▼
+   ┌─────────────┐                 ┌─────────────┐
+   │   spaCy     │                 │    BERT     │
+   │ es_core_    │                 │  spanish    │
+   │ news_lg     │                 │    ner      │
+   └─────┬───────┘                 └─────┬───────┘
+         │                               │
+         ▼                               ▼
+   ┌─────────────┐                 ┌─────────────┐
+   │ Entidades:  │                 │ Entidades:  │
+   │ ORG: INAOE  │                 │ ORG: Inst.  │
+   │ LOC: Puebla │                 │ PER: Juan   │
+   │ PER: María  │                 │ LOC: México │
+   └─────────────┘                 └─────────────┘
+         │                               │
+         └───────────────┬───────────────┘
+                         ▼
+               ┌─────────────────┐
+               │ Metadatos       │
+               │ Combinados      │
+               │ {spacy: {...},  │
+               │  hf: {...}}     │
+               └─────────────────┘</code></pre>
+<p><strong>Tipos de entidades detectadas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Etiqueta</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORG</td>
+<td>Organización</td>
+<td>INAOE, NASA</td>
+</tr>
+<tr>
+<td>PER</td>
+<td>Persona</td>
+<td>Juan García</td>
+</tr>
+<tr>
+<td>LOC</td>
+<td>Lugar</td>
+<td>Puebla, México</td>
+</tr>
+<tr>
+<td>MISC</td>
+<td>Misceláneos</td>
+<td>Quaterniones</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>Fecha</td>
+<td>2024</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="actualización-atómica-de-faiss-líneas-340-380">Actualización
+Atómica de FAISS (Líneas 340-380)</h3>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 1: Eliminar directorio temporal si existe</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> DIR_DB_TEMP.exists():</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    shutil.rmtree(DIR_DB_TEMP)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 2: Cargar o crear base de datos</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> DIR_DB_FAISS.exists() <span class="kw">and</span> chunks_nuevos:</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    logging.info(<span class="st">&quot;Cargando base existente para fusionar...&quot;</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    db_existente <span class="op">=</span> FAISS.load_local(<span class="bu">str</span>(DIR_DB_FAISS), embeddings, </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                                     allow_dangerous_deserialization<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    db_existente.add_documents(chunks_nuevos)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    db_final <span class="op">=</span> db_existente</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> chunks_nuevos:</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    logging.info(<span class="st">&quot;Creando nueva base de datos...&quot;</span>)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    db_final <span class="op">=</span> FAISS.from_documents(chunks_nuevos, embeddings)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 3: Guardar en directorio temporal</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>db_final.save_local(<span class="bu">str</span>(DIR_DB_TEMP))</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 4: Reemplazo atómico</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> DIR_DB_FAISS.exists():</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    shutil.rmtree(DIR_DB_FAISS)</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>os.rename(DIR_DB_TEMP, DIR_DB_FAISS)</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 5: Actualizar registro</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>guardar_registro_archivos(registro_archivos)</span></code></pre></div>
+<p><strong>¿Por qué Actualización Atómica?</strong></p>
+<pre><code>Sin Atomicidad (PELIGROSO):
+─────────────────────────
+1. Borrar índice antiguo     ←── Si falla aquí, PERDEMOS TODO
+2. Guardar índice nuevo      ←── Si falla aquí, NO HAY ÍNDICE
+
+Con Atomicidad (SEGURO):
+────────────────────────
+1. Guardar en indice_temp    ←── Si falla, índice original intacto
+2. Borrar índice antiguo
+3. Renombrar temp → final    ←── Operación atómica del OS</code></pre>
+<hr />
+<h2 id="utils.py---funciones-auxiliares">utils.py - Funciones
+Auxiliares</h2>
+<p><strong>Propósito:</strong> Utilidades de verificación, información
+de modelos y validación</p>
+<p><strong>Líneas totales:</strong> ~270</p>
+<hr />
+<h3 id="verificar_configuracion-líneas-37-95">verificar_configuracion()
+(Líneas 37-95)</h3>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> verificar_configuracion() <span class="op">-&gt;</span> Dict[<span class="bu">str</span>, Any]:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Verifica la configuración del proyecto y retorna el estado.&quot;&quot;&quot;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    config <span class="op">=</span> {</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;base_datos_existe&quot;</span>: <span class="va">False</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ollama_disponible&quot;</span>: <span class="va">False</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;api_keys_configuradas&quot;</span>: <span class="va">False</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;errores&quot;</span>: []</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check 1: Base de datos FAISS</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    ruta_db <span class="op">=</span> ruta_proyecto <span class="op">/</span> <span class="st">&quot;indice_faiss&quot;</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ruta_db.exists() <span class="kw">and</span> (ruta_db <span class="op">/</span> <span class="st">&quot;index.faiss&quot;</span>).exists():</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>        config[<span class="st">&quot;base_datos_existe&quot;</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>        config[<span class="st">&quot;errores&quot;</span>].append(<span class="st">&quot;Base de datos no encontrada&quot;</span>)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check 2: Ollama</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> requests.get(<span class="st">&quot;http://localhost:11434/api/tags&quot;</span>, timeout<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>            config[<span class="st">&quot;ollama_disponible&quot;</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>        config[<span class="st">&quot;errores&quot;</span>].append(<span class="st">&quot;Ollama no ejecutándose&quot;</span>)</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check 3: API Keys</span></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">&#39;GOOGLE_API_KEY&#39;</span> <span class="kw">in</span> st.secrets:</span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>            config[<span class="st">&quot;api_keys_configuradas&quot;</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>        config[<span class="st">&quot;errores&quot;</span>].append(<span class="st">&quot;No se pudo verificar API keys&quot;</span>)</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> config</span></code></pre></div>
+<p><strong>Uso típico:</strong></p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> verificar_configuracion()</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> config[<span class="st">&quot;errores&quot;</span>]:</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Problemas encontrados:&quot;</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> error <span class="kw">in</span> config[<span class="st">&quot;errores&quot;</span>]:</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;  - </span><span class="sc">{</span>error<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;✅ Sistema configurado correctamente&quot;</span>)</span></code></pre></div>
+<hr />
+<h3 id="validar_pregunta-líneas-230-270">validar_pregunta() (Líneas
+230-270)</h3>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validar_pregunta(pregunta: <span class="bu">str</span>) <span class="op">-&gt;</span> Tuple[<span class="bu">bool</span>, <span class="bu">str</span>]:</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Valida si una pregunta es apropiada para el sistema.&quot;&quot;&quot;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Validación 1: Longitud mínima</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> pregunta <span class="kw">or</span> <span class="bu">len</span>(pregunta.strip()) <span class="op">&lt;</span> <span class="dv">3</span>:</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span>, <span class="st">&quot;Mínimo 3 caracteres&quot;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Validación 2: Longitud máxima</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(pregunta) <span class="op">&gt;</span> <span class="dv">500</span>:</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span>, <span class="st">&quot;Máximo 500 caracteres&quot;</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Validación 3: Palabras interrogativas</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    palabras_clave <span class="op">=</span> [</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;qué&quot;</span>, <span class="st">&quot;cuál&quot;</span>, <span class="st">&quot;cómo&quot;</span>, <span class="st">&quot;dónde&quot;</span>, <span class="st">&quot;cuándo&quot;</span>, <span class="st">&quot;por qué&quot;</span>, <span class="st">&quot;quién&quot;</span>,</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;what&quot;</span>, <span class="st">&quot;how&quot;</span>, <span class="st">&quot;where&quot;</span>, <span class="st">&quot;when&quot;</span>, <span class="st">&quot;why&quot;</span>, <span class="st">&quot;who&quot;</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    pregunta_lower <span class="op">=</span> pregunta.lower()</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    tiene_palabra_clave <span class="op">=</span> <span class="bu">any</span>(p <span class="kw">in</span> pregunta_lower <span class="cf">for</span> p <span class="kw">in</span> palabras_clave)</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> tiene_palabra_clave:</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span>, <span class="st">&quot;Debe contener palabra interrogativa&quot;</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span>, <span class="st">&quot;Pregunta válida&quot;</span></span></code></pre></div>
+<p><strong>Tabla de validaciones:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Resultado</th>
+<th>Mensaje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>""</code></td>
+<td>False</td>
+<td>Mínimo 3 caracteres</td>
+</tr>
+<tr>
+<td><code>"Hola"</code></td>
+<td>False</td>
+<td>Debe contener palabra interrogativa</td>
+</tr>
+<tr>
+<td><code>"¿Qué es FAISS?"</code></td>
+<td>True</td>
+<td>Pregunta válida</td>
+</tr>
+<tr>
+<td><code>"A" * 600</code></td>
+<td>False</td>
+<td>Máximo 500 caracteres</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="flujo-de-ejecucion-completo">Flujo de Ejecucion Completo</h2>
+<h3 id="primer-uso-procesamiento-inicial">Primer Uso (Procesamiento
+Inicial)</h3>
+<pre><code>Terminal:
+$ python procesar_docs.py
+
+Flujo:
+────────────────────────────────────────────────────────────
+1. Cargar modelos NLP
+   ├── spacy.load(&quot;es_core_news_lg&quot;)        # ~560MB
+   └── pipeline(&quot;ner&quot;, model=&quot;bert-spanish&quot;) # ~440MB
+
+2. Cargar registro de archivos
+   └── processed_files.json (vacío o existente)
+
+3. Detectar archivos a procesar
+   ├── Escanear documentos/*.pdf
+   └── Comparar timestamps con registro
+
+4. Procesar documentos
+   ├── PyPDFLoader para cada PDF
+   └── RecursiveCharacterTextSplitter → chunks
+
+5. Enriquecer con NLP
+   ├── spaCy: Extraer entidades generales
+   └── BERT: Extraer entidades especializadas
+
+6. Crear/actualizar FAISS
+   ├── HuggingFaceEmbeddings para vectorizar
+   ├── Guardar en directorio temporal
+   └── Reemplazo atómico
+
+7. Actualizar registro
+   └── Guardar timestamps en JSON
+────────────────────────────────────────────────────────────
+Resultado: indice_faiss/ con index.faiss + index.pkl</code></pre>
+<hr />
+<h3 id="uso-normal-consulta">Uso Normal (Consulta)</h3>
+<pre><code>Navegador: http://localhost:8501
+
+Flujo de una consulta:
+────────────────────────────────────────────────────────────
+Usuario: &quot;¿Qué es un quaternión?&quot;
+           │
+           ▼
+1. render_sidebar()
+   └── Modelo: mistral:7b, Chunks: 5, Temp: 0.2
+
+2. cargar_base_datos()  (cacheado)
+   └── FAISS con embeddings
+
+3. get_llm(&quot;mistral:7b&quot;, 0.2, 120)
+   └── ChatOllama configurado
+
+4. retriever.get_relevant_documents(&quot;¿Qué es un quaternión?&quot;)
+   ├── Embedding de la pregunta
+   ├── Búsqueda de similitud en FAISS
+   └── Top 5 chunks relevantes
+
+5. Verificar contexto
+   ├── Si len(contexto) &gt;= 50: usar contexto local
+   └── Si len(contexto) &lt; 50: buscar_en_internet()
+
+6. prompt.format(context=..., question=...)
+   └── Prompt formateado con plantilla
+
+7. llm.invoke(formatted_prompt)
+   └── Respuesta del modelo
+
+8. Mostrar en UI
+   ├── st.write(respuesta)
+   ├── st.metric(&quot;Tiempo&quot;, &quot;2.5s&quot;)
+   └── st.expander(&quot;Fuentes&quot;) con contexto
+────────────────────────────────────────────────────────────</code></pre>
+<hr />
+<h3 id="flujo-de-interaccion-entre-componentes">Flujo de Interaccion
+Entre Componentes</h3>
+<p>El sistema sigue la siguiente secuencia de interacciones:</p>
+<ol type="1">
+<li><p><strong>Usuario envia pregunta</strong> a la interfaz
+Streamlit</p></li>
+<li><p><strong>Streamlit solicita documentos</strong> a FAISS</p>
+<ul>
+<li>FAISS retorna los 5 chunks mas relevantes</li>
+</ul></li>
+<li><p><strong>Verificacion de contexto</strong>:</p>
+<ul>
+<li>Si el contexto tiene menos de 50 caracteres, se activa fallback</li>
+<li>Streamlit solicita resultados a DuckDuckGo (Web)</li>
+<li>Web retorna resultados de busqueda</li>
+</ul></li>
+<li><p><strong>Generacion de respuesta</strong>:</p>
+<ul>
+<li>Streamlit envia el prompt con contexto al LLM</li>
+<li>LLM procesa y genera la respuesta</li>
+</ul></li>
+<li><p><strong>Respuesta al usuario</strong>:</p>
+<ul>
+<li>Streamlit muestra la respuesta formateada al usuario</li>
+</ul></li>
+</ol>
+<hr />
+<p><em>Fin de la Documentacion Tecnica</em></p>
+</body>
+</html>

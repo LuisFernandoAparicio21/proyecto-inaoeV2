@@ -1,0 +1,51 @@
+---
+title: 'API Reference'
+description: 'Referencia de la API interna del Asistente INAOE'
+---
+
+## Visión General
+
+El Asistente INAOE expone su funcionalidad a través de funciones Python internas. Aunque no es una API REST externa, esta referencia documenta las interfaces programáticas disponibles.
+
+<CardGroup cols={2}>
+  <Card title="LLM Providers" icon="robot" href="/api-reference/llm-providers">
+    Fábrica de modelos de lenguaje
+  </Card>
+  <Card title="RAG Chain" icon="link" href="/api-reference/rag-chain">
+    Cadena de recuperación y generación
+  </Card>
+</CardGroup>
+
+## Módulos Principales
+
+| Módulo | Descripción |
+|--------|-------------|
+| `app.py` | Aplicación Streamlit con UI y lógica RAG |
+| `procesar_docs.py` | Pipeline ETL de documentos |
+| `utils.py` | Funciones auxiliares |
+
+## Endpoints Conceptuales
+
+Aunque es una aplicación Streamlit (no REST), podemos conceptualizar las operaciones:
+
+```
+POST /query
+  Input: { "question": str, "model": str, "k": int }
+  Output: { "answer": str, "context": str, "time": float }
+
+POST /process
+  Input: { "documents": List[Path] }
+  Output: { "chunks_created": int, "status": str }
+```
+
+## Flujo de Datos
+
+```mermaid
+flowchart LR
+    A[Usuario] --> B[Streamlit UI]
+    B --> C[Query Handler]
+    C --> D[FAISS Retriever]
+    D --> E[LLM Provider]
+    E --> F[Response Formatter]
+    F --> B
+```

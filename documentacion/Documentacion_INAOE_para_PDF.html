@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Completa INAOE</title>
+    
+<style>
+@media print {
+    body { margin: 0; }
+    h1 { page-break-before: always; }
+    h1:first-of-type { page-break-before: avoid; }
+    pre, table { page-break-inside: avoid; }
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+h1 {
+    color: #0D9373;
+    border-bottom: 2px solid #0D9373;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+h2 {
+    color: #07C983;
+    margin-top: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+h3 {
+    color: #555;
+    margin-top: 25px;
+}
+code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 10pt;
+}
+pre {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 9pt;
+}
+pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px 0;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background: #0D9373;
+    color: white;
+}
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+blockquote {
+    border-left: 4px solid #0D9373;
+    margin: 15px 0;
+    padding: 10px 20px;
+    background: #f9f9f9;
+}
+a {
+    color: #0D9373;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+hr {
+    border: none;
+    border-top: 2px solid #0D9373;
+    margin: 40px 0;
+}
+.header-info {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #0D9373 0%, #07C983 100%);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.header-info h1 {
+    color: white;
+    border: none;
+    margin: 0;
+}
+.print-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #0D9373;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14pt;
+}
+.print-button:hover {
+    background: #07C983;
+}
+@media print {
+    .print-button { display: none; }
+    .header-info { 
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+</style>
+
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+    
+    <div class="header-info">
+        <h1>📚 Documentación del Proyecto INAOE</h1>
+        <p>Asistente de Investigación con RAG</p>
+        <p><em>Generado: Diciembre 2024</em></p>
+    </div>
+    
+    <section class="documento"><p>﻿# 🤖 Asistente de Investigación INAOE</p>
+<blockquote>
+<p><strong>Sistema RAG (Retrieval-Augmented Generation) para consulta inteligente de documentos científicos</strong></p>
+</blockquote>
+<p><a href="https://www.python.org/"><img alt="Python 3.9+" src="https://img.shields.io/badge/Python-3.9+-blue.svg" /></a>
+<a href="https://streamlit.io/"><img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-1.0+-red.svg" /></a>
+<a href="https://langchain.com/"><img alt="LangChain" src="https://img.shields.io/badge/LangChain-Latest-green.svg" /></a></p>
+<hr />
+<h2 id="tabla-de-contenidos">📋 Tabla de Contenidos</h2>
+<ul>
+<li><a href="#-descripción">Descripción</a></li>
+<li><a href="#-arquitectura">Arquitectura</a></li>
+<li><a href="#-inicio-rápido">Inicio Rápido</a></li>
+<li><a href="#-estructura-del-proyecto">Estructura del Proyecto</a></li>
+<li><a href="#-componentes">Componentes</a></li>
+<li><a href="#apppy---aplicación-principal">app.py</a></li>
+<li><a href="#procesar_docspy---pipeline-de-procesamiento">procesar_docs.py</a></li>
+<li><a href="#utilspy---funciones-auxiliares">utils.py</a></li>
+<li><a href="#-configuración">Configuración</a></li>
+<li><a href="#-modelos-soportados">Modelos Soportados</a></li>
+<li><a href="#-api-reference">API Reference</a></li>
+<li><a href="#-deployment">Deployment</a></li>
+<li><a href="#-troubleshooting">Troubleshooting</a></li>
+</ul>
+<hr />
+<h2 id="descripcion">📖 Descripción</h2>
+<p>El <strong>Asistente de Investigación INAOE</strong> es una aplicación web que permite a los investigadores del Instituto Nacional de Astrofísica, Óptica y Electrónica consultar documentos científicos utilizando inteligencia artificial.</p>
+<h3 id="caracteristicas-principales">Características Principales</h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔍 <strong>Búsqueda Semántica</strong></td>
+<td>Encuentra información relevante usando embeddings vectoriales</td>
+</tr>
+<tr>
+<td>🧠 <strong>Multi-LLM</strong></td>
+<td>Soporta Ollama (local), Google Gemini, Groq y Together AI</td>
+</tr>
+<tr>
+<td>📚 <strong>Enriquecimiento NLP</strong></td>
+<td>Extrae entidades con spaCy y BERT Spanish NER</td>
+</tr>
+<tr>
+<td>🌐 <strong>Fallback Web</strong></td>
+<td>Busca en DuckDuckGo si no hay contexto local suficiente</td>
+</tr>
+<tr>
+<td>⚡ <strong>Procesamiento Incremental</strong></td>
+<td>Solo procesa documentos nuevos o modificados</td>
+</tr>
+<tr>
+<td>🔒 <strong>Actualización Atómica</strong></td>
+<td>Protege la base de datos de corrupción</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="arquitectura">🏗️ Arquitectura</h2>
+<div class="codehilite"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────┐
+│                        USUARIO                                   │
+│                           │                                      │
+│                           ▼                                      │
+│                   ┌───────────────┐                              │
+│                   │  Streamlit UI │                              │
+│                   │   (app.py)    │                              │
+│                   └───────┬───────┘                              │
+│                           │                                      │
+│           ┌───────────────┼───────────────┐                      │
+│           ▼               ▼               ▼                      │
+│    ┌─────────────┐ ┌─────────────┐ ┌─────────────┐              │
+│    │   FAISS     │ │   LLM       │ │  DuckDuckGo │              │
+│    │  Retriever  │ │  Provider   │ │   Fallback  │              │
+│    └─────┬───────┘ └─────────────┘ └─────────────┘              │
+│          │                                                       │
+│          ▼                                                       │
+│    ┌─────────────┐                                               │
+│    │ Documentos  │ ◄── procesar_docs.py                         │
+│    │ Enriquecidos│     (spaCy + BERT NER)                       │
+│    └─────────────┘                                               │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="flujo-de-datos">Flujo de Datos</h3>
+<ol>
+<li><strong>Usuario</strong> → Ingresa pregunta en Streamlit</li>
+<li><strong>FAISS Retriever</strong> → Recupera chunks relevantes (k=5)</li>
+<li><strong>Contexto</strong> → Se verifica si es suficiente (&gt;50 chars)</li>
+<li><strong>LLM</strong> → Genera respuesta estructurada</li>
+<li><strong>Respuesta</strong> → Se muestra con fuentes y tiempo</li>
+</ol>
+<hr />
+<h2 id="inicio-rapido">🚀 Inicio Rápido</h2>
+<h3 id="requisitos">Requisitos</h3>
+<ul>
+<li>Python 3.9+</li>
+<li>4GB RAM mínimo (8GB recomendado)</li>
+<li>Ollama instalado (opcional, para modelos locales)</li>
+</ul>
+<h3 id="instalacion">Instalación</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 1. Clonar repositorio</span>
+git<span class="w"> </span>clone<span class="w"> </span>&lt;repository-url&gt;
+<span class="nb">cd</span><span class="w"> </span>proyecto_rag_inaoe
+
+<span class="c1"># 2. Crear entorno virtual</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+.<span class="se">\v</span>env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">  </span><span class="c1"># Windows</span>
+<span class="c1"># source venv/bin/activate  # Linux/Mac</span>
+
+<span class="c1"># 3. Instalar dependencias</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># 4. Descargar modelo spaCy</span>
+python<span class="w"> </span>-m<span class="w"> </span>spacy<span class="w"> </span>download<span class="w"> </span>es_core_news_lg
+
+<span class="c1"># 5. Procesar documentos (primera vez)</span>
+<span class="nb">cd</span><span class="w"> </span>src
+python<span class="w"> </span>procesar_docs.py
+
+<span class="c1"># 6. Ejecutar aplicación</span>
+streamlit<span class="w"> </span>run<span class="w"> </span>app.py
+</code></pre></div>
+
+<p>La aplicación estará disponible en <code>http://localhost:8501</code></p>
+<hr />
+<h2 id="estructura-del-proyecto">📂 Estructura del Proyecto</h2>
+<div class="codehilite"><pre><span></span><code>proyecto_rag_inaoe/
+├── src/
+│   ├── app.py              # Aplicación Streamlit principal
+│   ├── procesar_docs.py    # Pipeline de procesamiento NLP
+│   └── utils.py            # Funciones auxiliares
+│
+├── documentos/             # PDFs y documentos a procesar
+│   ├── <span class="gs">*.pdf               # Documentos científicos</span>
+<span class="gs">│   └── *</span>.txt               # Archivos de texto
+│
+├── models/                 # Modelos descargados
+│   ├── bert-spanish-ner/   # BERT NER en español
+│   └── sentence-transformers/
+│
+├── indice_faiss/           # Base de datos vectorial
+│   ├── index.faiss         # Índice FAISS
+│   └── index.pkl           # Metadatos serializados
+│
+├── docs/                   # Documentación Mintlify
+│
+├── .streamlit/
+│   └── secrets.toml        # API keys (no en git)
+│
+├── processed_files.json    # Registro de archivos procesados
+├── requirements.txt        # Dependencias Python
+└── README.md               # Este archivo
+</code></pre></div>
+
+<hr />
+<h2 id="componentes">🧩 Componentes</h2>
+<h3 id="apppy-aplicacion-principal"><code>app.py</code> - Aplicación Principal</h3>
+<p><strong>Líneas de código:</strong> ~420 | <strong>Propósito:</strong> Interfaz web y cadena RAG</p>
+<h4 id="funciones-principales">Funciones Principales</h4>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cargar_base_datos()</code></td>
+<td>Carga FAISS con embeddings HuggingFace</td>
+</tr>
+<tr>
+<td><code>verificar_ollama()</code></td>
+<td>Verifica si Ollama está activo en :11434</td>
+</tr>
+<tr>
+<td><code>get_llm(modelo, temp, timeout)</code></td>
+<td>Factory para crear instancias LLM</td>
+</tr>
+<tr>
+<td><code>buscar_en_internet(consulta)</code></td>
+<td>Fallback a DuckDuckGo</td>
+</tr>
+<tr>
+<td><code>render_sidebar()</code></td>
+<td>Renderiza configuración en sidebar</td>
+</tr>
+<tr>
+<td><code>create_rag_chain()</code></td>
+<td>Crea la cadena RAG completa</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ejemplo-de-uso">Ejemplo de Uso</h4>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_llm</span><span class="p">,</span> <span class="n">cargar_base_datos</span>
+
+<span class="c1"># Cargar base de datos</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">cargar_base_datos</span><span class="p">()</span>
+<span class="n">retriever</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+
+<span class="c1"># Crear LLM</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">get_llm</span><span class="p">(</span><span class="s2">&quot;gemini-1.5-flash&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="c1"># Consultar</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">get_relevant_documents</span><span class="p">(</span><span class="s2">&quot;¿Qué es un quaternión?&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="procesar_docspy-pipeline-de-procesamiento"><code>procesar_docs.py</code> - Pipeline de Procesamiento</h3>
+<p><strong>Líneas de código:</strong> ~400 | <strong>Propósito:</strong> ETL con enriquecimiento NLP</p>
+<h4 id="pipeline-de-procesamiento">Pipeline de Procesamiento</h4>
+<div class="codehilite"><pre><span></span><code>PDFs → PyPDFLoader → TextSplitter → Chunks
+                                      │
+                          ┌───────────┴───────────┐
+                          ▼                       ▼
+                     spaCy NER              BERT Spanish NER
+                          │                       │
+                          └───────────┬───────────┘
+                                      ▼
+                              Metadatos Combinados
+                                      │
+                                      ▼
+                              FAISS + Embeddings
+</code></pre></div>
+
+<h4 id="funciones-principales_1">Funciones Principales</h4>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cargar_registro_archivos()</code></td>
+<td>Lee JSON con timestamps de archivos</td>
+</tr>
+<tr>
+<td><code>obtener_archivos_a_procesar(registro)</code></td>
+<td>Detecta archivos nuevos/modificados</td>
+</tr>
+<tr>
+<td><code>procesar_lote_documentos(rutas)</code></td>
+<td>Carga PDFs y divide en chunks</td>
+</tr>
+<tr>
+<td><code>analizar_chunks_batch(chunks, nlp, hf)</code></td>
+<td>Enriquece con NLP dual</td>
+</tr>
+<tr>
+<td><code>main()</code></td>
+<td>Flujo principal con actualización atómica</td>
+</tr>
+</tbody>
+</table>
+<h4 id="configuracion-del-splitter">Configuración del Splitter</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>      <span class="c1"># Caracteres por chunk</span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>    <span class="c1"># Overlap para contexto</span>
+    <span class="n">length_function</span><span class="o">=</span><span class="nb">len</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="utilspy-funciones-auxiliares"><code>utils.py</code> - Funciones Auxiliares</h3>
+<p><strong>Líneas de código:</strong> ~240 | <strong>Propósito:</strong> Utilidades de verificación y validación</p>
+<h4 id="funciones">Funciones</h4>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>verificar_configuracion()</code></td>
+<td>Estado del sistema (DB, Ollama, API keys)</td>
+</tr>
+<tr>
+<td><code>obtener_info_modelo(modelo)</code></td>
+<td>Metadatos de modelos LLM</td>
+</tr>
+<tr>
+<td><code>formatear_tiempo(segundos)</code></td>
+<td>Convierte segundos a "Xm Ys"</td>
+</tr>
+<tr>
+<td><code>validar_pregunta(pregunta)</code></td>
+<td>Valida formato de pregunta</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ejemplo">Ejemplo</h4>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">verificar_configuracion</span><span class="p">,</span> <span class="n">validar_pregunta</span>
+
+<span class="c1"># Verificar sistema</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">verificar_configuracion</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;ollama_disponible&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inicia Ollama: ollama serve&quot;</span><span class="p">)</span>
+
+<span class="c1"># Validar pregunta</span>
+<span class="n">es_valida</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">validar_pregunta</span><span class="p">(</span><span class="s2">&quot;¿Qué es FAISS?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Válida: </span><span class="si">{</span><span class="n">es_valida</span><span class="si">}</span><span class="s2">, Mensaje: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="configuracion">⚙️ Configuración</h2>
+<h3 id="api-keys">API Keys</h3>
+<p>Crea el archivo <code>.streamlit/secrets.toml</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Google Gemini</span>
+<span class="n">GOOGLE_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tu-api-key-de-google&quot;</span>
+
+<span class="c1"># Groq (opcional)</span>
+<span class="n">GROQ_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tu-api-key-de-groq&quot;</span>
+
+<span class="c1"># Together AI (opcional)</span>
+<span class="n">TOGETHER_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tu-api-key-de-together&quot;</span>
+</code></pre></div>
+
+<h3 id="obtener-api-keys">Obtener API Keys</h3>
+<table>
+<thead>
+<tr>
+<th>Proveedor</th>
+<th>URL</th>
+<th>Costo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Gemini</td>
+<td><a href="https://makersuite.google.com">makersuite.google.com</a></td>
+<td>Gratis (15 req/min)</td>
+</tr>
+<tr>
+<td>Groq</td>
+<td><a href="https://console.groq.com">console.groq.com</a></td>
+<td>Pago por uso</td>
+</tr>
+<tr>
+<td>Together AI</td>
+<td><a href="https://together.ai">together.ai</a></td>
+<td>$25 créditos gratis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parametros-de-la-aplicacion">Parámetros de la Aplicación</h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Rango</th>
+<th>Default</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Documentos</td>
+<td>3-10</td>
+<td>5</td>
+<td>Chunks a recuperar</td>
+</tr>
+<tr>
+<td>Creatividad</td>
+<td>0.0-1.0</td>
+<td>0.2</td>
+<td>Temperature del LLM</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>30-300s</td>
+<td>120s</td>
+<td>Tiempo máximo de espera</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modelos-soportados">🤖 Modelos Soportados</h2>
+<h3 id="modelos-activos">Modelos Activos</h3>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Proveedor</th>
+<th>Tipo</th>
+<th>RAM</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deepseek-r1:1.5b</code></td>
+<td>Ollama</td>
+<td>Local</td>
+<td>~2GB</td>
+<td>Razonamiento avanzado</td>
+</tr>
+<tr>
+<td><code>mistral:7b</code></td>
+<td>Ollama</td>
+<td>Local</td>
+<td>4GB</td>
+<td>Excelente para investigación</td>
+</tr>
+<tr>
+<td><code>gemini-1.5-flash</code></td>
+<td>Google</td>
+<td>API</td>
+<td>-</td>
+<td>Rápido, 15 req/min gratis</td>
+</tr>
+<tr>
+<td><code>gemini-1.5-pro</code></td>
+<td>Google</td>
+<td>API</td>
+<td>-</td>
+<td>Máxima calidad</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modelos-nlp">Modelos NLP</h3>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Propósito</th>
+<th>Tamaño</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>es_core_news_lg</code></td>
+<td>NER general español</td>
+<td>~560MB</td>
+</tr>
+<tr>
+<td><code>bert-spanish-ner</code></td>
+<td>NER especializado</td>
+<td>~440MB</td>
+</tr>
+<tr>
+<td><code>all-MiniLM-L6-v2</code></td>
+<td>Embeddings</td>
+<td>~90MB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="api-reference">📚 API Reference</h2>
+<h3 id="get_llmmodelo-temperature-timeout"><code>get_llm(modelo, temperature, timeout)</code></h3>
+<p>Factory que crea instancias de LLM según el proveedor.</p>
+<p><strong>Parámetros:</strong>
+- <code>modelo</code> (str): ID del modelo (ej: "gemini-1.5-flash")
+- <code>temperature</code> (float): 0.0-1.0, controla creatividad
+- <code>timeout</code> (int): Segundos máximos de espera</p>
+<p><strong>Retorna:</strong> Instancia de LLM o None si hay error</p>
+<p><strong>Ejemplo:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">llm</span> <span class="o">=</span> <span class="n">get_llm</span><span class="p">(</span><span class="s2">&quot;mistral:7b&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">llm</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;¿Qué es la propulsión de cohetes?&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="analizar_chunks_batchchunks-spacy_nlp-hf_pipeline"><code>analizar_chunks_batch(chunks, spacy_nlp, hf_pipeline)</code></h3>
+<p>Analiza un lote de textos con spaCy y HuggingFace.</p>
+<p><strong>Parámetros:</strong>
+- <code>chunks</code> (List[str]): Lista de textos a analizar
+- <code>spacy_nlp</code>: Modelo spaCy cargado
+- <code>hf_pipeline</code>: Pipeline HuggingFace NER</p>
+<p><strong>Retorna:</strong> Lista de diccionarios con entidades extraídas</p>
+<p><strong>Ejemplo:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">metadatos</span> <span class="o">=</span> <span class="n">analizar_chunks_batch</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;El INAOE está en Puebla.&quot;</span><span class="p">],</span>
+    <span class="n">spacy_nlp</span><span class="p">,</span>
+    <span class="n">hf_pipeline</span>
+<span class="p">)</span>
+<span class="c1"># {&#39;spacy_entities&#39;: {&#39;ORG&#39;: [&#39;INAOE&#39;], &#39;LOC&#39;: [&#39;Puebla&#39;]}, ...}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="validar_preguntapregunta"><code>validar_pregunta(pregunta)</code></h3>
+<p>Valida si una pregunta es apropiada para el sistema.</p>
+<p><strong>Parámetros:</strong>
+- <code>pregunta</code> (str): Texto de la pregunta</p>
+<p><strong>Retorna:</strong> Tuple[bool, str] - (es_válida, mensaje)</p>
+<p><strong>Reglas:</strong>
+- Mínimo 3 caracteres
+- Máximo 500 caracteres
+- Debe contener palabra interrogativa (qué, cómo, cuál, etc.)</p>
+<hr />
+<h2 id="deployment">🚀 Deployment</h2>
+<h3 id="streamlit-cloud">Streamlit Cloud</h3>
+<ol>
+<li>Sube a GitHub</li>
+<li>Conecta en <a href="https://share.streamlit.io">share.streamlit.io</a></li>
+<li>Configura secrets en el dashboard</li>
+</ol>
+<blockquote>
+<p>⚠️ Streamlit Cloud no soporta Ollama (solo APIs cloud)</p>
+</blockquote>
+<h3 id="docker">Docker</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.10-slim</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<span class="k">RUN</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>spacy<span class="w"> </span>download<span class="w"> </span>es_core_news_lg
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8501</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;streamlit&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;run&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;src/app.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--server.port=8501&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>inaoe-assistant<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8501</span>:8501<span class="w"> </span>inaoe-assistant
+</code></pre></div>
+
+<hr />
+<h2 id="troubleshooting">🔧 Troubleshooting</h2>
+<h3 id="error-base-de-datos-no-encontrada">Error: "Base de datos no encontrada"</h3>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>src
+python<span class="w"> </span>procesar_docs.py
+</code></pre></div>
+
+<h3 id="error-ollama-no-esta-ejecutandose">Error: "Ollama no está ejecutándose"</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Iniciar servicio Ollama</span>
+ollama<span class="w"> </span>serve
+
+<span class="c1"># Descargar modelo</span>
+ollama<span class="w"> </span>pull<span class="w"> </span>mistral:7b
+</code></pre></div>
+
+<h3 id="error-spacy-model-not-found">Error: "spaCy model not found"</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>spacy<span class="w"> </span>download<span class="w"> </span>es_core_news_lg
+</code></pre></div>
+
+<h3 id="error-cuda-out-of-memory">Error: "CUDA out of memory"</h3>
+<p>El sistema usa CPU automáticamente si CUDA falla. Para forzar CPU:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>  <span class="c1"># En lugar de &#39;cuda&#39;</span>
+</code></pre></div>
+
+<hr />
+<h2 id="metricas-del-proyecto">📊 Métricas del Proyecto</h2>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Líneas de código Python</td>
+<td>~1,060</td>
+</tr>
+<tr>
+<td>Archivos Python</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Páginas de documentación</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Modelos LLM soportados</td>
+<td>4+</td>
+</tr>
+<tr>
+<td>Modelos NLP</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="licencia">📝 Licencia</h2>
+<p>Este proyecto es para uso interno del INAOE.</p>
+<hr />
+<h2 id="contribuidores">👥 Contribuidores</h2>
+<ul>
+<li>Proyecto INAOE</li>
+</ul>
+<hr />
+<p><em>Documentación generada el 26 de Diciembre, 2025</em></p></section><hr>
+<section class="documento"><h1 id="documentacion-tecnica-detallada">📖 Documentación Técnica Detallada</h1>
+<h2 id="proyecto-rag-inaoe-explicacion-codigo-por-codigo">Proyecto RAG INAOE - Explicación Código por Código</h2>
+<p><strong>Versión:</strong> 1.0.0<br />
+<strong>Fecha:</strong> 26 de Diciembre, 2025<br />
+<strong>Autor:</strong> Proyecto INAOE</p>
+<hr />
+<h1 id="tabla-de-contenidos">Tabla de Contenidos</h1>
+<ol>
+<li><a href="#1-apppy---aplicación-principal">app.py - Aplicación Principal</a></li>
+<li><a href="#2-procesar_docspy---pipeline-de-procesamiento">procesar_docs.py - Pipeline de Procesamiento</a></li>
+<li><a href="#3-utilspy---funciones-auxiliares">utils.py - Funciones Auxiliares</a></li>
+<li><a href="#4-flujo-de-ejecución-completo">Flujo de Ejecución Completo</a></li>
+</ol>
+<hr />
+<h1 id="1-apppy-aplicacion-principal">1. <code>app.py</code> - Aplicación Principal</h1>
+<p><strong>Propósito:</strong> Interfaz web con Streamlit para consultas RAG sobre documentos científicos.</p>
+<p><strong>Líneas totales:</strong> ~420</p>
+<hr />
+<h2 id="11-encabezado-del-modulo-lineas-1-26">1.1 Encabezado del Módulo (Líneas 1-26)</h2>
+<div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Asistente de Investigación INAOE - Aplicación RAG con Streamlit.</span>
+
+<span class="sd">Esta aplicación proporciona una interfaz web para consultar documentos</span>
+<span class="sd">científicos del INAOE utilizando Retrieval-Augmented Generation (RAG).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong>
+- El <strong>docstring del módulo</strong> describe el propósito general del archivo
+- Sirve como documentación que aparece cuando ejecutas <code>help(app)</code></p>
+<hr />
+<h2 id="12-imports-lineas-27-40">1.2 Imports (Líneas 27-40)</h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">FAISS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunnableParallel</span><span class="p">,</span> <span class="n">RunnablePassthrough</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.output_parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrOutputParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</code></pre></div>
+
+<p><strong>Explicación de cada import:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Import</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>streamlit</code></td>
+<td>Framework para crear la interfaz web</td>
+</tr>
+<tr>
+<td><code>FAISS</code></td>
+<td>Base de datos vectorial para búsqueda semántica</td>
+</tr>
+<tr>
+<td><code>HuggingFaceEmbeddings</code></td>
+<td>Convierte texto a vectores numéricos</td>
+</tr>
+<tr>
+<td><code>PromptTemplate</code></td>
+<td>Plantilla para formatear prompts al LLM</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td>Manejo de rutas de archivos multiplataforma</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Medir tiempo de respuesta</td>
+</tr>
+<tr>
+<td><code>torch</code></td>
+<td>Detectar si hay GPU disponible</td>
+</tr>
+<tr>
+<td><code>requests</code></td>
+<td>Verificar si Ollama está activo</td>
+</tr>
+<tr>
+<td><code>typing</code></td>
+<td>Anotaciones de tipos para mejor documentación</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-imports-de-proveedores-llm-lineas-42-55">1.3 Imports de Proveedores LLM (Líneas 42-55)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_google_genai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGoogleGenerativeAI</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOllama</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_groq</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGroq</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_together</span><span class="w"> </span><span class="kn">import</span> <span class="n">Together</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al importar: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong>
+- <strong>try/except:</strong> Captura errores si falta alguna dependencia
+- Si falla, muestra error en Streamlit y detiene la ejecución
+- Esto evita que la app crashee sin dar información al usuario</p>
+<hr />
+<h2 id="14-configuracion-de-pagina-streamlit-lineas-57-63">1.4 Configuración de Página Streamlit (Líneas 57-63)</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span>
+    <span class="n">page_title</span><span class="o">=</span><span class="s2">&quot;Asistente INAOE 🚀&quot;</span><span class="p">,</span>
+    <span class="n">page_icon</span><span class="o">=</span><span class="s2">&quot;🤖&quot;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;wide&quot;</span><span class="p">,</span>
+    <span class="n">initial_sidebar_state</span><span class="o">=</span><span class="s2">&quot;expanded&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong>
+- <code>page_title</code>: Título que aparece en la pestaña del navegador
+- <code>page_icon</code>: Emoji/icono de la pestaña
+- <code>layout="wide"</code>: Usa todo el ancho de la pantalla
+- <code>initial_sidebar_state</code>: El sidebar se muestra expandido al inicio</p>
+<hr />
+<h2 id="15-configuracion-de-rutas-lineas-65-67">1.5 Configuración de Rutas (Líneas 65-67)</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">RUTA_PROYECTO</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">RUTA_DB</span> <span class="o">=</span> <span class="n">RUTA_PROYECTO</span> <span class="o">/</span> <span class="s2">&quot;indice_faiss&quot;</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong>
+- <code>Path(__file__)</code>: Ruta del archivo actual (app.py)
+- <code>.resolve()</code>: Convierte a ruta absoluta
+- <code>.parent.parent</code>: Sube dos niveles (src → proyecto_rag_inaoe)
+- <code>/</code>: Operador de Path para unir rutas de forma segura</p>
+<p><strong>Ejemplo:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nf">__file__</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="no">C</span><span class="p">:</span><span class="err">/</span><span class="no">proyecto</span><span class="err">/</span><span class="no">src</span><span class="err">/</span><span class="no">app.py</span>
+<span class="na">.parent</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="no">C</span><span class="p">:</span><span class="err">/</span><span class="no">proyecto</span><span class="err">/</span><span class="no">src</span>
+<span class="na">.parent.parent</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="no">C</span><span class="p">:</span><span class="err">/</span><span class="no">proyecto</span>
+<span class="err">/</span><span class="w"> </span><span class="err">&quot;</span><span class="nf">indice_faiss</span><span class="err">&quot;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="no">C</span><span class="p">:</span><span class="err">/</span><span class="no">proyecto</span><span class="err">/</span><span class="no">indice_faiss</span>
+</code></pre></div>
+
+<hr />
+<h2 id="16-configuracion-de-modelos-lineas-70-102">1.6 Configuración de Modelos (Líneas 70-102)</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">MODEL_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;deepseek-r1:1.5b&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;ollama&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="s2">&quot;🚀 Local DeepSeek - Razonamiento avanzado, ~2GB RAM.&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;mistral:7b&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;ollama&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="s2">&quot;🏆 Local - Excelente para investigación, 4GB RAM.&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;gemini-1.5-flash&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="s2">&quot;🟢 API Google - Rápido, 15 req/min gratis.&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;gemini-1.5-pro&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="s2">&quot;✨ API Google - Máxima calidad de razonamiento.&quot;</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong>
+- <strong>Diccionario</strong> que mapea IDs de modelos a sus configuraciones
+- <code>provider</code>: Indica qué API/servicio usar (ollama, google, groq, together)
+- <code>info</code>: Texto descriptivo que se muestra al usuario en el sidebar
+- Para agregar un nuevo modelo, solo se añade una entrada aquí</p>
+<hr />
+<h2 id="17-template-del-prompt-lineas-104-143">1.7 Template del Prompt (Líneas 104-143)</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">PROMPT_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Eres un Asistente de Investigación Senior del INAOE...</span>
+
+<span class="s2">**MISIÓN PRINCIPAL:**</span>
+<span class="s2">1. PRIORIDAD 1: El CONTEXTO de documentos INAOE</span>
+<span class="s2">2. PRIORIDAD 2: Conocimiento general del modelo</span>
+<span class="s2">3. PRIORIDAD 3: Fuentes verificables</span>
+<span class="s2">4. PRIORIDAD 4: Búsqueda en internet</span>
+
+<span class="s2">**FORMATO DE SALIDA:**</span>
+<span class="s2">- Resumen Ejecutivo (TL;DR)</span>
+<span class="s2">- Análisis Detallado</span>
+<span class="s2">- Conclusión e Implicaciones</span>
+<span class="s2">- Fuentes Consultadas</span>
+
+<span class="s2">---</span>
+<span class="s2">**CONTEXTO PROPORCIONADO:**</span>
+<span class="si">{context}</span>
+
+<span class="s2">**PREGUNTA DEL INVESTIGADOR:**</span>
+<span class="si">{question}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong>
+- <strong>Prompt Engineering:</strong> Define cómo el LLM debe responder
+- <code>{context}</code>: Placeholder que se reemplaza con documentos recuperados
+- <code>{question}</code>: Placeholder para la pregunta del usuario
+- El formato estructurado garantiza respuestas consistentes</p>
+<hr />
+<h2 id="18-funcion-buscar_en_internet-lineas-145-195">1.8 Función: buscar_en_internet() (Líneas 145-195)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">buscar_en_internet</span><span class="p">(</span><span class="n">consulta</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_resultados</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza una búsqueda web usando DuckDuckGo como fallback.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">duckduckgo_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">DDGS</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;[Fallback deshabilitado] </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">with</span> <span class="n">DDGS</span><span class="p">()</span> <span class="k">as</span> <span class="n">ddgs</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ddgs</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">consulta</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="s2">&quot;wt-wt&quot;</span><span class="p">,</span> 
+                                   <span class="n">safesearch</span><span class="o">=</span><span class="s2">&quot;moderate&quot;</span><span class="p">,</span> 
+                                   <span class="n">max_results</span><span class="o">=</span><span class="n">max_resultados</span><span class="p">):</span>
+                <span class="n">titulo</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">cuerpo</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">link</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Título: </span><span class="si">{</span><span class="n">titulo</span><span class="si">}</span><span class="se">\n</span><span class="s2">Resumen: </span><span class="si">{</span><span class="n">cuerpo</span><span class="si">}</span><span class="se">\n</span><span class="s2">Fuente: </span><span class="si">{</span><span class="n">link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resultados</span> <span class="k">if</span> <span class="n">resultados</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;No se encontraron resultados.&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Error en búsqueda web: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p><strong>Explicación línea por línea:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Línea</th>
+<th>Código</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>def buscar_en_internet(...)</code></td>
+<td>Define función con tipos de parámetros</td>
+</tr>
+<tr>
+<td>2-4</td>
+<td><code>try: from duckduckgo...</code></td>
+<td>Importa la librería bajo demanda</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>resultados = []</code></td>
+<td>Lista vacía para almacenar resultados</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>with DDGS() as ddgs:</code></td>
+<td>Context manager para manejar conexión</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>for item in ddgs.text(...)</code></td>
+<td>Itera sobre resultados de búsqueda</td>
+</tr>
+<tr>
+<td>8-10</td>
+<td><code>item.get(...)</code></td>
+<td>Extrae campos de forma segura (evita KeyError)</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>resultados.append(...)</code></td>
+<td>Formatea y agrega cada resultado</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>return resultados if...</code></td>
+<td>Retorna resultados o mensaje de error</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="19-funcion-cargar_base_datos-lineas-197-240">1.9 Función: cargar_base_datos() (Líneas 197-240)</h2>
+<div class="codehilite"><pre><span></span><code><span class="nd">@st</span><span class="o">.</span><span class="n">cache_resource</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cargar_base_datos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FAISS</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carga la base de datos vectorial FAISS de forma segura.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">RUTA_DB</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ No se encontró la base de datos en: </span><span class="si">{</span><span class="n">RUTA_DB</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;💡 Ejecuta primero: `python procesar_docs.py`&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span>
+            <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;all-MiniLM-L6-v2&quot;</span><span class="p">,</span>
+            <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="n">device</span><span class="p">},</span>
+            <span class="n">cache_folder</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">RUTA_PROYECTO</span> <span class="o">/</span> <span class="s2">&quot;models&quot;</span><span class="p">),</span>
+            <span class="n">encode_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;normalize_embeddings&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">load_local</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">RUTA_DB</span><span class="p">),</span> <span class="n">embeddings</span><span class="p">,</span> 
+                                 <span class="n">allow_dangerous_deserialization</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al cargar la base de datos: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@st.cache_resource</code></td>
+<td><strong>Decorador</strong> que cachea el resultado. La función solo se ejecuta una vez por sesión</td>
+</tr>
+<tr>
+<td><code>Optional[FAISS]</code></td>
+<td>Puede retornar una instancia de FAISS o None</td>
+</tr>
+<tr>
+<td><code>RUTA_DB.exists()</code></td>
+<td>Verifica si el directorio existe</td>
+</tr>
+<tr>
+<td><code>torch.cuda.is_available()</code></td>
+<td>Detecta si hay GPU NVIDIA disponible</td>
+</tr>
+<tr>
+<td><code>HuggingFaceEmbeddings(...)</code></td>
+<td>Crea el modelo de embeddings</td>
+</tr>
+<tr>
+<td><code>model_kwargs={'device': device}</code></td>
+<td>Indica si usar GPU o CPU</td>
+</tr>
+<tr>
+<td><code>cache_folder=...</code></td>
+<td>Guarda modelos localmente para no re-descargar</td>
+</tr>
+<tr>
+<td><code>normalize_embeddings=True</code></td>
+<td>Normaliza vectores para mejor similitud coseno</td>
+</tr>
+<tr>
+<td><code>FAISS.load_local(...)</code></td>
+<td>Carga el índice desde disco</td>
+</tr>
+<tr>
+<td><code>allow_dangerous_deserialization=True</code></td>
+<td>Necesario para cargar objetos pickle</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="110-funcion-verificar_ollama-lineas-242-268">1.10 Función: verificar_ollama() (Líneas 242-268)</h2>
+<div class="codehilite"><pre><span></span><code><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span><span class="p">(</span><span class="n">ttl</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">verificar_ollama</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verifica si el servicio de Ollama está activo en localhost.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://localhost:11434&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@st.cache_data(ttl=300)</code></td>
+<td>Cachea el resultado por 5 minutos (300 segundos)</td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td>Time To Live - después de 300s, vuelve a verificar</td>
+</tr>
+<tr>
+<td><code>requests.get(...)</code></td>
+<td>Hace petición HTTP GET al puerto de Ollama</td>
+</tr>
+<tr>
+<td><code>timeout=3</code></td>
+<td>Espera máximo 3 segundos</td>
+</tr>
+<tr>
+<td><code>ConnectionError</code></td>
+<td>Se lanza si Ollama no está corriendo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="111-funcion-get_llm-factory-pattern-lineas-292-356">1.11 Función: get_llm() - Factory Pattern (Líneas 292-356)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_llm</span><span class="p">(</span><span class="n">modelo</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Factory que crea instancias de LLM según el proveedor.&quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">MODEL_CONFIG</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">modelo</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">provider</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;provider&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;google&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;GOOGLE_API_KEY&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">secrets</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;🚨 Falta la API Key de Google&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">ChatGoogleGenerativeAI</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">modelo</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> 
+            <span class="n">api_key</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">secrets</span><span class="p">[</span><span class="s2">&quot;GOOGLE_API_KEY&quot;</span><span class="p">],</span> 
+            <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span>
+        <span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;ollama&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">verificar_ollama</span><span class="p">():</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;🚨 Ollama no está ejecutándose&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">ChatOllama</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">modelo</span><span class="p">,</span> 
+            <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span> 
+            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
+        <span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;groq&quot;</span><span class="p">:</span>
+        <span class="c1"># Similar a Google...</span>
+
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;together&quot;</span><span class="p">:</span>
+        <span class="c1"># Similar a Google...</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🚨 Proveedor &#39;</span><span class="si">{</span><span class="n">provider</span><span class="si">}</span><span class="s2">&#39; no configurado&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+
+<p><strong>Explicación del Patrón Factory:</strong></p>
+<div class="codehilite"><pre><span></span><code>┌─────────────────┐
+│  get_llm()      │ ◄── Entrada: modelo, temperature, timeout
+├─────────────────┤
+│ if google:      │ ──► ChatGoogleGenerativeAI
+│ elif ollama:    │ ──► ChatOllama
+│ elif groq:      │ ──► ChatGroq
+│ elif together:  │ ──► Together
+│ else:           │ ──► None + Error
+└─────────────────┘
+</code></pre></div>
+
+<p><strong>Ventajas del Factory Pattern:</strong>
+1. <strong>Centralizado:</strong> Solo un lugar para crear LLMs
+2. <strong>Extensible:</strong> Agregar nuevo proveedor = agregar elif
+3. <strong>Encapsulado:</strong> La lógica de creación está oculta del resto del código</p>
+<hr />
+<h2 id="112-funcion-render_sidebar-lineas-358-394">1.12 Función: render_sidebar() (Líneas 358-394)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">render_sidebar</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renderiza la barra lateral con opciones de configuración.&quot;&quot;&quot;</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;⚙️ Configuración&quot;</span><span class="p">)</span>
+
+    <span class="n">modelo_seleccionado</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span>
+        <span class="s2">&quot;Selecciona el modelo:&quot;</span><span class="p">,</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">MODEL_CONFIG</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+        <span class="n">index</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+
+    <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">MODEL_CONFIG</span><span class="p">[</span><span class="n">modelo_seleccionado</span><span class="p">][</span><span class="s2">&quot;info&quot;</span><span class="p">])</span>
+
+    <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="s2">&quot;🔧 Configuración Avanzada&quot;</span><span class="p">):</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Documentos a consultar&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">temperature</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Creatividad&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Timeout (segundos)&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">modelo_seleccionado</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">timeout</span>
+</code></pre></div>
+
+<p><strong>Explicación de Widgets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Widget</th>
+<th>Código</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>selectbox</code></td>
+<td>Dropdown para seleccionar modelo</td>
+<td>Muestra lista de modelos</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td>Cuadro informativo</td>
+<td>Muestra descripción del modelo</td>
+</tr>
+<tr>
+<td><code>expander</code></td>
+<td>Sección colapsable</td>
+<td>Oculta configuración avanzada</td>
+</tr>
+<tr>
+<td><code>slider</code></td>
+<td>Deslizador</td>
+<td>Permite seleccionar valores numéricos</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Valores de retorno:</strong>
+- <code>modelo_seleccionado</code>: String con ID del modelo
+- <code>chunk_size</code>: Entero (3-10)
+- <code>temperature</code>: Float (0.0-1.0)
+- <code>timeout</code>: Entero (30-300)</p>
+<hr />
+<h2 id="113-funcion-main-flujo-principal-lineas-396-480">1.13 Función: main() - Flujo Principal (Líneas 396-480)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Asistente de Investigación INAOE 🤖&quot;</span><span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hazme preguntas sobre los documentos del INAOE...&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 1. Configuración del sidebar</span>
+    <span class="n">modelo_sel</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="n">render_sidebar</span><span class="p">()</span>
+
+    <span class="c1"># 2. Cargar base de datos</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">cargar_base_datos</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># 3. Crear LLM</span>
+    <span class="n">llm</span> <span class="o">=</span> <span class="n">get_llm</span><span class="p">(</span><span class="n">modelo_sel</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">llm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># 4. Crear retriever</span>
+    <span class="n">retriever</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="n">chunk_size</span><span class="p">})</span>
+
+    <span class="c1"># 5. Crear prompt</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">PROMPT_TEMPLATE</span><span class="p">)</span>
+
+    <span class="c1"># 6. Crear cadena RAG</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_rag_chain</span><span class="p">():</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">rag_invoke</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+            <span class="n">docs</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">get_relevant_documents</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="n">format_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+
+            <span class="c1"># Fallback a internet si contexto insuficiente</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">context</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="n">resultados_web</span> <span class="o">=</span> <span class="n">buscar_en_internet</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+                <span class="n">context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[Fuente: Internet]</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resultados_web</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+            <span class="n">formatted_prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">formatted_prompt</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span>
+                <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">,</span>
+                <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+            <span class="p">}</span>
+        <span class="k">return</span> <span class="n">rag_invoke</span>
+
+    <span class="n">rag_chain</span> <span class="o">=</span> <span class="n">create_rag_chain</span><span class="p">()</span>
+
+    <span class="c1"># 7. Interfaz de entrada</span>
+    <span class="n">pregunta</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;🤔 ¿Qué te gustaría saber?&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;🔍 Buscar respuesta&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">pregunta</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">spinner</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🤖 Buscando respuesta con </span><span class="si">{</span><span class="n">modelo_sel</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">):</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">rag_chain</span><span class="p">(</span><span class="n">pregunta</span><span class="p">)</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+            <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s2">&quot;### 📝 Respuesta:&quot;</span><span class="p">)</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">])</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">&quot;⏱️ Tiempo&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Diagrama de Flujo:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">main</span><span class="p">()</span>
+<span class="w">  </span><span class="err">│</span>
+<span class="w">  </span><span class="err">├──►</span><span class="w"> </span><span class="n">render_sidebar</span><span class="p">()</span><span class="w"> </span><span class="err">──►</span><span class="w"> </span><span class="n">Configuración</span>
+<span class="w">  </span><span class="err">│</span>
+<span class="w">  </span><span class="err">├──►</span><span class="w"> </span><span class="n">cargar_base_datos</span><span class="p">()</span><span class="w"> </span><span class="err">──►</span><span class="w"> </span><span class="n">FAISS</span><span class="w"> </span><span class="n">DB</span>
+<span class="w">  </span><span class="err">│</span><span class="w">         </span><span class="err">│</span>
+<span class="w">  </span><span class="err">│</span><span class="w">         </span><span class="err">└──►</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">falla</span><span class="w"> </span><span class="err">──►</span><span class="w"> </span><span class="k">return</span>
+<span class="w">  </span><span class="err">│</span>
+<span class="w">  </span><span class="err">├──►</span><span class="w"> </span><span class="n">get_llm</span><span class="p">()</span><span class="w"> </span><span class="err">──►</span><span class="w"> </span><span class="n">Instancia</span><span class="w"> </span><span class="n">LLM</span>
+<span class="w">  </span><span class="err">│</span><span class="w">         </span><span class="err">│</span>
+<span class="w">  </span><span class="err">│</span><span class="w">         </span><span class="err">└──►</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">falla</span><span class="w"> </span><span class="err">──►</span><span class="w"> </span><span class="k">return</span>
+<span class="w">  </span><span class="err">│</span>
+<span class="w">  </span><span class="err">├──►</span><span class="w"> </span><span class="n">as_retriever</span><span class="p">()</span><span class="w"> </span><span class="err">──►</span><span class="w"> </span><span class="n">Retriever</span><span class="w"> </span><span class="n">configurado</span>
+<span class="w">  </span><span class="err">│</span>
+<span class="w">  </span><span class="err">├──►</span><span class="w"> </span><span class="n">create_rag_chain</span><span class="p">()</span><span class="w"> </span><span class="err">──►</span><span class="w"> </span><span class="n">Función</span><span class="w"> </span><span class="n">RAG</span>
+<span class="w">  </span><span class="err">│</span>
+<span class="w">  </span><span class="err">└──►</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">()</span><span class="w"> </span><span class="err">──►</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="nl">click:</span>
+<span class="w">            </span><span class="err">│</span>
+<span class="w">            </span><span class="err">├──►</span><span class="w"> </span><span class="n">rag_chain</span><span class="p">(</span><span class="n">pregunta</span><span class="p">)</span>
+<span class="w">            </span><span class="err">│</span><span class="w">       </span><span class="err">│</span>
+<span class="w">            </span><span class="err">│</span><span class="w">       </span><span class="err">├──►</span><span class="w"> </span><span class="n">Recuperar</span><span class="w"> </span><span class="n">documentos</span>
+<span class="w">            </span><span class="err">│</span><span class="w">       </span><span class="err">├──►</span><span class="w"> </span><span class="n">Verificar</span><span class="w"> </span><span class="n">contexto</span>
+<span class="w">            </span><span class="err">│</span><span class="w">       </span><span class="err">├──►</span><span class="w"> </span><span class="n">Fallback</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">web</span><span class="w"> </span><span class="n">si</span><span class="w"> </span><span class="n">necesario</span>
+<span class="w">            </span><span class="err">│</span><span class="w">       </span><span class="err">├──►</span><span class="w"> </span><span class="n">Formatear</span><span class="w"> </span><span class="n">prompt</span>
+<span class="w">            </span><span class="err">│</span><span class="w">       </span><span class="err">└──►</span><span class="w"> </span><span class="n">Invocar</span><span class="w"> </span><span class="n">LLM</span>
+<span class="w">            </span><span class="err">│</span>
+<span class="w">            </span><span class="err">└──►</span><span class="w"> </span><span class="n">Mostrar</span><span class="w"> </span><span class="n">respuesta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tiempo</span>
+</code></pre></div>
+
+<hr />
+<h1 id="2-procesar_docspy-pipeline-de-procesamiento">2. <code>procesar_docs.py</code> - Pipeline de Procesamiento</h1>
+<p><strong>Propósito:</strong> Pipeline ETL para procesar PDFs con enriquecimiento NLP</p>
+<p><strong>Líneas totales:</strong> ~400</p>
+<hr />
+<h2 id="21-modulo-docstring-lineas-1-32">2.1 Módulo Docstring (Líneas 1-32)</h2>
+<div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Pipeline de procesamiento de documentos para el sistema RAG INAOE.</span>
+
+<span class="sd">Este módulo implementa un pipeline ETL (Extract, Transform, Load) para:</span>
+<span class="sd">- Extract: Cargar documentos PDF</span>
+<span class="sd">- Transform: Dividir en chunks y enriquecer con NLP</span>
+<span class="sd">- Load: Almacenar en base de datos vectorial FAISS</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<hr />
+<h2 id="22-configuracion-centralizada-lineas-50-66">2.2 Configuración Centralizada (Líneas 50-66)</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Rutas</span>
+<span class="n">RUTA_PROYECTO</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">DIR_DOCS</span> <span class="o">=</span> <span class="n">RUTA_PROYECTO</span> <span class="o">/</span> <span class="s2">&quot;documentos&quot;</span>
+<span class="n">DIR_DB_FAISS</span> <span class="o">=</span> <span class="n">RUTA_PROYECTO</span> <span class="o">/</span> <span class="s2">&quot;indice_faiss&quot;</span>
+<span class="n">DIR_DB_TEMP</span> <span class="o">=</span> <span class="n">RUTA_PROYECTO</span> <span class="o">/</span> <span class="s2">&quot;indice_faiss_temp&quot;</span>  <span class="c1"># Para atomicidad</span>
+<span class="n">ARCHIVO_REGISTRO</span> <span class="o">=</span> <span class="n">RUTA_PROYECTO</span> <span class="o">/</span> <span class="s2">&quot;processed_files.json&quot;</span>
+
+<span class="c1"># Modelos</span>
+<span class="n">EMBEDDING_MODEL</span> <span class="o">=</span> <span class="s2">&quot;all-MiniLM-L6-v2&quot;</span>
+<span class="n">SPACY_MODEL</span> <span class="o">=</span> <span class="s2">&quot;es_core_news_lg&quot;</span>
+<span class="n">RUTA_MODELO_HF</span> <span class="o">=</span> <span class="n">RUTA_PROYECTO</span> <span class="o">/</span> <span class="s2">&quot;models&quot;</span> <span class="o">/</span> <span class="s2">&quot;bert-spanish-ner&quot;</span>
+</code></pre></div>
+
+<p><strong>Explicación:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DIR_DOCS</code></td>
+<td>Carpeta con PDFs de entrada</td>
+</tr>
+<tr>
+<td><code>DIR_DB_FAISS</code></td>
+<td>Carpeta con índice FAISS final</td>
+</tr>
+<tr>
+<td><code>DIR_DB_TEMP</code></td>
+<td>Carpeta temporal para actualización atómica</td>
+</tr>
+<tr>
+<td><code>ARCHIVO_REGISTRO</code></td>
+<td>JSON que trackea archivos procesados</td>
+</tr>
+<tr>
+<td><code>EMBEDDING_MODEL</code></td>
+<td>Modelo para convertir texto a vectores</td>
+</tr>
+<tr>
+<td><code>SPACY_MODEL</code></td>
+<td>Modelo de spaCy para NER español</td>
+</tr>
+<tr>
+<td><code>RUTA_MODELO_HF</code></td>
+<td>Carpeta local con modelo BERT</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="23-sistema-de-registro-incremental-lineas-68-118">2.3 Sistema de Registro Incremental (Líneas 68-118)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">cargar_registro_archivos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carga el registro de archivos procesados desde JSON.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ARCHIVO_REGISTRO</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ARCHIVO_REGISTRO</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">guardar_registro_archivos</span><span class="p">(</span><span class="n">registro</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Guarda el registro actualizado.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ARCHIVO_REGISTRO</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">registro</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">obtener_archivos_a_procesar</span><span class="p">(</span><span class="n">registro</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determina qué archivos son nuevos o modificados.&quot;&quot;&quot;</span>
+    <span class="n">archivos_nuevos</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">archivo_pdf</span> <span class="ow">in</span> <span class="n">DIR_DOCS</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.pdf&quot;</span><span class="p">):</span>
+        <span class="n">nombre_archivo</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">archivo_pdf</span><span class="p">)</span>
+        <span class="n">ultima_modificacion</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">nombre_archivo</span><span class="p">)</span>
+
+        <span class="c1"># Comparar timestamp</span>
+        <span class="k">if</span> <span class="n">nombre_archivo</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">registro</span> <span class="ow">or</span> <span class="n">registro</span><span class="p">[</span><span class="n">nombre_archivo</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ultima_modificacion</span><span class="p">:</span>
+            <span class="n">archivos_nuevos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nombre_archivo</span><span class="p">)</span>
+            <span class="n">registro</span><span class="p">[</span><span class="n">nombre_archivo</span><span class="p">]</span> <span class="o">=</span> <span class="n">ultima_modificacion</span>
+
+    <span class="k">return</span> <span class="n">archivos_nuevos</span>
+</code></pre></div>
+
+<p><strong>Estructura del JSON de registro:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;C:/proyecto/docs/paper1.pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1702857600.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;C:/proyecto/docs/paper2.pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1702944000.0</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Lógica de detección:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">archivo</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">disco</span><span class="w">    </span><span class="n">registro</span><span class="w"> </span><span class="n">JSON</span><span class="w">         </span><span class="n">acción</span>
+<span class="err">─────────────────</span><span class="w">   </span><span class="err">───────────────</span><span class="w">       </span><span class="err">──────</span>
+<span class="nl">timestamp:</span><span class="w"> </span><span class="mh">1000</span><span class="w">     </span><span class="n">no</span><span class="w"> </span><span class="n">existe</span><span class="w">             </span><span class="n">PROCESAR</span><span class="w"> </span><span class="p">(</span><span class="n">nuevo</span><span class="p">)</span>
+<span class="nl">timestamp:</span><span class="w"> </span><span class="mh">2000</span><span class="w">     </span><span class="nl">timestamp:</span><span class="w"> </span><span class="mh">1000</span><span class="w">       </span><span class="n">PROCESAR</span><span class="w"> </span><span class="p">(</span><span class="n">modificado</span><span class="p">)</span>
+<span class="nl">timestamp:</span><span class="w"> </span><span class="mh">1000</span><span class="w">     </span><span class="nl">timestamp:</span><span class="w"> </span><span class="mh">1000</span><span class="w">       </span><span class="n">IGNORAR</span><span class="w"> </span><span class="p">(</span><span class="n">sin</span><span class="w"> </span><span class="n">cambios</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="24-procesamiento-de-documentos-lineas-163-209">2.4 Procesamiento de Documentos (Líneas 163-209)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">procesar_lote_documentos</span><span class="p">(</span><span class="n">rutas_archivos</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carga y divide en chunks un lote de documentos PDF.&quot;&quot;&quot;</span>
+    <span class="n">documentos</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Cargar cada PDF</span>
+    <span class="k">for</span> <span class="n">ruta</span> <span class="ow">in</span> <span class="n">rutas_archivos</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">loader</span> <span class="o">=</span> <span class="n">PyPDFLoader</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
+            <span class="n">documentos</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">())</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cargado: </span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error cargando </span><span class="si">{</span><span class="n">ruta</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>  <span class="c1"># Continúa con el siguiente</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">documentos</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="c1"># Dividir en chunks</span>
+    <span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+        <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>      <span class="c1"># Caracteres por chunk</span>
+        <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>    <span class="c1"># Overlap entre chunks</span>
+        <span class="n">length_function</span><span class="o">=</span><span class="nb">len</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">documentos</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Visualización del Splitting:</strong></p>
+<div class="codehilite"><pre><span></span><code>Documento Original:
+┌────────────────────────────────────────────────────────────┐
+│ Lorem ipsum dolor sit amet, consectetur adipiscing elit.   │
+│ Sed do eiusmod tempor incididunt ut labore et dolore...    │
+│ [... 5000 caracteres ...]                                  │
+└────────────────────────────────────────────────────────────┘
+
+Después de split (chunk_size=1000, overlap=200):
+
+Chunk 1:                    Chunk 2:                    Chunk 3:
+┌──────────────────┐       ┌──────────────────┐       ┌──────────────────┐
+│ Lorem ipsum...   │       │ ...tempor inci...│       │ ...et dolore...  │
+│ (1000 chars)     │       │ (1000 chars)     │       │ (1000 chars)     │
+└──────────────────┘       └──────────────────┘       └──────────────────┘
+         │                          │                          │
+         └──────── 200 chars ───────┘──────── 200 chars ───────┘
+                   (overlap)                   (overlap)
+</code></pre></div>
+
+<p><strong>¿Por qué overlap?</strong>
+- Mantiene contexto entre chunks
+- Evita cortar ideas a la mitad
+- Mejora la recuperación de información</p>
+<hr />
+<h2 id="25-enriquecimiento-nlp-analizar_chunks_batch-lineas-213-291">2.5 Enriquecimiento NLP - analizar_chunks_batch() (Líneas 213-291)</h2>
+<div class="codehilite"><pre><span></span><code><span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">analizar_chunks_batch</span><span class="p">(</span>
+    <span class="n">chunks_texto</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">spacy_nlp</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">hf_pipeline</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analiza un lote de textos con spaCy y HuggingFace.&quot;&quot;&quot;</span>
+    <span class="n">metadatos_enriquecidos</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Estación 1: spaCy - Procesamiento batch</span>
+    <span class="n">spacy_docs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">spacy_nlp</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">chunks_texto</span><span class="p">))</span>
+
+    <span class="c1"># Estación 2: HuggingFace - Procesamiento batch</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">hf_results</span> <span class="o">=</span> <span class="n">hf_pipeline</span><span class="p">(</span><span class="n">chunks_texto</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error en HuggingFace: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">hf_results</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">chunks_texto</span><span class="p">]</span>
+
+    <span class="c1"># Combinar resultados</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">spacy_docs</span><span class="p">):</span>
+        <span class="c1"># Extraer entidades de spaCy</span>
+        <span class="n">entidades_spacy</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ent</span><span class="o">.</span><span class="n">label_</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">entidades_spacy</span><span class="p">:</span>
+                <span class="n">entidades_spacy</span><span class="p">[</span><span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">entidades_spacy</span><span class="p">[</span><span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ent</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="c1"># Extraer entidades de HuggingFace</span>
+        <span class="n">entidades_hf</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">hf_results</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">entity</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entity_group&#39;</span><span class="p">,</span> <span class="s1">&#39;MISC&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">entidades_hf</span><span class="p">:</span>
+                <span class="n">entidades_hf</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">entidades_hf</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entity</span><span class="p">[</span><span class="s1">&#39;word&#39;</span><span class="p">])</span>
+
+        <span class="n">metadatos_enriquecidos</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;spacy_entities&quot;</span><span class="p">:</span> <span class="n">entidades_spacy</span><span class="p">,</span>
+            <span class="s2">&quot;hf_entities&quot;</span><span class="p">:</span> <span class="n">entidades_hf</span>
+        <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">metadatos_enriquecidos</span>
+</code></pre></div>
+
+<p><strong>Diagrama del Pipeline NLP:</strong></p>
+<div class="codehilite"><pre><span></span><code>                    Chunks de Texto
+                          │
+          ┌───────────────┴───────────────┐
+          ▼                               ▼
+   ┌─────────────┐                 ┌─────────────┐
+   │   spaCy     │                 │    BERT     │
+   │ es_core_    │                 │  spanish    │
+   │ news_lg     │                 │    ner      │
+   └─────┬───────┘                 └─────┬───────┘
+         │                               │
+         ▼                               ▼
+   ┌─────────────┐                 ┌─────────────┐
+   │ Entidades:  │                 │ Entidades:  │
+   │ ORG: INAOE  │                 │ ORG: Inst.  │
+   │ LOC: Puebla │                 │ PER: Juan   │
+   │ PER: María  │                 │ LOC: México │
+   └─────────────┘                 └─────────────┘
+         │                               │
+         └───────────────┬───────────────┘
+                         ▼
+               ┌─────────────────┐
+               │ Metadatos       │
+               │ Combinados      │
+               │ {spacy: {...},  │
+               │  hf: {...}}     │
+               └─────────────────┘
+</code></pre></div>
+
+<p><strong>Tipos de entidades detectadas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Etiqueta</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORG</td>
+<td>Organización</td>
+<td>INAOE, NASA</td>
+</tr>
+<tr>
+<td>PER</td>
+<td>Persona</td>
+<td>Juan García</td>
+</tr>
+<tr>
+<td>LOC</td>
+<td>Lugar</td>
+<td>Puebla, México</td>
+</tr>
+<tr>
+<td>MISC</td>
+<td>Misceláneos</td>
+<td>Quaterniones</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>Fecha</td>
+<td>2024</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="26-actualizacion-atomica-de-faiss-lineas-340-380">2.6 Actualización Atómica de FAISS (Líneas 340-380)</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Paso 1: Eliminar directorio temporal si existe</span>
+<span class="k">if</span> <span class="n">DIR_DB_TEMP</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">DIR_DB_TEMP</span><span class="p">)</span>
+
+<span class="c1"># Paso 2: Cargar o crear base de datos</span>
+<span class="k">if</span> <span class="n">DIR_DB_FAISS</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">chunks_nuevos</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Cargando base existente para fusionar...&quot;</span><span class="p">)</span>
+    <span class="n">db_existente</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">load_local</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">DIR_DB_FAISS</span><span class="p">),</span> <span class="n">embeddings</span><span class="p">,</span> 
+                                     <span class="n">allow_dangerous_deserialization</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">db_existente</span><span class="o">.</span><span class="n">add_documents</span><span class="p">(</span><span class="n">chunks_nuevos</span><span class="p">)</span>
+    <span class="n">db_final</span> <span class="o">=</span> <span class="n">db_existente</span>
+<span class="k">elif</span> <span class="n">chunks_nuevos</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creando nueva base de datos...&quot;</span><span class="p">)</span>
+    <span class="n">db_final</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">chunks_nuevos</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span>
+
+<span class="c1"># Paso 3: Guardar en directorio temporal</span>
+<span class="n">db_final</span><span class="o">.</span><span class="n">save_local</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">DIR_DB_TEMP</span><span class="p">))</span>
+
+<span class="c1"># Paso 4: Reemplazo atómico</span>
+<span class="k">if</span> <span class="n">DIR_DB_FAISS</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">DIR_DB_FAISS</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">DIR_DB_TEMP</span><span class="p">,</span> <span class="n">DIR_DB_FAISS</span><span class="p">)</span>
+
+<span class="c1"># Paso 5: Actualizar registro</span>
+<span class="n">guardar_registro_archivos</span><span class="p">(</span><span class="n">registro_archivos</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>¿Por qué Actualización Atómica?</strong></p>
+<div class="codehilite"><pre><span></span><code>Sin Atomicidad (PELIGROSO):
+─────────────────────────
+1. Borrar índice antiguo     ←── Si falla aquí, PERDEMOS TODO
+2. Guardar índice nuevo      ←── Si falla aquí, NO HAY ÍNDICE
+
+Con Atomicidad (SEGURO):
+────────────────────────
+1. Guardar en indice_temp    ←── Si falla, índice original intacto
+2. Borrar índice antiguo
+3. Renombrar temp → final    ←── Operación atómica del OS
+</code></pre></div>
+
+<hr />
+<h1 id="3-utilspy-funciones-auxiliares">3. <code>utils.py</code> - Funciones Auxiliares</h1>
+<p><strong>Propósito:</strong> Utilidades de verificación, información de modelos y validación</p>
+<p><strong>Líneas totales:</strong> ~270</p>
+<hr />
+<h2 id="31-verificar_configuracion-lineas-37-95">3.1 verificar_configuracion() (Líneas 37-95)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">verificar_configuracion</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verifica la configuración del proyecto y retorna el estado.&quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;base_datos_existe&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;ollama_disponible&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;api_keys_configuradas&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;errores&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Check 1: Base de datos FAISS</span>
+    <span class="n">ruta_db</span> <span class="o">=</span> <span class="n">ruta_proyecto</span> <span class="o">/</span> <span class="s2">&quot;indice_faiss&quot;</span>
+    <span class="k">if</span> <span class="n">ruta_db</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ruta_db</span> <span class="o">/</span> <span class="s2">&quot;index.faiss&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;base_datos_existe&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;errores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Base de datos no encontrada&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check 2: Ollama</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://localhost:11434/api/tags&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ollama_disponible&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;errores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Ollama no ejecutándose&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check 3: API Keys</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;GOOGLE_API_KEY&#39;</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">secrets</span><span class="p">:</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;api_keys_configuradas&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;errores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;No se pudo verificar API keys&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">config</span>
+</code></pre></div>
+
+<p><strong>Uso típico:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="n">verificar_configuracion</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;errores&quot;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Problemas encontrados:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;errores&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Sistema configurado correctamente&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="32-validar_pregunta-lineas-230-270">3.2 validar_pregunta() (Líneas 230-270)</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validar_pregunta</span><span class="p">(</span><span class="n">pregunta</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Valida si una pregunta es apropiada para el sistema.&quot;&quot;&quot;</span>
+    <span class="c1"># Validación 1: Longitud mínima</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pregunta</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">pregunta</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Mínimo 3 caracteres&quot;</span>
+
+    <span class="c1"># Validación 2: Longitud máxima</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pregunta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Máximo 500 caracteres&quot;</span>
+
+    <span class="c1"># Validación 3: Palabras interrogativas</span>
+    <span class="n">palabras_clave</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;qué&quot;</span><span class="p">,</span> <span class="s2">&quot;cuál&quot;</span><span class="p">,</span> <span class="s2">&quot;cómo&quot;</span><span class="p">,</span> <span class="s2">&quot;dónde&quot;</span><span class="p">,</span> <span class="s2">&quot;cuándo&quot;</span><span class="p">,</span> <span class="s2">&quot;por qué&quot;</span><span class="p">,</span> <span class="s2">&quot;quién&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;what&quot;</span><span class="p">,</span> <span class="s2">&quot;how&quot;</span><span class="p">,</span> <span class="s2">&quot;where&quot;</span><span class="p">,</span> <span class="s2">&quot;when&quot;</span><span class="p">,</span> <span class="s2">&quot;why&quot;</span><span class="p">,</span> <span class="s2">&quot;who&quot;</span>
+    <span class="p">]</span>
+
+    <span class="n">pregunta_lower</span> <span class="o">=</span> <span class="n">pregunta</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">tiene_palabra_clave</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">p</span> <span class="ow">in</span> <span class="n">pregunta_lower</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">palabras_clave</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tiene_palabra_clave</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Debe contener palabra interrogativa&quot;</span>
+
+    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;Pregunta válida&quot;</span>
+</code></pre></div>
+
+<p><strong>Tabla de validaciones:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Resultado</th>
+<th>Mensaje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>""</code></td>
+<td>False</td>
+<td>Mínimo 3 caracteres</td>
+</tr>
+<tr>
+<td><code>"Hola"</code></td>
+<td>False</td>
+<td>Debe contener palabra interrogativa</td>
+</tr>
+<tr>
+<td><code>"¿Qué es FAISS?"</code></td>
+<td>True</td>
+<td>Pregunta válida</td>
+</tr>
+<tr>
+<td><code>"A" * 600</code></td>
+<td>False</td>
+<td>Máximo 500 caracteres</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="4-flujo-de-ejecucion-completo">4. Flujo de Ejecución Completo</h1>
+<h2 id="41-primer-uso-procesamiento-inicial">4.1 Primer Uso (Procesamiento Inicial)</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">Terminal</span><span class="p">:</span>
+<span class="o">$</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">procesar_docs</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">Flujo</span><span class="p">:</span>
+<span class="err">────────────────────────────────────────────────────────────</span>
+<span class="mf">1.</span><span class="w"> </span><span class="n">Cargar</span><span class="w"> </span><span class="n">modelos</span><span class="w"> </span><span class="n">NLP</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;es_core_news_lg&quot;</span><span class="p">)</span><span class="w">        </span><span class="c1"># ~560MB</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;ner&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;bert-spanish&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># ~440MB</span>
+
+<span class="mf">2.</span><span class="w"> </span><span class="n">Cargar</span><span class="w"> </span><span class="n">registro</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">archivos</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">processed_files</span><span class="o">.</span><span class="n">json</span><span class="w"> </span><span class="p">(</span><span class="n">vacío</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="n">existente</span><span class="p">)</span>
+
+<span class="mf">3.</span><span class="w"> </span><span class="n">Detectar</span><span class="w"> </span><span class="n">archivos</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">procesar</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Escanear</span><span class="w"> </span><span class="n">documentos</span><span class="o">/*.</span><span class="n">pdf</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">Comparar</span><span class="w"> </span><span class="n">timestamps</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">registro</span>
+
+<span class="mf">4.</span><span class="w"> </span><span class="n">Procesar</span><span class="w"> </span><span class="n">documentos</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">PyPDFLoader</span><span class="w"> </span><span class="n">para</span><span class="w"> </span><span class="n">cada</span><span class="w"> </span><span class="n">PDF</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">RecursiveCharacterTextSplitter</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">chunks</span>
+
+<span class="mf">5.</span><span class="w"> </span><span class="n">Enriquecer</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">NLP</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">spaCy</span><span class="p">:</span><span class="w"> </span><span class="n">Extraer</span><span class="w"> </span><span class="n">entidades</span><span class="w"> </span><span class="n">generales</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">BERT</span><span class="p">:</span><span class="w"> </span><span class="n">Extraer</span><span class="w"> </span><span class="n">entidades</span><span class="w"> </span><span class="n">especializadas</span>
+
+<span class="mf">6.</span><span class="w"> </span><span class="n">Crear</span><span class="o">/</span><span class="n">actualizar</span><span class="w"> </span><span class="n">FAISS</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">HuggingFaceEmbeddings</span><span class="w"> </span><span class="n">para</span><span class="w"> </span><span class="n">vectorizar</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Guardar</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">directorio</span><span class="w"> </span><span class="n">temporal</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">Reemplazo</span><span class="w"> </span><span class="n">atómico</span>
+
+<span class="mf">7.</span><span class="w"> </span><span class="n">Actualizar</span><span class="w"> </span><span class="n">registro</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">Guardar</span><span class="w"> </span><span class="n">timestamps</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">JSON</span>
+<span class="err">────────────────────────────────────────────────────────────</span>
+<span class="n">Resultado</span><span class="p">:</span><span class="w"> </span><span class="n">indice_faiss</span><span class="o">/</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">index</span><span class="o">.</span><span class="n">faiss</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">index</span><span class="o">.</span><span class="n">pkl</span>
+</code></pre></div>
+
+<hr />
+<h2 id="42-uso-normal-consulta">4.2 Uso Normal (Consulta)</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">Navegador</span><span class="o">:</span><span class="w"> </span><span class="n">http</span><span class="o">://</span><span class="n">localhost</span><span class="o">:</span><span class="mi">8501</span>
+
+<span class="n">Flujo</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">una</span><span class="w"> </span><span class="n">consulta</span><span class="o">:</span>
+<span class="err">────────────────────────────────────────────────────────────</span>
+<span class="n">Usuario</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;¿Qué es un quaternión?&quot;</span>
+<span class="w">           </span><span class="err">│</span>
+<span class="w">           </span><span class="err">▼</span>
+<span class="mi">1</span><span class="o">.</span><span class="w"> </span><span class="n">render_sidebar</span><span class="o">()</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">Modelo</span><span class="o">:</span><span class="w"> </span><span class="n">mistral</span><span class="o">:</span><span class="mi">7</span><span class="n">b</span><span class="o">,</span><span class="w"> </span><span class="n">Chunks</span><span class="o">:</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="n">Temp</span><span class="o">:</span><span class="w"> </span><span class="mf">0.2</span>
+
+<span class="mi">2</span><span class="o">.</span><span class="w"> </span><span class="n">cargar_base_datos</span><span class="o">()</span><span class="w">  </span><span class="o">(</span><span class="n">cacheado</span><span class="o">)</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">FAISS</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">embeddings</span>
+
+<span class="mi">3</span><span class="o">.</span><span class="w"> </span><span class="n">get_llm</span><span class="o">(</span><span class="s2">&quot;mistral:7b&quot;</span><span class="o">,</span><span class="w"> </span><span class="mf">0.2</span><span class="o">,</span><span class="w"> </span><span class="mi">120</span><span class="o">)</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">ChatOllama</span><span class="w"> </span><span class="n">configurado</span>
+
+<span class="mi">4</span><span class="o">.</span><span class="w"> </span><span class="n">retriever</span><span class="o">.</span><span class="na">get_relevant_documents</span><span class="o">(</span><span class="s2">&quot;¿Qué es un quaternión?&quot;</span><span class="o">)</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Embedding</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">pregunta</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Búsqueda</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">similitud</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">FAISS</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">Top</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">chunks</span><span class="w"> </span><span class="n">relevantes</span>
+
+<span class="mi">5</span><span class="o">.</span><span class="w"> </span><span class="n">Verificar</span><span class="w"> </span><span class="n">contexto</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">len</span><span class="o">(</span><span class="n">contexto</span><span class="o">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">50</span><span class="o">:</span><span class="w"> </span><span class="n">usar</span><span class="w"> </span><span class="n">contexto</span><span class="w"> </span><span class="n">local</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">Si</span><span class="w"> </span><span class="n">len</span><span class="o">(</span><span class="n">contexto</span><span class="o">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">50</span><span class="o">:</span><span class="w"> </span><span class="n">buscar_en_internet</span><span class="o">()</span>
+
+<span class="mi">6</span><span class="o">.</span><span class="w"> </span><span class="n">prompt</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">context</span><span class="o">=...,</span><span class="w"> </span><span class="n">question</span><span class="o">=...)</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">Prompt</span><span class="w"> </span><span class="n">formateado</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">plantilla</span>
+
+<span class="mi">7</span><span class="o">.</span><span class="w"> </span><span class="n">llm</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">formatted_prompt</span><span class="o">)</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">Respuesta</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="n">modelo</span>
+
+<span class="mi">8</span><span class="o">.</span><span class="w"> </span><span class="n">Mostrar</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">UI</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">st</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">respuesta</span><span class="o">)</span>
+<span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">st</span><span class="o">.</span><span class="na">metric</span><span class="o">(</span><span class="s2">&quot;Tiempo&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;2.5s&quot;</span><span class="o">)</span>
+<span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">st</span><span class="o">.</span><span class="na">expander</span><span class="o">(</span><span class="s2">&quot;Fuentes&quot;</span><span class="o">)</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">contexto</span>
+<span class="err">────────────────────────────────────────────────────────────</span>
+</code></pre></div>
+
+<hr />
+<h2 id="43-diagrama-de-secuencia-completo">4.3 Diagrama de Secuencia Completo</h2>
+<div class="codehilite"><pre><span></span><code><span class="err">┌──────┐</span><span class="w">     </span><span class="err">┌──────────┐</span><span class="w">     </span><span class="err">┌───────┐</span><span class="w">     </span><span class="err">┌──────┐</span><span class="w">     </span><span class="err">┌─────┐</span>
+<span class="err">│</span><span class="n">Usuario</span><span class="err">│</span><span class="w">     </span><span class="err">│</span><span class="n">Streamlit</span><span class="w"> </span><span class="err">│</span><span class="w">     </span><span class="err">│</span><span class="w"> </span><span class="n">FAISS</span><span class="w"> </span><span class="err">│</span><span class="w">     </span><span class="err">│</span><span class="w"> </span><span class="n">LLM</span><span class="w">  </span><span class="err">│</span><span class="w">     </span><span class="err">│</span><span class="w"> </span><span class="n">Web</span><span class="w"> </span><span class="err">│</span>
+<span class="err">└───┬──┘</span><span class="w">     </span><span class="err">└────┬─────┘</span><span class="w">     </span><span class="err">└───┬───┘</span><span class="w">     </span><span class="err">└───┬──┘</span><span class="w">     </span><span class="err">└──┬──┘</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">Pregunta</span><span class="w">   </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│────────────►│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w"> </span><span class="n">Buscar</span><span class="w"> </span><span class="n">docs</span><span class="w">   </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│──────────────►│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">  </span><span class="mh">5</span><span class="w"> </span><span class="n">chunks</span><span class="w">     </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│◄──────────────│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">   </span><span class="p">[</span><span class="n">Si</span><span class="w"> </span><span class="n">contexto</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mh">50</span><span class="w"> </span><span class="n">chars</span><span class="p">]</span><span class="w">  </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│──────────────────────────────────────────►</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">                                          </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">              </span><span class="n">Resultados</span><span class="w"> </span><span class="n">web</span><span class="w">              </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│◄─────────────────────────────────────────│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">  </span><span class="n">Prompt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Contexto</span><span class="w">          </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│────────────────────────────►│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">              </span><span class="n">Respuesta</span><span class="w">      </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│◄────────────────────────────│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">Respuesta</span><span class="w">  </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│◄────────────│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+<span class="w">    </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">               </span><span class="err">│</span><span class="w">             </span><span class="err">│</span><span class="w">            </span><span class="err">│</span>
+</code></pre></div>
+
+<hr />
+<p><em>Fin de la Documentación Técnica</em></p></section><hr>
+
+    
+    <script>
+        // Resaltar sintaxis en bloques de código
+        document.querySelectorAll('pre code').forEach(block => {
+            // Agregar clase para estilo
+            block.parentElement.classList.add('code-block');
+        });
+    </script>
+</body>
+</html>

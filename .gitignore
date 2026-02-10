@@ -31,3 +31,20 @@ proyecto_rag_inaoe/indice_faiss/
 
 # Streamlit cache
 .streamlit/
+
+# Environment variables
+.env
+*.env
+
+# Data files (PDFs, documentos)
+data/documentos/*.pdf
+data/documentos/*.txt
+
+# Node modules
+node_modules/
+
+# Agent files
+.agent/
+
+documentacion/sphinx_docs/_build/
+data/indice_faiss/

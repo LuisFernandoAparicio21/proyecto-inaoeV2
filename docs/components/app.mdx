@@ -1,0 +1,252 @@
+---
+title: 'app.py'
+description: 'Aplicación principal Streamlit - Interfaz de usuario y cadena RAG'
+---
+
+## Resumen
+
+| Propiedad | Valor |
+|-----------|-------|
+| **Archivo** | `src/app.py` |
+| **Líneas de código** | 336 |
+| **Propósito** | Interfaz web con Streamlit para consultas RAG |
+| **Dependencias clave** | streamlit, langchain, faiss, torch |
+
+## Estructura del Archivo
+
+```python
+# Líneas 1-31: Imports y configuración
+# Líneas 32-77: Configuración de modelos LLM
+# Líneas 79-118: Template del prompt
+# Líneas 120-138: Búsqueda web fallback
+# Líneas 141-172: Funciones cacheadas
+# Líneas 176-208: Fábrica de LLMs
+# Líneas 212-233: Sidebar de configuración
+# Líneas 237-336: Flujo principal
+```
+
+## Imports Principales
+
+<CodeGroup>
+```python Frameworks
+import streamlit as st
+from langchain_community.vectorstores import FAISS
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain.prompts import PromptTemplate
+```
+
+```python Proveedores LLM
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
+from langchain_together import Together
+```
+
+```python Utilidades
+from pathlib import Path
+import time
+import torch
+import requests
+from typing import List
+```
+</CodeGroup>
+
+## Configuración de Modelos
+
+La constante `MODEL_CONFIG` define todos los modelos disponibles:
+
+```python
+MODEL_CONFIG = {
+    "deepseek-r1:1.5b": {
+        "provider": "ollama", 
+        "info": "🚀 Local DeepSeek - Razonamiento avanzado, ~2GB RAM."
+    },
+    "mistral:7b": {
+        "provider": "ollama", 
+        "info": "🏆 Local - Excelente para investigación, 4GB RAM."
+    },
+    "gemini-1.5-flash": {
+        "provider": "google", 
+        "info": "🟢 API Google - Rápido, 15 req/min gratis."
+    },
+    "gemini-1.5-pro": {
+        "provider": "google", 
+        "info": "✨ API Google - Máxima calidad de razonamiento."
+    },
+}
+```
+
+<Tip>
+  Los modelos comentados (llama3, groq, together) están listos para activarse descomentando las líneas correspondientes.
+</Tip>
+
+## Template del Prompt
+
+El sistema utiliza un prompt estructurado con **4 niveles de prioridad**:
+
+<Steps>
+  <Step title="PRIORIDAD 1: Contexto INAOE">
+    El `CONTEXTO` extraído de los documentos internos es la verdad fundamental.
+  </Step>
+  <Step title="PRIORIDAD 2: Conocimiento General">
+    Conocimiento interno del modelo sobre ciencia y tecnología.
+  </Step>
+  <Step title="PRIORIDAD 3: Fuentes Verificables">
+    Principios y datos de fuentes académicas universalmente aceptadas.
+  </Step>
+  <Step title="PRIORIDAD 4: Búsqueda Web">
+    Si no hay información en la base de datos, se busca en internet.
+  </Step>
+</Steps>
+
+### Formato de Salida Obligatorio
+
+```markdown
+**Resumen Ejecutivo (TL;DR):**
+(Una o dos frases que resumen la respuesta)
+
+**Análisis Detallado:**
+(Desarrollo en profundidad con listas estructuradas)
+
+**Conclusión e Implicaciones:**
+(Síntesis y próximos pasos)
+
+**Fuentes Consultadas (Documentos INAOE):**
+- Documento: [nombre], Página: [número]
+```
+
+## Funciones Principales
+
+### `cargar_base_datos()`
+
+<ParamField path="return" type="FAISS | None">
+  Base de datos vectorial cargada o None si hay error
+</ParamField>
+
+```python
+@st.cache_resource
+def cargar_base_datos():
+    """Carga la base de datos vectorial FAISS de forma segura."""
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    embeddings = HuggingFaceEmbeddings(
+        model_name="all-MiniLM-L6-v2",
+        model_kwargs={'device': device},
+        cache_folder=str(RUTA_PROYECTO / "models")
+    )
+    return FAISS.load_local(str(RUTA_DB), embeddings)
+```
+
+<Note>
+  El decorador `@st.cache_resource` evita recargar la base de datos en cada refresh.
+</Note>
+
+### `verificar_ollama()`
+
+```python
+@st.cache_data(ttl=300)  # Cachea por 5 minutos
+def verificar_ollama():
+    """Verifica si el servicio de Ollama está activo."""
+    try:
+        requests.get("http://localhost:11434", timeout=3)
+        return True
+    except requests.ConnectionError:
+        return False
+```
+
+### `get_llm()` - Fábrica de LLMs
+
+<ParamField path="modelo" type="str" required>
+  Nombre del modelo (ej: "gemini-1.5-flash")
+</ParamField>
+<ParamField path="temperature" type="float" required>
+  Creatividad del modelo (0.0 - 1.0)
+</ParamField>
+<ParamField path="timeout" type="int" required>
+  Timeout en segundos (30 - 300)
+</ParamField>
+
+```python
+def get_llm(modelo, temperature, timeout):
+    """Fábrica que devuelve una instancia del LLM seleccionado."""
+    config = MODEL_CONFIG.get(modelo, {})
+    provider = config.get("provider")
+
+    if provider == "google":
+        return ChatGoogleGenerativeAI(
+            model=modelo.split('/')[-1], 
+            api_key=st.secrets["GOOGLE_API_KEY"]
+        )
+    elif provider == "ollama":
+        return ChatOllama(model=modelo, temperature=temperature)
+    elif provider == "groq":
+        return ChatGroq(api_key=st.secrets["GROQ_API_KEY"])
+    elif provider == "together":
+        return Together(model=modelo, api_key=st.secrets["TOGETHER_API_KEY"])
+```
+
+### `buscar_en_internet()`
+
+<ParamField path="consulta" type="str" required>
+  Texto de búsqueda
+</ParamField>
+<ParamField path="max_resultados" type="int" default="5">
+  Número máximo de resultados
+</ParamField>
+
+```python
+def buscar_en_internet(consulta: str, max_resultados: int = 5) -> List[str]:
+    """Fallback a DuckDuckGo cuando el contexto local es insuficiente."""
+    from duckduckgo_search import DDGS
+    with DDGS() as ddgs:
+        for item in ddgs.text(consulta, region="wt-wt", max_results=max_resultados):
+            resultados.append(f"Título: {item['title']}\n...")
+    return resultados
+```
+
+## Cadena RAG Principal
+
+La función `create_rag_chain()` implementa el flujo completo:
+
+```python
+def create_rag_chain():
+    def rag_invoke(question):
+        # 1. Recuperar documentos relevantes
+        docs = retriever.get_relevant_documents(question)
+        context = format_docs(docs)
+        
+        # 2. Fallback a internet si contexto insuficiente
+        if not context or len(context.strip()) < 50:
+            resultados_web = buscar_en_internet(question)
+            context = f"[Fuente: Internet]\n{contexto_web}"
+        
+        # 3. Formatear prompt y obtener respuesta
+        formatted_prompt = prompt.format(context=context, question=question)
+        response = llm.invoke(formatted_prompt)
+        
+        return {
+            "context": context,
+            "question": question,
+            "answer": response.content
+        }
+    return rag_invoke
+```
+
+## Interfaz de Usuario
+
+### Sidebar
+
+| Control | Tipo | Rango | Default |
+|---------|------|-------|---------|
+| Modelo | Selectbox | MODEL_CONFIG keys | deepseek-r1:1.5b |
+| Documentos | Slider | 3-10 | 5 |
+| Creatividad | Slider | 0.0-1.0 | 0.2 |
+| Timeout | Slider | 30-300s | 120s |
+
+### Área Principal
+
+1. **Input de pregunta** - Text input con placeholder
+2. **Botón Buscar** - Tipo primary, activa la búsqueda
+3. **Botón Limpiar** - Resetea el estado
+4. **Área de respuesta** - Markdown renderizado
+5. **Métrica de tiempo** - Muestra duración de respuesta
+6. **Expander de fuentes** - Muestra contexto utilizado

@@ -1,0 +1,203 @@
+---
+title: 'Arquitectura del Sistema'
+description: 'Diagrama de arquitectura y flujo de datos del Asistente INAOE'
+---
+
+## Visión General
+
+El Asistente INAOE implementa una arquitectura **RAG (Retrieval-Augmented Generation)** que combina búsqueda semántica con generación de lenguaje natural para responder preguntas sobre documentos científicos.
+
+## Diagrama de Arquitectura
+
+```mermaid
+graph TB
+    subgraph "📁 Capa de Datos"
+        A[PDFs Científicos] --> B[PyPDFLoader]
+        B --> C[Text Splitter]
+        C --> D[Chunks de Texto]
+    end
+    
+    subgraph "🧠 Capa de Enriquecimiento NLP"
+        D --> E[spaCy NER]
+        D --> F[BERT Spanish NER]
+        E --> G[Metadatos Enriquecidos]
+        F --> G
+    end
+    
+    subgraph "💾 Capa de Almacenamiento"
+        G --> H[HuggingFace Embeddings]
+        H --> I[(FAISS Index)]
+    end
+    
+    subgraph "🔍 Capa de Recuperación"
+        J[Pregunta Usuario] --> K[Embedding Query]
+        K --> L[FAISS Retriever]
+        I --> L
+        L --> M[Documentos Relevantes]
+    end
+    
+    subgraph "🤖 Capa de Generación"
+        M --> N[Prompt Template]
+        J --> N
+        N --> O{LLM Provider}
+        O -->|Ollama| P[DeepSeek/Mistral]
+        O -->|Google| Q[Gemini 1.5]
+        O -->|Groq| R[LLaMA 3]
+        P --> S[Respuesta]
+        Q --> S
+        R --> S
+    end
+    
+    subgraph "🌐 Fallback"
+        M -->|Contexto Insuficiente| T[DuckDuckGo Search]
+        T --> N
+    end
+```
+
+## Componentes Principales
+
+<CardGroup cols={2}>
+  <Card title="app.py" icon="window" href="/components/app">
+    **336 líneas** - Interfaz Streamlit, cadena RAG, fábrica de LLMs
+  </Card>
+  <Card title="procesar_docs.py" icon="gears" href="/components/procesar-docs">
+    **270 líneas** - Pipeline ETL, enriquecimiento NLP, actualización FAISS
+  </Card>
+  <Card title="utils.py" icon="toolbox" href="/components/utils">
+    **151 líneas** - Verificación de configuración, validación de preguntas
+  </Card>
+  <Card title="FAISS Index" icon="database">
+    **Base vectorial** - Almacena embeddings de documentos procesados
+  </Card>
+</CardGroup>
+
+## Flujo de Procesamiento de Documentos
+
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant P as procesar_docs.py
+    participant S as spaCy
+    participant H as HuggingFace NER
+    participant F as FAISS
+    
+    U->>P: python procesar_docs.py
+    P->>P: Cargar registro de archivos
+    P->>P: Detectar archivos nuevos/modificados
+    P->>P: Cargar PDFs con PyPDFLoader
+    P->>P: Dividir en chunks (1000 chars)
+    P->>S: Procesar batch de chunks
+    S-->>P: Entidades spaCy
+    P->>H: Procesar batch de chunks
+    H-->>P: Entidades BERT
+    P->>P: Combinar metadatos
+    P->>F: Generar embeddings
+    P->>F: Guardar en directorio temporal
+    P->>F: Reemplazo atómico
+    P-->>U: ✅ Base de datos actualizada
+```
+
+## Flujo de Consulta RAG
+
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant A as app.py
+    participant R as FAISS Retriever
+    participant D as DuckDuckGo
+    participant L as LLM
+    
+    U->>A: "¿Qué es un quaternión?"
+    A->>R: Buscar documentos relevantes (k=5)
+    R-->>A: Chunks con metadatos NLU
+    
+    alt Contexto suficiente (>50 chars)
+        A->>L: Prompt + Contexto INAOE
+    else Contexto insuficiente
+        A->>D: Búsqueda web fallback
+        D-->>A: Resultados web
+        A->>L: Prompt + Contexto web
+    end
+    
+    L-->>A: Respuesta estructurada
+    A-->>U: Respuesta + Fuentes + Tiempo
+```
+
+## Patrones de Diseño Utilizados
+
+<AccordionGroup>
+  <Accordion icon="industry" title="Factory Pattern (Fábrica de LLMs)">
+    La función `get_llm()` en `app.py` implementa el patrón Factory para crear instancias de diferentes proveedores LLM basándose en la configuración del usuario.
+    
+    ```python
+    def get_llm(modelo, temperature, timeout):
+        config = MODEL_CONFIG.get(modelo, {})
+        provider = config.get("provider")
+        
+        if provider == "google":
+            return ChatGoogleGenerativeAI(...)
+        elif provider == "ollama":
+            return ChatOllama(...)
+        elif provider == "groq":
+            return ChatGroq(...)
+    ```
+  </Accordion>
+  
+  <Accordion icon="atom" title="Atomic Operations (Operaciones Atómicas)">
+    El procesamiento de documentos usa un directorio temporal para garantizar atomicidad:
+    
+    1. Guardar nuevo índice en `indice_faiss_temp/`
+    2. Eliminar directorio antiguo `indice_faiss/`
+    3. Renombrar temporal a final
+    
+    Si cualquier paso falla, la base de datos original permanece intacta.
+  </Accordion>
+  
+  <Accordion icon="layer-group" title="Pipeline Pattern">
+    El enriquecimiento NLP usa un patrón de pipeline con dos estaciones:
+    
+    ```
+    Chunks → [spaCy NER] → [BERT NER] → Metadatos Combinados
+    ```
+    
+    Esto permite agregar más estaciones de procesamiento fácilmente.
+  </Accordion>
+  
+  <Accordion icon="memory" title="Caching (Memoization)">
+    Streamlit cachea recursos costosos:
+    
+    - `@st.cache_resource` - Base de datos FAISS
+    - `@st.cache_data(ttl=300)` - Estado de Ollama
+  </Accordion>
+</AccordionGroup>
+
+## Modelos y Sus Roles
+
+| Componente | Modelo | Propósito |
+|------------|--------|-----------|
+| **Embeddings** | `all-MiniLM-L6-v2` | Vectorización de texto (384 dims) |
+| **NER General** | `es_core_news_lg` | Entidades en español (ORG, PER, LOC) |
+| **NER Especializado** | `bert-spanish-ner` | NER con BERT fine-tuned |
+| **LLM Local** | DeepSeek R1 / Mistral 7B | Generación de respuestas |
+| **LLM Cloud** | Gemini 1.5 Flash/Pro | Generación de respuestas |
+
+## Estructura de Directorios
+
+```
+proyecto_rag_inaoe/
+├── src/
+│   ├── app.py              # Aplicación Streamlit
+│   ├── procesar_docs.py    # Pipeline de procesamiento
+│   └── utils.py            # Utilidades
+├── documentos/             # PDFs y TXT de entrada
+├── models/                 # Modelos descargados
+│   ├── bert-spanish-ner/
+│   └── sentence-transformers/
+├── indice_faiss/           # Base de datos vectorial
+│   ├── index.faiss
+│   └── index.pkl
+├── .streamlit/
+│   └── secrets.toml        # API keys (no en git)
+├── processed_files.json    # Registro de archivos
+└── requirements.txt        # Dependencias
+```

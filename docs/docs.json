@@ -1,0 +1,48 @@
+{
+    "$schema": "https://mintlify.com/schema.json",
+    "name": "Asistente INAOE",
+    "logo": {
+        "dark": "/logo/dark.svg",
+        "light": "/logo/light.svg"
+    },
+    "favicon": "/favicon.svg",
+    "colors": {
+        "primary": "#0D9373",
+        "light": "#07C983",
+        "dark": "#0D9373"
+    },
+    "navigation": [
+        {
+            "group": "Inicio",
+            "pages": [
+                "introduction",
+                "quickstart",
+                "architecture"
+            ]
+        },
+        {
+            "group": "Componentes",
+            "pages": [
+                "components/app",
+                "components/procesar-docs",
+                "components/utils"
+            ]
+        },
+        {
+            "group": "Guias",
+            "pages": [
+                "guides/installation",
+                "guides/configuration",
+                "guides/deployment"
+            ]
+        },
+        {
+            "group": "API Reference",
+            "pages": [
+                "api-reference/introduction",
+                "api-reference/llm-providers",
+                "api-reference/rag-chain"
+            ]
+        }
+    ]
+}

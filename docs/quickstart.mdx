@@ -1,0 +1,124 @@
+---
+title: 'Inicio Rápido'
+description: 'Configura el Asistente INAOE en menos de 5 minutos'
+---
+
+## Requisitos Previos
+
+<AccordionGroup>
+  <Accordion icon="python" title="Python 3.9+">
+    Asegúrate de tener Python 3.9 o superior instalado:
+    ```bash
+    python --version
+    ```
+  </Accordion>
+  <Accordion icon="node" title="Node.js (opcional)">
+    Para usar Ollama localmente necesitas tener Ollama instalado:
+    ```bash
+    # Windows: Descarga desde ollama.ai
+    # macOS/Linux:
+    curl -fsSL https://ollama.ai/install.sh | sh
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Instalación
+
+<Steps>
+  <Step title="Clonar el Repositorio">
+    ```bash
+    git clone <repository-url>
+    cd proyecto_rag_inaoe
+    ```
+  </Step>
+  <Step title="Crear Entorno Virtual">
+    ```bash
+    python -m venv venv
+    
+    # Windows
+    .\venv\Scripts\activate
+    
+    # macOS/Linux
+    source venv/bin/activate
+    ```
+  </Step>
+  <Step title="Instalar Dependencias">
+    ```bash
+    pip install -r requirements.txt
+    ```
+  </Step>
+  <Step title="Descargar Modelo spaCy">
+    ```bash
+    python -m spacy download es_core_news_lg
+    ```
+  </Step>
+  <Step title="Procesar Documentos">
+    ```bash
+    cd src
+    python procesar_docs.py
+    ```
+    
+    <Note>
+      Este paso crea la base de datos vectorial FAISS. Solo necesitas ejecutarlo una vez o cuando agregues nuevos documentos.
+    </Note>
+  </Step>
+  <Step title="Ejecutar la Aplicación">
+    ```bash
+    streamlit run app.py
+    ```
+    
+    La aplicación estará disponible en `http://localhost:8501`
+  </Step>
+</Steps>
+
+## Configuración de API Keys (Opcional)
+
+Para usar modelos de Google Gemini o Groq, crea el archivo de secretos:
+
+<CodeGroup>
+
+```toml .streamlit/secrets.toml
+GOOGLE_API_KEY = "tu-api-key-de-google"
+GROQ_API_KEY = "tu-api-key-de-groq"
+TOGETHER_API_KEY = "tu-api-key-de-together"
+```
+
+</CodeGroup>
+
+<Warning>
+  Nunca subas el archivo `secrets.toml` a un repositorio público.
+</Warning>
+
+## Verificar Instalación
+
+Una vez ejecutes la aplicación, deberías ver:
+
+<Frame>
+  <img src="/images/app-screenshot.png" alt="Screenshot de la aplicación" />
+</Frame>
+
+### Checklist de Verificación
+
+<Check>Base de datos FAISS creada en `indice_faiss/`</Check>
+<Check>Modelos descargados en `models/`</Check>
+<Check>Archivo `processed_files.json` generado</Check>
+<Check>Aplicación accesible en localhost:8501</Check>
+
+## Próximos Pasos
+
+<CardGroup cols={2}>
+  <Card
+    title="Arquitectura"
+    icon="diagram-project"
+    href="/architecture"
+  >
+    Entiende el flujo de datos del sistema
+  </Card>
+  <Card
+    title="Configuración Avanzada"
+    icon="sliders"
+    href="/guides/configuration"
+  >
+    Personaliza modelos y parámetros
+  </Card>
+</CardGroup>

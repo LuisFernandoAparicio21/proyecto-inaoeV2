@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentacion INAOE</title>
+    
+<style>
+@page {
+    size: letter;
+    margin: 1.5cm;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+}
+@media print {
+    html, body {
+        margin: 0 !important;
+        padding: 10px !important;
+        -webkit-print-color-adjust: exact;
+    }
+    .instrucciones { display: none !important; }
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000;
+    margin: 0;
+    padding: 15px 30px;
+}
+h1 { font-size: 16pt; font-weight: bold; border-bottom: 1px solid #000; padding-bottom: 5px; margin-top: 18px; margin-bottom: 8px; }
+h2 { font-size: 13pt; font-weight: bold; margin-top: 12px; margin-bottom: 6px; }
+h3 { font-size: 12pt; font-weight: bold; margin-top: 10px; margin-bottom: 4px; }
+h4 { font-size: 11pt; font-weight: bold; margin-top: 8px; margin-bottom: 4px; }
+code { font-family: 'Courier New', monospace; font-size: 9pt; background: #f0f0f0; padding: 1px 3px; }
+pre { font-family: 'Courier New', monospace; font-size: 7pt; background: #f5f5f5; border: 1px solid #ccc; padding: 6px; white-space: pre; overflow-x: auto; margin: 6px 0; line-height: 1.1; }
+pre code { background: none; padding: 0; white-space: pre; }
+table { border-collapse: collapse; width: 100%; margin: 6px 0; font-size: 10pt; }
+th, td { border: 1px solid #000; padding: 3px 5px; text-align: left; }
+th { background: #e0e0e0; font-weight: bold; }
+blockquote { border-left: 2px solid #000; margin: 6px 0; padding: 2px 8px; background: #f9f9f9; }
+a { color: #000; }
+hr { border: none; border-top: 1px solid #000; margin: 12px 0; }
+ul, ol { margin: 4px 0; padding-left: 18px; }
+li { margin: 1px 0; }
+p { margin: 4px 0; text-align: justify; }
+.portada { text-align: center; padding: 60px 15px 30px 15px; border-bottom: 2px solid #000; margin-bottom: 15px; }
+.portada h1 { font-size: 18pt; border: none; margin-bottom: 10px; }
+.portada p { text-align: center; font-size: 11pt; margin: 4px 0; }
+.indice { margin-bottom: 20px; }
+.indice ul { list-style: none; padding: 0; }
+.indice li { padding: 2px 0; }
+.indice a { text-decoration: none; }
+.seccion { margin-top: 15px; }
+.instrucciones { background: #ffffcc; border: 2px solid #000; padding: 15px; margin: 20px 0; }
+.instrucciones h2 { margin-top: 0; }
+.instrucciones ol { margin-left: 20px; }
+.instrucciones li { margin: 8px 0; }
+</style>
+
+</head>
+<body>
+
+    <div class="instrucciones">
+        <h2>COMO GUARDAR SIN ENCABEZADOS NI PIE DE PAGINA:</h2>
+        <ol>
+            <li>Presiona <strong>Ctrl + P</strong> para abrir Imprimir</li>
+            <li>Haz clic en <strong>"Mas configuraciones"</strong> o <strong>"Mas opciones"</strong></li>
+            <li>Busca la opcion <strong>"Encabezados y pies de pagina"</strong></li>
+            <li><strong>DESACTIVALA</strong> (quita la palomita)</li>
+            <li>Selecciona <strong>"Guardar como PDF"</strong></li>
+            <li>Guarda el archivo</li>
+        </ol>
+        <p><em>Estas instrucciones NO apareceran en el PDF.</em></p>
+    </div>
+    
+    <div class="portada">
+        <h1>INSTITUTO NACIONAL DE ASTROFISICA, OPTICA Y ELECTRONICA</h1>
+        <p style="font-size: 14pt; margin-top: 30px;"><strong>Proyecto:</strong> Biblioteca Digital Inteligente</p>
+        <p style="font-size: 12pt; margin-top: 40px;">Sistema RAG para Consulta de Documentos Cientificos</p>
+        <p style="font-size: 12pt;">Documentacion Tecnica</p>
+        
+        <div style="margin-top: 50px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto; border: 1px solid #000; padding: 20px;">
+            <p style="text-align: center; font-weight: bold; font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 10px;">Datos del Estudiante</p>
+            <p><strong>Nombre:</strong> Luis Fernando Aparicio Hernandez</p>
+            <p><strong>Institucion:</strong> Universidad Popular Del Estado De Puebla</p>
+            <p><strong>Carrera:</strong> Ingenieria En Computacion y Sistemas</p>
+            <p><strong>Matricula:</strong> 26280100</p>
+            <p><strong>Area:</strong> Coordinacion de Electronica</p>
+            <p><strong>Horario:</strong> Lun - Vie, 13:00 - 17:00 (Modalidad Hibrida)</p>
+            <p><strong>Total de horas:</strong> 480</p>
+            <p><strong>Fecha de inicio:</strong> 19/05/2025</p>
+            <p><strong>Fecha de finalizacion:</strong> 19/11/2025</p>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <p><strong>Responsable del Proyecto:</strong></p>
+            <p>Rogerio Enriquez-Caldera</p>
+        </div>
+        
+        <div style="margin-top: 80px; display: flex; justify-content: space-around;">
+            <div style="text-align: center; width: 45%;">
+                <p>_______________________________</p>
+                <p>Firma del Estudiante</p>
+                <p style="font-size: 10pt;">Luis Fernando Aparicio Hernandez</p>
+            </div>
+            <div style="text-align: center; width: 45%;">
+                <p>_______________________________</p>
+                <p>Responsable del Proyecto</p>
+                <p style="font-size: 10pt;">Rogerio Enriquez-Caldera</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="indice">
+        <h2>INDICE</h2>
+        <ul><li><a href="#sec0">1. Documentacion del Proyecto</a></li><li><a href="#sec1">2. Inicio Rapido</a></li><li><a href="#sec2">3. Instalacion Detallada</a></li><li><a href="#sec3">4. Arquitectura del Sistema</a></li><li><a href="#sec4">5. Guias de Uso</a></li><li><a href="#sec5">6. Documentacion Tecnica del Codigo</a></li></ul>
+    </div>
+    
+    <hr>
+    
+    <section class="seccion" id="sec0"><h1 style="font-size: 18pt; background: #f0f0f0; padding: 10px; border: 1px solid #000;">SECCION 1: Documentacion del Proyecto</h1><h1>Asistente de Investigación INAOE</h1>
+<blockquote>
+<p><strong>Sistema RAG (Retrieval-Augmented Generation) para consulta inteligente de documentos científicos</strong></p>
+</blockquote>
+<p><a href="https://www.python.org/"><img alt="Python 3.9+" src="https://img.shields.io/badge/Python-3.9+-blue.svg" /></a>
+<a href="https://streamlit.io/"><img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-1.0+-red.svg" /></a>
+<a href="https://langchain.com/"><img alt="LangChain" src="https://img.shields.io/badge/LangChain-Latest-green.svg" /></a></p>
+<hr />
+<h2>Tabla de Contenidos</h2>
+<ul>
+<li><a href="#-descripción">Descripción</a></li>
+<li><a href="#-arquitectura">Arquitectura</a></li>
+<li><a href="#-inicio-rápido">Inicio Rápido</a></li>
+<li><a href="#-estructura-del-proyecto">Estructura del Proyecto</a></li>
+<li><a href="#-componentes">Componentes</a></li>
+<li><a href="#apppy---aplicación-principal">app.py</a></li>
+<li><a href="#procesar_docspy---pipeline-de-procesamiento">procesar_docs.py</a></li>
+<li><a href="#utilspy---funciones-auxiliares">utils.py</a></li>
+<li><a href="#-configuración">Configuración</a></li>
+<li><a href="#-modelos-soportados">Modelos Soportados</a></li>
+<li><a href="#-api-reference">API Reference</a></li>
+<li><a href="#-deployment">Deployment</a></li>
+<li><a href="#-troubleshooting">Troubleshooting</a></li>
+</ul>
+<hr />
+<h2>Descripción</h2>
+<p>El <strong>Asistente de Investigación INAOE</strong> es una aplicación web que permite a los investigadores del Instituto Nacional de Astrofísica, Óptica y Electrónica consultar documentos científicos utilizando inteligencia artificial.</p>
+<h3>Características Principales</h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Búsqueda Semántica</strong></td>
+<td>Encuentra información relevante usando embeddings vectoriales</td>
+</tr>
+<tr>
+<td><strong>Multi-LLM</strong></td>
+<td>Soporta Ollama (local), Google Gemini, Groq y Together AI</td>
+</tr>
+<tr>
+<td><strong>Enriquecimiento NLP</strong></td>
+<td>Extrae entidades con spaCy y BERT Spanish NER</td>
+</tr>
+<tr>
+<td><strong>Fallback Web</strong></td>
+<td>Busca en DuckDuckGo si no hay contexto local suficiente</td>
+</tr>
+<tr>
+<td><strong>Procesamiento Incremental</strong></td>
+<td>Solo procesa documentos nuevos o modificados</td>
+</tr>
+<tr>
+<td><strong>Actualización Atómica</strong></td>
+<td>Protege la base de datos de corrupción</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Arquitectura</h2>
+<p>El sistema se compone de los siguientes elementos:</p>
+<ol>
+<li><strong>USUARIO</strong>: Interactua con la interfaz web.</li>
+<li><strong>Streamlit UI (app.py)</strong>: Recibe consultas del usuario.</li>
+<li><strong>FAISS Retriever</strong>: Busca documentos relevantes en la base vectorial.</li>
+<li><strong>LLM Provider</strong>: Genera respuestas (Gemini, Ollama, Groq).</li>
+<li><strong>DuckDuckGo Fallback</strong>: Busca en internet si no hay contexto local.</li>
+<li><strong>Documentos Enriquecidos</strong>: Procesados por procesar_docs.py con spaCy + BERT NER.</li>
+</ol>
+<h3>Flujo de Datos</h3>
+<ol>
+<li><strong>Usuario</strong> - Ingresa pregunta en Streamlit</li>
+<li><strong>FAISS Retriever</strong> - Recupera chunks relevantes (k=5)</li>
+<li><strong>Contexto</strong> - Se verifica si es suficiente (mas de 50 chars)</li>
+<li><strong>LLM</strong> - Genera respuesta estructurada</li>
+<li><strong>Respuesta</strong> - Se muestra con fuentes y tiempo</li>
+</ol>
+<hr />
+<h2>Inicio Rápido</h2>
+<h3>Requisitos</h3>
+<ul>
+<li>Python 3.9+</li>
+<li>4GB RAM mínimo (8GB recomendado)</li>
+<li>Ollama instalado (opcional, para modelos locales)</li>
+</ul>
+<h3>Instalación</h3>
+<pre><code class="language-bash"># 1. Clonar repositorio
+git clone &lt;repository-url&gt;
+cd proyecto_rag_inaoe
+
+# 2. Crear entorno virtual
+python -m venv venv
+.\venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
+
+# 3. Instalar dependencias
+pip install -r requirements.txt
+
+# 4. Descargar modelo spaCy
+python -m spacy download es_core_news_lg
+
+# 5. Procesar documentos (primera vez)
+cd src
+python procesar_docs.py
+
+# 6. Ejecutar aplicación
+streamlit run app.py
+</code></pre>
+<p>La aplicación estará disponible en <code>http://localhost:8501</code></p>
+<hr />
+<h2>Estructura del Proyecto</h2>
+<pre><code>proyecto_rag_inaoe/
+ src/
+    app.py              # Aplicación Streamlit principal
+    procesar_docs.py    # Pipeline de procesamiento NLP
+    utils.py            # Funciones auxiliares
+
+ documentos/             # PDFs y documentos a procesar
+    *.pdf               # Documentos científicos
+    *.txt               # Archivos de texto
+
+ models/                 # Modelos descargados
+    bert-spanish-ner/   # BERT NER en español
+    sentence-transformers/
+
+ indice_faiss/           # Base de datos vectorial
+    index.faiss         # Índice FAISS
+    index.pkl           # Metadatos serializados
+
+ docs/                   # Documentación Mintlify
+
+ .streamlit/
+    secrets.toml        # API keys (no en git)
+
+ processed_files.json    # Registro de archivos procesados
+ requirements.txt        # Dependencias Python
+ README.md               # Este archivo
+</code></pre>
+<hr />
+<h2>Componentes</h2>
+<h3><code>app.py</code> - Aplicación Principal</h3>
+<p><strong>Líneas de código:</strong> ~420 | <strong>Propósito:</strong> Interfaz web y cadena RAG</p>
+<h4>Funciones Principales</h4>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cargar_base_datos()</code></td>
+<td>Carga FAISS con embeddings HuggingFace</td>
+</tr>
+<tr>
+<td><code>verificar_ollama()</code></td>
+<td>Verifica si Ollama está activo en :11434</td>
+</tr>
+<tr>
+<td><code>get_llm(modelo, temp, timeout)</code></td>
+<td>Factory para crear instancias LLM</td>
+</tr>
+<tr>
+<td><code>buscar_en_internet(consulta)</code></td>
+<td>Fallback a DuckDuckGo</td>
+</tr>
+<tr>
+<td><code>render_sidebar()</code></td>
+<td>Renderiza configuración en sidebar</td>
+</tr>
+<tr>
+<td><code>create_rag_chain()</code></td>
+<td>Crea la cadena RAG completa</td>
+</tr>
+</tbody>
+</table>
+<h4>Ejemplo de Uso</h4>
+<pre><code class="language-python">from app import get_llm, cargar_base_datos
+
+# Cargar base de datos
+db = cargar_base_datos()
+retriever = db.as_retriever(search_kwargs={&quot;k&quot;: 5})
+
+# Crear LLM
+llm = get_llm(&quot;gemini-1.5-flash&quot;, temperature=0.2, timeout=120)
+
+# Consultar
+docs = retriever.get_relevant_documents(&quot;¿Qué es un quaternión?&quot;)
+</code></pre>
+<hr />
+<h3><code>procesar_docs.py</code> - Pipeline de Procesamiento</h3>
+<p><strong>Líneas de código:</strong> ~400 | <strong>Propósito:</strong> ETL con enriquecimiento NLP</p>
+<h4>Pipeline de Procesamiento</h4>
+<ol>
+<li>PDFs se cargan con PyPDFLoader</li>
+<li>TextSplitter divide en Chunks</li>
+<li>Cada chunk se procesa en paralelo por:</li>
+<li>spaCy NER (modelo es_core_news_lg)</li>
+<li>BERT Spanish NER (modelo bert-spanish-ner)</li>
+<li>Los metadatos de ambos modelos se combinan</li>
+<li>Se almacenan en FAISS con Embeddings</li>
+</ol>
+<h4>Funciones Principales</h4>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cargar_registro_archivos()</code></td>
+<td>Lee JSON con timestamps de archivos</td>
+</tr>
+<tr>
+<td><code>obtener_archivos_a_procesar(registro)</code></td>
+<td>Detecta archivos nuevos/modificados</td>
+</tr>
+<tr>
+<td><code>procesar_lote_documentos(rutas)</code></td>
+<td>Carga PDFs y divide en chunks</td>
+</tr>
+<tr>
+<td><code>analizar_chunks_batch(chunks, nlp, hf)</code></td>
+<td>Enriquece con NLP dual</td>
+</tr>
+<tr>
+<td><code>main()</code></td>
+<td>Flujo principal con actualización atómica</td>
+</tr>
+</tbody>
+</table>
+<h4>Configuración del Splitter</h4>
+<pre><code class="language-python">splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,      # Caracteres por chunk
+    chunk_overlap=200,    # Overlap para contexto
+    length_function=len
+)
+</code></pre>
+<hr />
+<h3><code>utils.py</code> - Funciones Auxiliares</h3>
+<p><strong>Líneas de código:</strong> ~240 | <strong>Propósito:</strong> Utilidades de verificación y validación</p>
+<h4>Funciones</h4>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>verificar_configuracion()</code></td>
+<td>Estado del sistema (DB, Ollama, API keys)</td>
+</tr>
+<tr>
+<td><code>obtener_info_modelo(modelo)</code></td>
+<td>Metadatos de modelos LLM</td>
+</tr>
+<tr>
+<td><code>formatear_tiempo(segundos)</code></td>
+<td>Convierte segundos a "Xm Ys"</td>
+</tr>
+<tr>
+<td><code>validar_pregunta(pregunta)</code></td>
+<td>Valida formato de pregunta</td>
+</tr>
+</tbody>
+</table>
+<h4>Ejemplo</h4>
+<pre><code class="language-python">from utils import verificar_configuracion, validar_pregunta
+
+# Verificar sistema
+config = verificar_configuracion()
+if not config['ollama_disponible']:
+    print(&quot;Inicia Ollama: ollama serve&quot;)
+
+# Validar pregunta
+es_valida, msg = validar_pregunta(&quot;¿Qué es FAISS?&quot;)
+print(f&quot;Válida: {es_valida}, Mensaje: {msg}&quot;)
+</code></pre>
+<hr />
+<h2>Configuración</h2>
+<h3>API Keys</h3>
+<p>Crea el archivo <code>.streamlit/secrets.toml</code>:</p>
+<pre><code class="language-toml"># Google Gemini
+GOOGLE_API_KEY = &quot;tu-api-key-de-google&quot;
+
+# Groq (opcional)
+GROQ_API_KEY = &quot;tu-api-key-de-groq&quot;
+
+# Together AI (opcional)
+TOGETHER_API_KEY = &quot;tu-api-key-de-together&quot;
+</code></pre>
+<h3>Obtener API Keys</h3>
+<table>
+<thead>
+<tr>
+<th>Proveedor</th>
+<th>URL</th>
+<th>Costo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Gemini</td>
+<td><a href="https://makersuite.google.com">makersuite.google.com</a></td>
+<td>Gratis (15 req/min)</td>
+</tr>
+<tr>
+<td>Groq</td>
+<td><a href="https://console.groq.com">console.groq.com</a></td>
+<td>Pago por uso</td>
+</tr>
+<tr>
+<td>Together AI</td>
+<td><a href="https://together.ai">together.ai</a></td>
+<td>$25 créditos gratis</td>
+</tr>
+</tbody>
+</table>
+<h3>Parámetros de la Aplicación</h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Rango</th>
+<th>Default</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Documentos</td>
+<td>3-10</td>
+<td>5</td>
+<td>Chunks a recuperar</td>
+</tr>
+<tr>
+<td>Creatividad</td>
+<td>0.0-1.0</td>
+<td>0.2</td>
+<td>Temperature del LLM</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>30-300s</td>
+<td>120s</td>
+<td>Tiempo máximo de espera</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Modelos Soportados</h2>
+<h3>Modelos Activos</h3>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Proveedor</th>
+<th>Tipo</th>
+<th>RAM</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deepseek-r1:1.5b</code></td>
+<td>Ollama</td>
+<td>Local</td>
+<td>~2GB</td>
+<td>Razonamiento avanzado</td>
+</tr>
+<tr>
+<td><code>mistral:7b</code></td>
+<td>Ollama</td>
+<td>Local</td>
+<td>4GB</td>
+<td>Excelente para investigación</td>
+</tr>
+<tr>
+<td><code>gemini-1.5-flash</code></td>
+<td>Google</td>
+<td>API</td>
+<td>-</td>
+<td>Rápido, 15 req/min gratis</td>
+</tr>
+<tr>
+<td><code>gemini-1.5-pro</code></td>
+<td>Google</td>
+<td>API</td>
+<td>-</td>
+<td>Máxima calidad</td>
+</tr>
+</tbody>
+</table>
+<h3>Modelos NLP</h3>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Propósito</th>
+<th>Tamaño</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>es_core_news_lg</code></td>
+<td>NER general español</td>
+<td>~560MB</td>
+</tr>
+<tr>
+<td><code>bert-spanish-ner</code></td>
+<td>NER especializado</td>
+<td>~440MB</td>
+</tr>
+<tr>
+<td><code>all-MiniLM-L6-v2</code></td>
+<td>Embeddings</td>
+<td>~90MB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>API Reference</h2>
+<h3><code>get_llm(modelo, temperature, timeout)</code></h3>
+<p>Factory que crea instancias de LLM según el proveedor.</p>
+<p><strong>Parámetros:</strong>
+- <code>modelo</code> (str): ID del modelo (ej: "gemini-1.5-flash")
+- <code>temperature</code> (float): 0.0-1.0, controla creatividad
+- <code>timeout</code> (int): Segundos máximos de espera</p>
+<p><strong>Retorna:</strong> Instancia de LLM o None si hay error</p>
+<p><strong>Ejemplo:</strong></p>
+<pre><code class="language-python">llm = get_llm(&quot;mistral:7b&quot;, temperature=0.3, timeout=180)
+if llm:
+    response = llm.invoke(&quot;¿Qué es la propulsión de cohetes?&quot;)
+</code></pre>
+<hr />
+<h3><code>analizar_chunks_batch(chunks, spacy_nlp, hf_pipeline)</code></h3>
+<p>Analiza un lote de textos con spaCy y HuggingFace.</p>
+<p><strong>Parámetros:</strong>
+- <code>chunks</code> (List[str]): Lista de textos a analizar
+- <code>spacy_nlp</code>: Modelo spaCy cargado
+- <code>hf_pipeline</code>: Pipeline HuggingFace NER</p>
+<p><strong>Retorna:</strong> Lista de diccionarios con entidades extraídas</p>
+<p><strong>Ejemplo:</strong></p>
+<pre><code class="language-python">metadatos = analizar_chunks_batch(
+    [&quot;El INAOE está en Puebla.&quot;],
+    spacy_nlp,
+    hf_pipeline
+)
+# {'spacy_entities': {'ORG': ['INAOE'], 'LOC': ['Puebla']}, ...}
+</code></pre>
+<hr />
+<h3><code>validar_pregunta(pregunta)</code></h3>
+<p>Valida si una pregunta es apropiada para el sistema.</p>
+<p><strong>Parámetros:</strong>
+- <code>pregunta</code> (str): Texto de la pregunta</p>
+<p><strong>Retorna:</strong> Tuple[bool, str] - (es_válida, mensaje)</p>
+<p><strong>Reglas:</strong>
+- Mínimo 3 caracteres
+- Máximo 500 caracteres
+- Debe contener palabra interrogativa (qué, cómo, cuál, etc.)</p>
+<hr />
+<h2>Deployment</h2>
+<h3>Streamlit Cloud</h3>
+<ol>
+<li>Sube a GitHub</li>
+<li>Conecta en <a href="https://share.streamlit.io">share.streamlit.io</a></li>
+<li>Configura secrets en el dashboard</li>
+</ol>
+<blockquote>
+<p>Streamlit Cloud no soporta Ollama (solo APIs cloud)</p>
+</blockquote>
+<h3>Docker</h3>
+<pre><code class="language-dockerfile">FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+RUN python -m spacy download es_core_news_lg
+COPY . .
+EXPOSE 8501
+CMD [&quot;streamlit&quot;, &quot;run&quot;, &quot;src/app.py&quot;, &quot;--server.port=8501&quot;]
+</code></pre>
+<pre><code class="language-bash">docker build -t inaoe-assistant .
+docker run -p 8501:8501 inaoe-assistant
+</code></pre>
+<hr />
+<h2>Troubleshooting</h2>
+<h3>Error: "Base de datos no encontrada"</h3>
+<pre><code class="language-bash">cd src
+python procesar_docs.py
+</code></pre>
+<h3>Error: "Ollama no está ejecutándose"</h3>
+<pre><code class="language-bash"># Iniciar servicio Ollama
+ollama serve
+
+# Descargar modelo
+ollama pull mistral:7b
+</code></pre>
+<h3>Error: "spaCy model not found"</h3>
+<pre><code class="language-bash">python -m spacy download es_core_news_lg
+</code></pre>
+<h3>Error: "CUDA out of memory"</h3>
+<p>El sistema usa CPU automáticamente si CUDA falla. Para forzar CPU:</p>
+<pre><code class="language-python">device = 'cpu'  # En lugar de 'cuda'
+</code></pre>
+<hr />
+<h2>Métricas del Proyecto</h2>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Líneas de código Python</td>
+<td>~1,060</td>
+</tr>
+<tr>
+<td>Archivos Python</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Páginas de documentación</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Modelos LLM soportados</td>
+<td>4+</td>
+</tr>
+<tr>
+<td>Modelos NLP</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Licencia</h2>
+<p>Este proyecto es para uso interno del INAOE.</p>
+<hr />
+<h2>Contribuidores</h2>
+<ul>
+<li>Proyecto INAOE</li>
+</ul>
+<hr />
+<p><em>Documentación generada el 26 de Diciembre, 2025</em></p></section><hr style="border: 2px solid #000; margin: 30px 0;"><section class="seccion" id="sec1"><h1 style="font-size: 18pt; background: #f0f0f0; padding: 10px; border: 1px solid #000;">SECCION 2: Inicio Rapido</h1><h1>Inicio Rápido</h1>
+
+<h2>Requisitos</h2>
+
+<li>Python 3.9 o superior</li>
+<li>4GB RAM mínimo (8GB recomendado)</li>
+<li>Ollama instalado (opcional, para modelos locales)</li>
+
+<h2>Instalación Rápida</h2>
+
+<pre><code># Clonar repositorio
+git clone <repository-url>
+cd proyecto_rag_inaoe
+</code></pre>
+   # Crear entorno virtual
+   python -m venv venv
+   .\venv\Scripts\activate  # Windows
+
+   # Instalar dependencias
+   pip install -r requirements.txt
+
+   # Descargar modelo spaCy
+   python -m spacy download es_core_news_lg
+
+   # Procesar documentos
+   cd src
+   python procesar_docs.py
+
+   # Ejecutar aplicación
+   streamlit run app.py
+
+La aplicación estará disponible en http://localhost:8501
+
+<h2>Primer Uso</h2>
+
+1. Coloca tus documentos PDF en la carpeta <code>documentos/</code>
+2. Ejecuta <code>python procesar_docs.py</code> para indexarlos
+3. Ejecuta <code>streamlit run app.py</code>
+4. Selecciona un modelo LLM en el sidebar
+5. ¡Haz tu primera pregunta!
+
+<h2>Configuración de API Keys</h2>
+
+Para usar modelos cloud (Gemini, Groq), crea el archivo <code>.streamlit/secrets.toml</code>:
+
+<pre><code>GOOGLE_API_KEY = "tu-api-key-de-google"
+GROQ_API_KEY = "tu-api-key-de-groq"
+</code></pre></section><hr style="border: 2px solid #000; margin: 30px 0;"><section class="seccion" id="sec2"><h1 style="font-size: 18pt; background: #f0f0f0; padding: 10px; border: 1px solid #000;">SECCION 3: Instalacion Detallada</h1><h1>Instalación Detallada</h1>
+
+<h2>Requisitos del Sistema</h2>
+
+<h3>Hardware</h3>
+
+   
+   * - Componente
+     - Mínimo
+     - Recomendado
+   * - RAM
+     - 4GB
+     - 8GB+
+   * - Espacio en disco
+     - 5GB
+     - 10GB
+   * - GPU
+     - No requerida
+     - NVIDIA CUDA (opcional)
+
+<h3>Software</h3>
+
+<li>Python 3.9, 3.10, 3.11 o 3.12</li>
+<li>pip (gestor de paquetes)</li>
+<li>Git (opcional, para clonar)</li>
+
+<h2>Instalación Paso a Paso</h2>
+
+<h3>1. Clonar el Repositorio</h3>
+
+<pre><code>git clone <repository-url>
+cd proyecto_rag_inaoe
+</code></pre>
+<h3>2. Crear Entorno Virtual</h3>
+
+<strong>Windows:</strong>
+
+<pre><code>python -m venv venv
+.\venv\Scripts\activate
+</code></pre>
+<strong>Linux/Mac:</strong>
+
+<pre><code>python3 -m venv venv
+source venv/bin/activate
+</code></pre>
+<h3>3. Instalar Dependencias</h3>
+
+<pre><code>pip install -r requirements.txt
+</code></pre>
+<h3>4. Descargar Modelo spaCy</h3>
+
+<pre><code>python -m spacy download es_core_news_lg
+</code></pre>
+<h3>5. Instalar Ollama (Opcional)</h3>
+
+Para modelos locales, descarga Ollama de https://ollama.ai
+
+<pre><code># Descargar modelos
+ollama pull mistral:7b
+ollama pull deepseek-r1:1.5b
+</code></pre>
+<h2>Verificación de Instalación</h2>
+
+<pre><code>from utils import verificar_configuracion
+</code></pre>   
+   config = verificar_configuracion()
+   print("Base de datos:", "" if config["base_datos_existe"] else "")
+   print("Ollama:", "" if config["ollama_disponible"] else "")
+   print("API Keys:", "" if config["api_keys_configuradas"] else "")
+
+<h2>Solución de Problemas</h2>
+
+<h3>Error: "No module named 'langchain'"</h3>
+
+<pre><code>pip install --upgrade pip
+pip install -r requirements.txt
+</code></pre>
+<h3>Error: "spacy model not found"</h3>
+
+<pre><code>python -m spacy download es_core_news_lg
+</code></pre>
+<h3>Error: "CUDA out of memory"</h3>
+
+El sistema usa CPU automáticamente. Para forzar CPU:
+
+<pre><code># En app.py, línea del device
+device = 'cpu'  # En lugar de 'cuda'
+</code></pre></section><hr style="border: 2px solid #000; margin: 30px 0;"><section class="seccion" id="sec3"><h1 style="font-size: 18pt; background: #f0f0f0; padding: 10px; border: 1px solid #000;">SECCION 4: Arquitectura del Sistema</h1><h1>Arquitectura del Sistema</h1>
+
+<h2>Vision General</h2>
+
+El Asistente INAOE implementa una arquitectura RAG (Retrieval-Augmented Generation) que combina busqueda semantica con generacion de lenguaje natural.
+
+<h2>Descripcion de la Arquitectura</h2>
+
+El sistema se compone de los siguientes elementos conectados en secuencia:
+
+1. <strong>USUARIO</strong>: Interactua con el sistema a traves de la interfaz web.
+
+2. <strong>Streamlit UI (app.py)</strong>: Interfaz web que recibe las consultas del usuario.
+
+3. <strong>Tres componentes de procesamiento</strong>:
+   - FAISS Retriever: Busca documentos relevantes en la base de datos vectorial.
+   - LLM Provider: Genera respuestas usando modelos de lenguaje (Gemini, Ollama, Groq).
+   - DuckDuckGo Fallback: Busca en internet si no hay contexto local suficiente.
+
+4. <strong>Documentos Enriquecidos</strong>: Base de datos procesada por procesar_docs.py con spaCy y BERT NER.
+
+<h2>Componentes Principales</h2>
+
+<h3>app.py - Aplicacion Principal</h3>
+
+<li>Framework: Streamlit</li>
+<li>Funciones: UI, cadena RAG, invocacion de LLM</li>
+<li>Patrones: Factory Pattern para LLMs</li>
+
+<h3>procesar_docs.py - Pipeline ETL</h3>
+
+<li>Extract: PyPDFLoader para cargar PDFs</li>
+<li>Transform: Text splitting + NLP enrichment</li>
+<li>Load: FAISS vectorstore</li>
+
+<h3>utils.py - Utilidades</h3>
+
+<li>Verificacion de configuracion</li>
+<li>Informacion de modelos</li>
+<li>Validacion de preguntas</li>
+
+<h2>Flujo de Datos</h2>
+
+1. <strong>Ingesta de Documentos</strong>
+
+   PDFs -> PyPDFLoader -> TextSplitter -> NLP Enrichment -> FAISS
+
+2. <strong>Consulta RAG</strong>
+
+   Pregunta -> Embedding -> FAISS Search -> Contexto -> LLM -> Respuesta
+
+<h2>Modelos Utilizados</h2>
+
+<li>all-MiniLM-L6-v2 (HuggingFace): Embeddings</li>
+<li>es_core_news_lg (spaCy): NER General  </li>
+<li>bert-spanish-ner (HuggingFace): NER Especializado</li>
+<li>mistral:7b (Ollama): Generacion</li>
+<li>gemini-1.5-flash (Google): Generacion</li>
+</section><hr style="border: 2px solid #000; margin: 30px 0;"><section class="seccion" id="sec4"><h1 style="font-size: 18pt; background: #f0f0f0; padding: 10px; border: 1px solid #000;">SECCION 5: Guias de Uso</h1><h1>Guías de Uso</h1>
+
+<h2>Configuración de Modelos LLM</h2>
+
+<h3>Ollama (Local)</h3>
+
+Para usar modelos locales sin internet:
+
+1. Instala Ollama desde https://ollama.ai
+2. Descarga el modelo:
+
+<pre><code>ollama pull mistral:7b
+# o
+ollama pull deepseek-r1:1.5b
+</code></pre>
+3. Inicia el servicio:
+
+<pre><code>ollama serve
+</code></pre>
+<h3>Google Gemini</h3>
+
+1. Obtén una API key en https://makersuite.google.com
+2. Agrega al archivo <code>.streamlit/secrets.toml</code>:
+
+<pre><code>GOOGLE_API_KEY = "tu-api-key"
+</code></pre>
+<h2>Procesamiento de Documentos</h2>
+
+<h3>Agregar Nuevos Documentos</h3>
+
+1. Coloca los PDFs en <code>documentos/</code>
+2. Ejecuta el pipeline:
+
+<pre><code>cd src
+python procesar_docs.py
+</code></pre>
+El sistema detecta automáticamente archivos nuevos o modificados.
+
+<h3>Forzar Reprocesamiento</h3>
+
+Elimina el archivo de registro para reprocesar todo:
+
+<pre><code>del processed_files.json
+python procesar_docs.py
+</code></pre>
+<h2>Uso de la Interfaz Web</h2>
+
+<h3>Hacer una Consulta</h3>
+
+1. Selecciona el modelo en el sidebar
+2. Ajusta parámetros si es necesario:
+   - <strong>Documentos</strong>: Cantidad de chunks a recuperar (3-10)
+   - <strong>Creatividad</strong>: Temperature del LLM (0.0-1.0)
+   - <strong>Timeout</strong>: Tiempo máximo de espera
+3. Escribe tu pregunta
+4. Haz clic en "Buscar respuesta"
+
+<h3>Interpretar Resultados</h3>
+
+La respuesta incluye:
+
+<li><strong>Resumen Ejecutivo</strong>: Respuesta breve</li>
+<li><strong>Análisis Detallado</strong>: Explicación completa</li>
+<li><strong>Conclusión</strong>: Implicaciones</li>
+<li><strong>Fuentes</strong>: Documentos utilizados (con página)</li>
+
+<h2>Deployment</h2>
+
+<h3>Streamlit Cloud</h3>
+
+1. Sube el proyecto a GitHub
+2. Conecta en https://share.streamlit.io
+3. Configura secrets en el dashboard
+
+   Streamlit Cloud no soporta Ollama. Usa solo APIs cloud.
+
+<h3>Docker</h3>
+
+<pre><code>FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+RUN python -m spacy download es_core_news_lg
+COPY . .
+EXPOSE 8501
+CMD ["streamlit", "run", "src/app.py"]
+</code></pre>
+<pre><code>docker build -t inaoe-assistant .
+docker run -p 8501:8501 inaoe-assistant
+</code></pre></section><hr style="border: 2px solid #000; margin: 30px 0;"><section class="seccion" id="sec5"><h1 style="font-size: 18pt; background: #f0f0f0; padding: 10px; border: 1px solid #000;">SECCION 6: Documentacion Tecnica del Codigo</h1><h1>Documentacion Tecnica Detallada</h1>
+<h2>Proyecto RAG INAOE - Explicacion Codigo por Codigo</h2>
+<p><strong>Version:</strong> 1.0.0<br />
+<strong>Fecha:</strong> 26 de Diciembre, 2025<br />
+<strong>Autor:</strong> Proyecto INAOE</p>
+<hr />
+<h2>Contenido de esta seccion</h2>
+<ul>
+<li>app.py - Aplicacion Principal</li>
+<li>procesar_docs.py - Pipeline de Procesamiento</li>
+<li>utils.py - Funciones Auxiliares</li>
+<li>Flujo de Ejecucion Completo</li>
+</ul>
+<hr />
+<h2>app.py - Aplicacion Principal</h2>
+<p><strong>Propósito:</strong> Interfaz web con Streamlit para consultas RAG sobre documentos científicos.</p>
+<p><strong>Líneas totales:</strong> ~420</p>
+<hr />
+<h3>Encabezado del Módulo (Líneas 1-26)</h3>
+<pre><code class="language-python">&quot;&quot;&quot;Asistente de Investigación INAOE - Aplicación RAG con Streamlit.
+
+Esta aplicación proporciona una interfaz web para consultar documentos
+científicos del INAOE utilizando Retrieval-Augmented Generation (RAG).
+&quot;&quot;&quot;
+</code></pre>
+<p><strong>Explicación:</strong>
+- El <strong>docstring del módulo</strong> describe el propósito general del archivo
+- Sirve como documentación que aparece cuando ejecutas <code>help(app)</code></p>
+<hr />
+<h3>Imports (Líneas 27-40)</h3>
+<pre><code class="language-python">import streamlit as st
+from langchain_community.vectorstores import FAISS
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain.prompts import PromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
+from pathlib import Path
+import time
+import torch
+import requests
+from typing import List, Dict, Any, Optional, Callable
+import os
+</code></pre>
+<p><strong>Explicación de cada import:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Import</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>streamlit</code></td>
+<td>Framework para crear la interfaz web</td>
+</tr>
+<tr>
+<td><code>FAISS</code></td>
+<td>Base de datos vectorial para búsqueda semántica</td>
+</tr>
+<tr>
+<td><code>HuggingFaceEmbeddings</code></td>
+<td>Convierte texto a vectores numéricos</td>
+</tr>
+<tr>
+<td><code>PromptTemplate</code></td>
+<td>Plantilla para formatear prompts al LLM</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td>Manejo de rutas de archivos multiplataforma</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Medir tiempo de respuesta</td>
+</tr>
+<tr>
+<td><code>torch</code></td>
+<td>Detectar si hay GPU disponible</td>
+</tr>
+<tr>
+<td><code>requests</code></td>
+<td>Verificar si Ollama está activo</td>
+</tr>
+<tr>
+<td><code>typing</code></td>
+<td>Anotaciones de tipos para mejor documentación</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Imports de Proveedores LLM (Líneas 42-55)</h3>
+<pre><code class="language-python">try:
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    from langchain_ollama import ChatOllama
+    from langchain_groq import ChatGroq
+    from langchain_together import Together
+except ImportError as e:
+    st.error(f&quot;Error al importar: {e}&quot;)
+    st.stop()
+</code></pre>
+<p><strong>Explicación:</strong>
+- <strong>try/except:</strong> Captura errores si falta alguna dependencia
+- Si falla, muestra error en Streamlit y detiene la ejecución
+- Esto evita que la app crashee sin dar información al usuario</p>
+<hr />
+<h3>Configuración de Página Streamlit (Líneas 57-63)</h3>
+<pre><code class="language-python">st.set_page_config(
+    page_title=&quot;Asistente INAOE &quot;,
+    page_icon=&quot;&quot;,
+    layout=&quot;wide&quot;,
+    initial_sidebar_state=&quot;expanded&quot;
+)
+</code></pre>
+<p><strong>Explicación:</strong>
+- <code>page_title</code>: Título que aparece en la pestaña del navegador
+- <code>page_icon</code>: Emoji/icono de la pestaña
+- <code>layout="wide"</code>: Usa todo el ancho de la pantalla
+- <code>initial_sidebar_state</code>: El sidebar se muestra expandido al inicio</p>
+<hr />
+<h3>Configuración de Rutas (Líneas 65-67)</h3>
+<pre><code class="language-python">RUTA_PROYECTO = Path(__file__).resolve().parent.parent
+RUTA_DB = RUTA_PROYECTO / &quot;indice_faiss&quot;
+</code></pre>
+<p><strong>Explicación:</strong>
+- <code>Path(__file__)</code>: Ruta del archivo actual (app.py)
+- <code>.resolve()</code>: Convierte a ruta absoluta
+- <code>.parent.parent</code>: Sube dos niveles (src → proyecto_rag_inaoe)
+- <code>/</code>: Operador de Path para unir rutas de forma segura</p>
+<p><strong>Ejemplo:</strong></p>
+<pre><code>__file__ = C:/proyecto/src/app.py
+.parent = C:/proyecto/src
+.parent.parent = C:/proyecto
+/ &quot;indice_faiss&quot; = C:/proyecto/indice_faiss
+</code></pre>
+<hr />
+<h3>Configuración de Modelos (Líneas 70-102)</h3>
+<pre><code class="language-python">MODEL_CONFIG = {
+    &quot;deepseek-r1:1.5b&quot;: {
+        &quot;provider&quot;: &quot;ollama&quot;, 
+        &quot;info&quot;: &quot; Local DeepSeek - Razonamiento avanzado, ~2GB RAM.&quot;
+    },
+    &quot;mistral:7b&quot;: {
+        &quot;provider&quot;: &quot;ollama&quot;, 
+        &quot;info&quot;: &quot; Local - Excelente para investigación, 4GB RAM.&quot;
+    },
+    &quot;gemini-1.5-flash&quot;: {
+        &quot;provider&quot;: &quot;google&quot;, 
+        &quot;info&quot;: &quot; API Google - Rápido, 15 req/min gratis.&quot;
+    },
+    &quot;gemini-1.5-pro&quot;: {
+        &quot;provider&quot;: &quot;google&quot;, 
+        &quot;info&quot;: &quot; API Google - Máxima calidad de razonamiento.&quot;
+    },
+}
+</code></pre>
+<p><strong>Explicación:</strong>
+- <strong>Diccionario</strong> que mapea IDs de modelos a sus configuraciones
+- <code>provider</code>: Indica qué API/servicio usar (ollama, google, groq, together)
+- <code>info</code>: Texto descriptivo que se muestra al usuario en el sidebar
+- Para agregar un nuevo modelo, solo se añade una entrada aquí</p>
+<hr />
+<h3>Template del Prompt (Líneas 104-143)</h3>
+<pre><code class="language-python">PROMPT_TEMPLATE = &quot;&quot;&quot;
+Eres un Asistente de Investigación Senior del INAOE...
+
+**MISIÓN PRINCIPAL:**
+1. PRIORIDAD 1: El CONTEXTO de documentos INAOE
+2. PRIORIDAD 2: Conocimiento general del modelo
+3. PRIORIDAD 3: Fuentes verificables
+4. PRIORIDAD 4: Búsqueda en internet
+
+**FORMATO DE SALIDA:**
+- Resumen Ejecutivo (TL;DR)
+- Análisis Detallado
+- Conclusión e Implicaciones
+- Fuentes Consultadas
+
+---
+**CONTEXTO PROPORCIONADO:**
+{context}
+
+**PREGUNTA DEL INVESTIGADOR:**
+{question}
+&quot;&quot;&quot;
+</code></pre>
+<p><strong>Explicación:</strong>
+- <strong>Prompt Engineering:</strong> Define cómo el LLM debe responder
+- <code>{context}</code>: Placeholder que se reemplaza con documentos recuperados
+- <code>{question}</code>: Placeholder para la pregunta del usuario
+- El formato estructurado garantiza respuestas consistentes</p>
+<hr />
+<h3>Función: buscar_en_internet() (Líneas 145-195)</h3>
+<pre><code class="language-python">def buscar_en_internet(consulta: str, max_resultados: int = 5) -&gt; List[str]:
+    &quot;&quot;&quot;Realiza una búsqueda web usando DuckDuckGo como fallback.&quot;&quot;&quot;
+    try:
+        from duckduckgo_search import DDGS
+    except Exception as e:
+        return [f&quot;[Fallback deshabilitado] {e}&quot;]
+
+    try:
+        resultados = []
+        with DDGS() as ddgs:
+            for item in ddgs.text(consulta, region=&quot;wt-wt&quot;, 
+                                   safesearch=&quot;moderate&quot;, 
+                                   max_results=max_resultados):
+                titulo = item.get(&quot;title&quot;, &quot;&quot;)
+                cuerpo = item.get(&quot;body&quot;, &quot;&quot;)
+                link = item.get(&quot;href&quot;, &quot;&quot;)
+                resultados.append(f&quot;Título: {titulo}\nResumen: {cuerpo}\nFuente: {link}&quot;)
+        return resultados if resultados else [&quot;No se encontraron resultados.&quot;]
+    except Exception as e:
+        return [f&quot;Error en búsqueda web: {e}&quot;]
+</code></pre>
+<p><strong>Explicación línea por línea:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Línea</th>
+<th>Código</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>def buscar_en_internet(...)</code></td>
+<td>Define función con tipos de parámetros</td>
+</tr>
+<tr>
+<td>2-4</td>
+<td><code>try: from duckduckgo...</code></td>
+<td>Importa la librería bajo demanda</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>resultados = []</code></td>
+<td>Lista vacía para almacenar resultados</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>with DDGS() as ddgs:</code></td>
+<td>Context manager para manejar conexión</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>for item in ddgs.text(...)</code></td>
+<td>Itera sobre resultados de búsqueda</td>
+</tr>
+<tr>
+<td>8-10</td>
+<td><code>item.get(...)</code></td>
+<td>Extrae campos de forma segura (evita KeyError)</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>resultados.append(...)</code></td>
+<td>Formatea y agrega cada resultado</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>return resultados if...</code></td>
+<td>Retorna resultados o mensaje de error</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Función: cargar_base_datos() (Líneas 197-240)</h3>
+<pre><code class="language-python">@st.cache_resource
+def cargar_base_datos() -&gt; Optional[FAISS]:
+    &quot;&quot;&quot;Carga la base de datos vectorial FAISS de forma segura.&quot;&quot;&quot;
+    if not RUTA_DB.exists():
+        st.error(f&quot; No se encontró la base de datos en: {RUTA_DB}&quot;)
+        st.info(&quot; Ejecuta primero: `python procesar_docs.py`&quot;)
+        return None
+    try:
+        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        embeddings = HuggingFaceEmbeddings(
+            model_name=&quot;all-MiniLM-L6-v2&quot;,
+            model_kwargs={'device': device},
+            cache_folder=str(RUTA_PROYECTO / &quot;models&quot;),
+            encode_kwargs={'normalize_embeddings': True}
+        )
+        return FAISS.load_local(str(RUTA_DB), embeddings, 
+                                 allow_dangerous_deserialization=True)
+    except Exception as e:
+        st.error(f&quot;Error al cargar la base de datos: {e}&quot;)
+        return None
+</code></pre>
+<p><strong>Explicación:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@st.cache_resource</code></td>
+<td><strong>Decorador</strong> que cachea el resultado. La función solo se ejecuta una vez por sesión</td>
+</tr>
+<tr>
+<td><code>Optional[FAISS]</code></td>
+<td>Puede retornar una instancia de FAISS o None</td>
+</tr>
+<tr>
+<td><code>RUTA_DB.exists()</code></td>
+<td>Verifica si el directorio existe</td>
+</tr>
+<tr>
+<td><code>torch.cuda.is_available()</code></td>
+<td>Detecta si hay GPU NVIDIA disponible</td>
+</tr>
+<tr>
+<td><code>HuggingFaceEmbeddings(...)</code></td>
+<td>Crea el modelo de embeddings</td>
+</tr>
+<tr>
+<td><code>model_kwargs={'device': device}</code></td>
+<td>Indica si usar GPU o CPU</td>
+</tr>
+<tr>
+<td><code>cache_folder=...</code></td>
+<td>Guarda modelos localmente para no re-descargar</td>
+</tr>
+<tr>
+<td><code>normalize_embeddings=True</code></td>
+<td>Normaliza vectores para mejor similitud coseno</td>
+</tr>
+<tr>
+<td><code>FAISS.load_local(...)</code></td>
+<td>Carga el índice desde disco</td>
+</tr>
+<tr>
+<td><code>allow_dangerous_deserialization=True</code></td>
+<td>Necesario para cargar objetos pickle</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Función: verificar_ollama() (Líneas 242-268)</h3>
+<pre><code class="language-python">@st.cache_data(ttl=300)
+def verificar_ollama() -&gt; bool:
+    &quot;&quot;&quot;Verifica si el servicio de Ollama está activo en localhost.&quot;&quot;&quot;
+    try:
+        requests.get(&quot;http://localhost:11434&quot;, timeout=3)
+        return True
+    except requests.ConnectionError:
+        return False
+</code></pre>
+<p><strong>Explicación:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@st.cache_data(ttl=300)</code></td>
+<td>Cachea el resultado por 5 minutos (300 segundos)</td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td>Time To Live - después de 300s, vuelve a verificar</td>
+</tr>
+<tr>
+<td><code>requests.get(...)</code></td>
+<td>Hace petición HTTP GET al puerto de Ollama</td>
+</tr>
+<tr>
+<td><code>timeout=3</code></td>
+<td>Espera máximo 3 segundos</td>
+</tr>
+<tr>
+<td><code>ConnectionError</code></td>
+<td>Se lanza si Ollama no está corriendo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Función: get_llm() - Factory Pattern (Líneas 292-356)</h3>
+<pre><code class="language-python">def get_llm(modelo: str, temperature: float, timeout: int) -&gt; Optional[Any]:
+    &quot;&quot;&quot;Factory que crea instancias de LLM según el proveedor.&quot;&quot;&quot;
+    config = MODEL_CONFIG.get(modelo, {})
+    provider = config.get(&quot;provider&quot;)
+
+    if provider == &quot;google&quot;:
+        if 'GOOGLE_API_KEY' not in st.secrets:
+            st.error(&quot; Falta la API Key de Google&quot;)
+            return None
+        return ChatGoogleGenerativeAI(
+            model=modelo.split('/')[-1], 
+            api_key=st.secrets[&quot;GOOGLE_API_KEY&quot;], 
+            temperature=temperature
+        )
+
+    elif provider == &quot;ollama&quot;:
+        if not verificar_ollama():
+            st.error(&quot; Ollama no está ejecutándose&quot;)
+            return None
+        return ChatOllama(
+            model=modelo, 
+            temperature=temperature, 
+            timeout=timeout
+        )
+
+    elif provider == &quot;groq&quot;:
+        # Similar a Google...
+
+    elif provider == &quot;together&quot;:
+        # Similar a Google...
+
+    else:
+        st.error(f&quot; Proveedor '{provider}' no configurado&quot;)
+        return None
+</code></pre>
+<p><strong>Explicación del Patrón Factory:</strong></p>
+<pre><code>+-------------------+
+|  get_llm()        | &lt;-- Entrada: modelo, temperature, timeout
++-------------------+
+| if google:        | --&gt; ChatGoogleGenerativeAI
+| elif ollama:      | --&gt; ChatOllama
+| elif groq:        | --&gt; ChatGroq
+| elif together:    | --&gt; Together
+| else:             | --&gt; None + Error
++-------------------+
+</code></pre>
+<p><strong>Ventajas del Factory Pattern:</strong>
+1. <strong>Centralizado:</strong> Solo un lugar para crear LLMs
+2. <strong>Extensible:</strong> Agregar nuevo proveedor = agregar elif
+3. <strong>Encapsulado:</strong> La lógica de creación está oculta del resto del código</p>
+<hr />
+<h3>Función: render_sidebar() (Líneas 358-394)</h3>
+<pre><code class="language-python">def render_sidebar() -&gt; tuple[str, int, float, int]:
+    &quot;&quot;&quot;Renderiza la barra lateral con opciones de configuración.&quot;&quot;&quot;
+    st.sidebar.header(&quot; Configuración&quot;)
+
+    modelo_seleccionado = st.sidebar.selectbox(
+        &quot;Selecciona el modelo:&quot;,
+        list(MODEL_CONFIG.keys()),
+        index=0
+    )
+
+    st.sidebar.info(MODEL_CONFIG[modelo_seleccionado][&quot;info&quot;])
+
+    with st.sidebar.expander(&quot; Configuración Avanzada&quot;):
+        chunk_size = st.slider(&quot;Documentos a consultar&quot;, 3, 10, 5)
+        temperature = st.slider(&quot;Creatividad&quot;, 0.0, 1.0, 0.2)
+        timeout = st.slider(&quot;Timeout (segundos)&quot;, 30, 300, 120)
+
+    return modelo_seleccionado, chunk_size, temperature, timeout
+</code></pre>
+<p><strong>Explicación de Widgets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Widget</th>
+<th>Código</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>selectbox</code></td>
+<td>Dropdown para seleccionar modelo</td>
+<td>Muestra lista de modelos</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td>Cuadro informativo</td>
+<td>Muestra descripción del modelo</td>
+</tr>
+<tr>
+<td><code>expander</code></td>
+<td>Sección colapsable</td>
+<td>Oculta configuración avanzada</td>
+</tr>
+<tr>
+<td><code>slider</code></td>
+<td>Deslizador</td>
+<td>Permite seleccionar valores numéricos</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Valores de retorno:</strong>
+- <code>modelo_seleccionado</code>: String con ID del modelo
+- <code>chunk_size</code>: Entero (3-10)
+- <code>temperature</code>: Float (0.0-1.0)
+- <code>timeout</code>: Entero (30-300)</p>
+<hr />
+<h3>Función: main() - Flujo Principal (Líneas 396-480)</h3>
+<pre><code class="language-python">def main():
+    st.title(&quot;Asistente de Investigación INAOE &quot;)
+    st.write(&quot;Hazme preguntas sobre los documentos del INAOE...&quot;)
+
+    # 1. Configuración del sidebar
+    modelo_sel, chunk_size, temp, timeout = render_sidebar()
+
+    # 2. Cargar base de datos
+    db = cargar_base_datos()
+    if db is None:
+        return
+
+    # 3. Crear LLM
+    llm = get_llm(modelo_sel, temp, timeout)
+    if llm is None:
+        return
+
+    # 4. Crear retriever
+    retriever = db.as_retriever(search_kwargs={&quot;k&quot;: chunk_size})
+
+    # 5. Crear prompt
+    prompt = PromptTemplate.from_template(PROMPT_TEMPLATE)
+
+    # 6. Crear cadena RAG
+    def create_rag_chain():
+        def rag_invoke(question):
+            docs = retriever.get_relevant_documents(question)
+            context = format_docs(docs)
+
+            # Fallback a internet si contexto insuficiente
+            if not context or len(context.strip()) &lt; 50:
+                resultados_web = buscar_en_internet(question)
+                context = f&quot;[Fuente: Internet]\n{'\n'.join(resultados_web)}&quot;
+
+            formatted_prompt = prompt.format(context=context, question=question)
+            response = llm.invoke(formatted_prompt)
+
+            return {
+                &quot;context&quot;: context,
+                &quot;question&quot;: question,
+                &quot;answer&quot;: response.content
+            }
+        return rag_invoke
+
+    rag_chain = create_rag_chain()
+
+    # 7. Interfaz de entrada
+    pregunta = st.text_input(&quot; ¿Qué te gustaría saber?&quot;)
+
+    if st.button(&quot; Buscar respuesta&quot;) and pregunta:
+        with st.spinner(f&quot; Buscando respuesta con {modelo_sel}...&quot;):
+            start_time = time.time()
+            result = rag_chain(pregunta)
+            end_time = time.time()
+
+            st.markdown(&quot;###  Respuesta:&quot;)
+            st.write(result[&quot;answer&quot;])
+            st.metric(&quot;⏱ Tiempo&quot;, f&quot;{end_time - start_time:.2f}s&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p><strong>Diagrama de Flujo:</strong></p>
+<pre><code>main()
+  |
+  +-- render_sidebar() --&gt; Configuracion
+  |
+  +-- cargar_base_datos() --&gt; FAISS DB
+  |         |
+  |         +-- Si falla --&gt; return
+  |
+  +-- get_llm() --&gt; Instancia LLM
+  |         |
+  |         +-- Si falla --&gt; return
+  |
+  +-- as_retriever() --&gt; Retriever configurado
+  |
+  +-- create_rag_chain() --&gt; Funcion RAG
+  |
+  +-- st.button() --&gt; Si click:
+            |
+            +-- rag_chain(pregunta)
+            |       |
+            |       +-- Recuperar documentos
+            |       +-- Verificar contexto
+            |       +-- Fallback a web si necesario
+            |       +-- Formatear prompt
+            |       +-- Invocar LLM
+            |
+            +-- Mostrar respuesta + tiempo
+</code></pre>
+<hr />
+<h2>procesar_docs.py - Pipeline de Procesamiento</h2>
+<p><strong>Propósito:</strong> Pipeline ETL para procesar PDFs con enriquecimiento NLP</p>
+<p><strong>Líneas totales:</strong> ~400</p>
+<hr />
+<h3>Módulo Docstring (Líneas 1-32)</h3>
+<pre><code class="language-python">&quot;&quot;&quot;Pipeline de procesamiento de documentos para el sistema RAG INAOE.
+
+Este módulo implementa un pipeline ETL (Extract, Transform, Load) para:
+- Extract: Cargar documentos PDF
+- Transform: Dividir en chunks y enriquecer con NLP
+- Load: Almacenar en base de datos vectorial FAISS
+&quot;&quot;&quot;
+</code></pre>
+<hr />
+<h3>Configuración Centralizada (Líneas 50-66)</h3>
+<pre><code class="language-python"># Rutas
+RUTA_PROYECTO = Path(__file__).resolve().parent.parent
+DIR_DOCS = RUTA_PROYECTO / &quot;documentos&quot;
+DIR_DB_FAISS = RUTA_PROYECTO / &quot;indice_faiss&quot;
+DIR_DB_TEMP = RUTA_PROYECTO / &quot;indice_faiss_temp&quot;  # Para atomicidad
+ARCHIVO_REGISTRO = RUTA_PROYECTO / &quot;processed_files.json&quot;
+
+# Modelos
+EMBEDDING_MODEL = &quot;all-MiniLM-L6-v2&quot;
+SPACY_MODEL = &quot;es_core_news_lg&quot;
+RUTA_MODELO_HF = RUTA_PROYECTO / &quot;models&quot; / &quot;bert-spanish-ner&quot;
+</code></pre>
+<p><strong>Explicación:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DIR_DOCS</code></td>
+<td>Carpeta con PDFs de entrada</td>
+</tr>
+<tr>
+<td><code>DIR_DB_FAISS</code></td>
+<td>Carpeta con índice FAISS final</td>
+</tr>
+<tr>
+<td><code>DIR_DB_TEMP</code></td>
+<td>Carpeta temporal para actualización atómica</td>
+</tr>
+<tr>
+<td><code>ARCHIVO_REGISTRO</code></td>
+<td>JSON que trackea archivos procesados</td>
+</tr>
+<tr>
+<td><code>EMBEDDING_MODEL</code></td>
+<td>Modelo para convertir texto a vectores</td>
+</tr>
+<tr>
+<td><code>SPACY_MODEL</code></td>
+<td>Modelo de spaCy para NER español</td>
+</tr>
+<tr>
+<td><code>RUTA_MODELO_HF</code></td>
+<td>Carpeta local con modelo BERT</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Sistema de Registro Incremental (Líneas 68-118)</h3>
+<pre><code class="language-python">def cargar_registro_archivos() -&gt; Dict[str, float]:
+    &quot;&quot;&quot;Carga el registro de archivos procesados desde JSON.&quot;&quot;&quot;
+    if not ARCHIVO_REGISTRO.exists():
+        return {}
+    with open(ARCHIVO_REGISTRO, 'r') as f:
+        return json.load(f)
+
+def guardar_registro_archivos(registro: Dict[str, float]) -&gt; None:
+    &quot;&quot;&quot;Guarda el registro actualizado.&quot;&quot;&quot;
+    with open(ARCHIVO_REGISTRO, 'w') as f:
+        json.dump(registro, f, indent=4)
+
+def obtener_archivos_a_procesar(registro: Dict[str, float]) -&gt; List[str]:
+    &quot;&quot;&quot;Determina qué archivos son nuevos o modificados.&quot;&quot;&quot;
+    archivos_nuevos = []
+    for archivo_pdf in DIR_DOCS.glob(&quot;*.pdf&quot;):
+        nombre_archivo = str(archivo_pdf)
+        ultima_modificacion = os.path.getmtime(nombre_archivo)
+
+        # Comparar timestamp
+        if nombre_archivo not in registro or registro[nombre_archivo] &lt; ultima_modificacion:
+            archivos_nuevos.append(nombre_archivo)
+            registro[nombre_archivo] = ultima_modificacion
+
+    return archivos_nuevos
+</code></pre>
+<p><strong>Estructura del JSON de registro:</strong></p>
+<pre><code class="language-json">{
+    &quot;C:/proyecto/docs/paper1.pdf&quot;: 1702857600.0,
+    &quot;C:/proyecto/docs/paper2.pdf&quot;: 1702944000.0
+}
+</code></pre>
+<p><strong>Lógica de detección:</strong></p>
+<pre><code>archivo en disco    registro JSON         acción
+
+timestamp: 1000     no existe             PROCESAR (nuevo)
+timestamp: 2000     timestamp: 1000       PROCESAR (modificado)
+timestamp: 1000     timestamp: 1000       IGNORAR (sin cambios)
+</code></pre>
+<hr />
+<h3>Procesamiento de Documentos (Líneas 163-209)</h3>
+<pre><code class="language-python">def procesar_lote_documentos(rutas_archivos: List[str]) -&gt; List[Any]:
+    &quot;&quot;&quot;Carga y divide en chunks un lote de documentos PDF.&quot;&quot;&quot;
+    documentos = []
+
+    # Cargar cada PDF
+    for ruta in rutas_archivos:
+        try:
+            loader = PyPDFLoader(ruta)
+            documentos.extend(loader.load())
+            logging.info(f&quot;Cargado: {Path(ruta).name}&quot;)
+        except Exception as e:
+            logging.error(f&quot;Error cargando {ruta}: {e}&quot;)
+            continue  # Continúa con el siguiente
+
+    if not documentos:
+        return []
+
+    # Dividir en chunks
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,      # Caracteres por chunk
+        chunk_overlap=200,    # Overlap entre chunks
+        length_function=len
+    )
+    return splitter.split_documents(documentos)
+</code></pre>
+<p><strong>Visualización del Splitting:</strong></p>
+<pre><code>Documento Original:
+
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit.   
+ Sed do eiusmod tempor incididunt ut labore et dolore...    
+ [... 5000 caracteres ...]                                  
+
+
+Después de split (chunk_size=1000, overlap=200):
+
+Chunk 1:                    Chunk 2:                    Chunk 3:
+
+ Lorem ipsum...           ...tempor inci...        ...et dolore...  
+ (1000 chars)             (1000 chars)             (1000 chars)     
+
+
+          200 chars  200 chars 
+                   (overlap)                   (overlap)
+</code></pre>
+<p><strong>¿Por qué overlap?</strong>
+- Mantiene contexto entre chunks
+- Evita cortar ideas a la mitad
+- Mejora la recuperación de información</p>
+<hr />
+<h3>Enriquecimiento NLP - analizar_chunks_batch() (Líneas 213-291)</h3>
+<pre><code class="language-python">@torch.no_grad()
+def analizar_chunks_batch(
+    chunks_texto: List[str],
+    spacy_nlp: Any,
+    hf_pipeline: Any
+) -&gt; List[Dict[str, Dict[str, List[str]]]]:
+    &quot;&quot;&quot;Analiza un lote de textos con spaCy y HuggingFace.&quot;&quot;&quot;
+    metadatos_enriquecidos = []
+
+    # Estación 1: spaCy - Procesamiento batch
+    spacy_docs = list(spacy_nlp.pipe(chunks_texto))
+
+    # Estación 2: HuggingFace - Procesamiento batch
+    try:
+        hf_results = hf_pipeline(chunks_texto)
+    except Exception as e:
+        logging.error(f&quot;Error en HuggingFace: {e}&quot;)
+        hf_results = [[] for _ in chunks_texto]
+
+    # Combinar resultados
+    for i, doc in enumerate(spacy_docs):
+        # Extraer entidades de spaCy
+        entidades_spacy: Dict[str, List[str]] = {}
+        for ent in doc.ents:
+            if ent.label_ not in entidades_spacy:
+                entidades_spacy[ent.label_] = []
+            entidades_spacy[ent.label_].append(ent.text)
+
+        # Extraer entidades de HuggingFace
+        entidades_hf: Dict[str, List[str]] = {}
+        for entity in hf_results[i]:
+            label = entity.get('entity_group', 'MISC')
+            if label not in entidades_hf:
+                entidades_hf[label] = []
+            entidades_hf[label].append(entity['word'])
+
+        metadatos_enriquecidos.append({
+            &quot;spacy_entities&quot;: entidades_spacy,
+            &quot;hf_entities&quot;: entidades_hf
+        })
+
+    return metadatos_enriquecidos
+</code></pre>
+<p><strong>Diagrama del Pipeline NLP:</strong></p>
+<pre><code>                    Chunks de Texto
+
+
+
+
+      spaCy                          BERT     
+    es_core_                       spanish    
+    news_lg                          ner      
+
+
+
+
+    Entidades:                    Entidades:  
+    ORG: INAOE                    ORG: Inst.  
+    LOC: Puebla                   PER: Juan   
+    PER: María                    LOC: México 
+
+
+
+
+
+                Metadatos       
+                Combinados      
+                {spacy: {...},  
+                 hf: {...}}     
+
+</code></pre>
+<p><strong>Tipos de entidades detectadas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Etiqueta</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORG</td>
+<td>Organización</td>
+<td>INAOE, NASA</td>
+</tr>
+<tr>
+<td>PER</td>
+<td>Persona</td>
+<td>Juan García</td>
+</tr>
+<tr>
+<td>LOC</td>
+<td>Lugar</td>
+<td>Puebla, México</td>
+</tr>
+<tr>
+<td>MISC</td>
+<td>Misceláneos</td>
+<td>Quaterniones</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>Fecha</td>
+<td>2024</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Actualización Atómica de FAISS (Líneas 340-380)</h3>
+<pre><code class="language-python"># Paso 1: Eliminar directorio temporal si existe
+if DIR_DB_TEMP.exists():
+    shutil.rmtree(DIR_DB_TEMP)
+
+# Paso 2: Cargar o crear base de datos
+if DIR_DB_FAISS.exists() and chunks_nuevos:
+    logging.info(&quot;Cargando base existente para fusionar...&quot;)
+    db_existente = FAISS.load_local(str(DIR_DB_FAISS), embeddings, 
+                                     allow_dangerous_deserialization=True)
+    db_existente.add_documents(chunks_nuevos)
+    db_final = db_existente
+elif chunks_nuevos:
+    logging.info(&quot;Creando nueva base de datos...&quot;)
+    db_final = FAISS.from_documents(chunks_nuevos, embeddings)
+else:
+    return
+
+# Paso 3: Guardar en directorio temporal
+db_final.save_local(str(DIR_DB_TEMP))
+
+# Paso 4: Reemplazo atómico
+if DIR_DB_FAISS.exists():
+    shutil.rmtree(DIR_DB_FAISS)
+os.rename(DIR_DB_TEMP, DIR_DB_FAISS)
+
+# Paso 5: Actualizar registro
+guardar_registro_archivos(registro_archivos)
+</code></pre>
+<p><strong>¿Por qué Actualización Atómica?</strong></p>
+<pre><code>Sin Atomicidad (PELIGROSO):
+
+1. Borrar índice antiguo     ← Si falla aquí, PERDEMOS TODO
+2. Guardar índice nuevo      ← Si falla aquí, NO HAY ÍNDICE
+
+Con Atomicidad (SEGURO):
+
+1. Guardar en indice_temp    ← Si falla, índice original intacto
+2. Borrar índice antiguo
+3. Renombrar temp → final    ← Operación atómica del OS
+</code></pre>
+<hr />
+<h2>utils.py - Funciones Auxiliares</h2>
+<p><strong>Propósito:</strong> Utilidades de verificación, información de modelos y validación</p>
+<p><strong>Líneas totales:</strong> ~270</p>
+<hr />
+<h3>verificar_configuracion() (Líneas 37-95)</h3>
+<pre><code class="language-python">def verificar_configuracion() -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;Verifica la configuración del proyecto y retorna el estado.&quot;&quot;&quot;
+    config = {
+        &quot;base_datos_existe&quot;: False,
+        &quot;ollama_disponible&quot;: False,
+        &quot;api_keys_configuradas&quot;: False,
+        &quot;errores&quot;: []
+    }
+
+    # Check 1: Base de datos FAISS
+    ruta_db = ruta_proyecto / &quot;indice_faiss&quot;
+    if ruta_db.exists() and (ruta_db / &quot;index.faiss&quot;).exists():
+        config[&quot;base_datos_existe&quot;] = True
+    else:
+        config[&quot;errores&quot;].append(&quot;Base de datos no encontrada&quot;)
+
+    # Check 2: Ollama
+    try:
+        response = requests.get(&quot;http://localhost:11434/api/tags&quot;, timeout=5)
+        if response.status_code == 200:
+            config[&quot;ollama_disponible&quot;] = True
+    except:
+        config[&quot;errores&quot;].append(&quot;Ollama no ejecutándose&quot;)
+
+    # Check 3: API Keys
+    try:
+        if 'GOOGLE_API_KEY' in st.secrets:
+            config[&quot;api_keys_configuradas&quot;] = True
+    except:
+        config[&quot;errores&quot;].append(&quot;No se pudo verificar API keys&quot;)
+
+    return config
+</code></pre>
+<p><strong>Uso típico:</strong></p>
+<pre><code class="language-python">config = verificar_configuracion()
+if config[&quot;errores&quot;]:
+    print(&quot;Problemas encontrados:&quot;)
+    for error in config[&quot;errores&quot;]:
+        print(f&quot;  - {error}&quot;)
+else:
+    print(&quot; Sistema configurado correctamente&quot;)
+</code></pre>
+<hr />
+<h3>validar_pregunta() (Líneas 230-270)</h3>
+<pre><code class="language-python">def validar_pregunta(pregunta: str) -&gt; Tuple[bool, str]:
+    &quot;&quot;&quot;Valida si una pregunta es apropiada para el sistema.&quot;&quot;&quot;
+    # Validación 1: Longitud mínima
+    if not pregunta or len(pregunta.strip()) &lt; 3:
+        return False, &quot;Mínimo 3 caracteres&quot;
+
+    # Validación 2: Longitud máxima
+    if len(pregunta) &gt; 500:
+        return False, &quot;Máximo 500 caracteres&quot;
+
+    # Validación 3: Palabras interrogativas
+    palabras_clave = [
+        &quot;qué&quot;, &quot;cuál&quot;, &quot;cómo&quot;, &quot;dónde&quot;, &quot;cuándo&quot;, &quot;por qué&quot;, &quot;quién&quot;,
+        &quot;what&quot;, &quot;how&quot;, &quot;where&quot;, &quot;when&quot;, &quot;why&quot;, &quot;who&quot;
+    ]
+
+    pregunta_lower = pregunta.lower()
+    tiene_palabra_clave = any(p in pregunta_lower for p in palabras_clave)
+
+    if not tiene_palabra_clave:
+        return False, &quot;Debe contener palabra interrogativa&quot;
+
+    return True, &quot;Pregunta válida&quot;
+</code></pre>
+<p><strong>Tabla de validaciones:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Resultado</th>
+<th>Mensaje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>""</code></td>
+<td>False</td>
+<td>Mínimo 3 caracteres</td>
+</tr>
+<tr>
+<td><code>"Hola"</code></td>
+<td>False</td>
+<td>Debe contener palabra interrogativa</td>
+</tr>
+<tr>
+<td><code>"¿Qué es FAISS?"</code></td>
+<td>True</td>
+<td>Pregunta válida</td>
+</tr>
+<tr>
+<td><code>"A" * 600</code></td>
+<td>False</td>
+<td>Máximo 500 caracteres</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Flujo de Ejecucion Completo</h2>
+<h3>Primer Uso (Procesamiento Inicial)</h3>
+<pre><code>Terminal:
+$ python procesar_docs.py
+
+Flujo:
+
+1. Cargar modelos NLP
+    spacy.load(&quot;es_core_news_lg&quot;)        # ~560MB
+    pipeline(&quot;ner&quot;, model=&quot;bert-spanish&quot;) # ~440MB
+
+2. Cargar registro de archivos
+    processed_files.json (vacío o existente)
+
+3. Detectar archivos a procesar
+    Escanear documentos/*.pdf
+    Comparar timestamps con registro
+
+4. Procesar documentos
+    PyPDFLoader para cada PDF
+    RecursiveCharacterTextSplitter → chunks
+
+5. Enriquecer con NLP
+    spaCy: Extraer entidades generales
+    BERT: Extraer entidades especializadas
+
+6. Crear/actualizar FAISS
+    HuggingFaceEmbeddings para vectorizar
+    Guardar en directorio temporal
+    Reemplazo atómico
+
+7. Actualizar registro
+    Guardar timestamps en JSON
+
+Resultado: indice_faiss/ con index.faiss + index.pkl
+</code></pre>
+<hr />
+<h3>Uso Normal (Consulta)</h3>
+<pre><code>Navegador: http://localhost:8501
+
+Flujo de una consulta:
+
+Usuario: &quot;¿Qué es un quaternión?&quot;
+
+
+1. render_sidebar()
+    Modelo: mistral:7b, Chunks: 5, Temp: 0.2
+
+2. cargar_base_datos()  (cacheado)
+    FAISS con embeddings
+
+3. get_llm(&quot;mistral:7b&quot;, 0.2, 120)
+    ChatOllama configurado
+
+4. retriever.get_relevant_documents(&quot;¿Qué es un quaternión?&quot;)
+    Embedding de la pregunta
+    Búsqueda de similitud en FAISS
+    Top 5 chunks relevantes
+
+5. Verificar contexto
+    Si len(contexto) &gt;= 50: usar contexto local
+    Si len(contexto) &lt; 50: buscar_en_internet()
+
+6. prompt.format(context=..., question=...)
+    Prompt formateado con plantilla
+
+7. llm.invoke(formatted_prompt)
+    Respuesta del modelo
+
+8. Mostrar en UI
+    st.write(respuesta)
+    st.metric(&quot;Tiempo&quot;, &quot;2.5s&quot;)
+    st.expander(&quot;Fuentes&quot;) con contexto
+
+</code></pre>
+<hr />
+<h3>Flujo de Interaccion Entre Componentes</h3>
+<p>El sistema sigue la siguiente secuencia de interacciones:</p>
+<ol>
+<li>
+<p><strong>Usuario envia pregunta</strong> a la interfaz Streamlit</p>
+</li>
+<li>
+<p><strong>Streamlit solicita documentos</strong> a FAISS</p>
+</li>
+<li>
+<p>FAISS retorna los 5 chunks mas relevantes</p>
+</li>
+<li>
+<p><strong>Verificacion de contexto</strong>:</p>
+</li>
+<li>Si el contexto tiene menos de 50 caracteres, se activa fallback</li>
+<li>Streamlit solicita resultados a DuckDuckGo (Web)</li>
+<li>
+<p>Web retorna resultados de busqueda</p>
+</li>
+<li>
+<p><strong>Generacion de respuesta</strong>:</p>
+</li>
+<li>Streamlit envia el prompt con contexto al LLM</li>
+<li>
+<p>LLM procesa y genera la respuesta</p>
+</li>
+<li>
+<p><strong>Respuesta al usuario</strong>:</p>
+</li>
+<li>Streamlit muestra la respuesta formateada al usuario</li>
+</ol>
+<hr />
+<p><em>Fin de la Documentacion Tecnica</em></p></section>
+</body>
+</html>

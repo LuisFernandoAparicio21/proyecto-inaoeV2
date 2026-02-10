@@ -23,6 +23,9 @@ unstructured    # Dependencia de algunos loaders de LangChain
 spacy           # Para la Estación 1 de análisis (NER general)
 transformers    # Para la Estación 2 (NER especializado de Hugging Face)
 torch           # El motor de Deep Learning para Transformers
+optimum[exporters]  # Para convertir modelos a ONNX (optimización)
+onnx                # Biblioteca ONNX necesaria para exportar modelos
+onnxruntime         # Runtime para ejecutar modelos ONNX
 
 # --- Utilidades Adicionales ---
 requests        # Para verificar si el servidor de Ollama está activo

@@ -1,0 +1,103 @@
+---
+title: Introducción
+description: 'Sistema RAG para asistencia en investigación científica del INAOE'
+---
+
+<img
+  className="block dark:hidden"
+  src="/images/hero-light.svg"
+  alt="Hero Light"
+/>
+<img
+  className="hidden dark:block"
+  src="/images/hero-dark.svg"
+  alt="Hero Dark"
+/>
+
+## Bienvenido al Asistente INAOE 🚀
+
+El **Asistente de Investigación INAOE** es un sistema de Generación Aumentada por Recuperación (RAG) diseñado para ayudar a los investigadores del Instituto Nacional de Astrofísica, Óptica y Electrónica a consultar y analizar documentos científicos de manera eficiente.
+
+<CardGroup cols={2}>
+  <Card
+    title="Inicio Rápido"
+    icon="rocket"
+    href="/quickstart"
+  >
+    Configura el sistema en menos de 5 minutos
+  </Card>
+  <Card
+    title="Arquitectura"
+    icon="sitemap"
+    href="/architecture"
+  >
+    Comprende cómo funciona el sistema
+  </Card>
+  <Card
+    title="Componentes"
+    icon="puzzle-piece"
+    href="/components/app"
+  >
+    Explora los módulos del código
+  </Card>
+  <Card
+    title="Configuración"
+    icon="gear"
+    href="/guides/configuration"
+  >
+    Personaliza modelos LLM y parámetros
+  </Card>
+</CardGroup>
+
+## Características Principales
+
+<AccordionGroup>
+  <Accordion icon="brain" title="Multi-Proveedor LLM">
+    Soporte para múltiples proveedores de modelos de lenguaje:
+    - **Ollama** (Local): DeepSeek R1, Mistral 7B
+    - **Google** (API): Gemini 1.5 Flash, Gemini 1.5 Pro
+    - **Groq** (API): LLaMA 3 8B (preparado)
+    - **Together AI** (API): Preparado para activación
+  </Accordion>
+  <Accordion icon="microscope" title="Enriquecimiento NLP">
+    Pipeline de procesamiento de documentos con:
+    - **spaCy** (es_core_news_lg): NER general en español
+    - **BERT Spanish NER**: Reconocimiento de entidades especializado
+  </Accordion>
+  <Accordion icon="database" title="Base de Datos Vectorial FAISS">
+    Almacenamiento y recuperación eficiente de embeddings usando:
+    - Modelo: `all-MiniLM-L6-v2`
+    - Soporte GPU/CPU automático
+    - Procesamiento incremental
+  </Accordion>
+  <Accordion icon="globe" title="Fallback Inteligente">
+    Cuando el contexto local es insuficiente:
+    - Búsqueda automática en DuckDuckGo
+    - Integración transparente en respuestas
+  </Accordion>
+</AccordionGroup>
+
+## Stack Tecnológico
+
+| Categoría | Tecnología | Versión |
+|-----------|------------|---------|
+| **Frontend** | Streamlit | Latest |
+| **Framework LLM** | LangChain | Latest |
+| **Base Vectorial** | FAISS | CPU |
+| **NLP** | spaCy + Transformers | 3.7+ |
+| **Embeddings** | Sentence Transformers | all-MiniLM-L6-v2 |
+| **Python** | Python | 3.9+ |
+
+## Métricas del Proyecto
+
+<CardGroup cols={3}>
+  <Card title="757" icon="code">
+    Líneas de código Python
+  </Card>
+  <Card title="5" icon="file-pdf">
+    PDFs científicos procesados
+  </Card>
+  <Card title="4+" icon="robot">
+    Modelos LLM soportados
+  </Card>
+</CardGroup>

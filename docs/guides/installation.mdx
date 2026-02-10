@@ -1,0 +1,171 @@
+---
+title: 'Instalación'
+description: 'Guía completa de instalación del Asistente INAOE'
+---
+
+## Requisitos del Sistema
+
+<CardGroup cols={2}>
+  <Card title="Software" icon="download">
+    - Python 3.9+
+    - pip (gestor de paquetes)
+    - Git
+    - Ollama (opcional, para modelos locales)
+  </Card>
+  <Card title="Hardware" icon="microchip">
+    - RAM: 4GB mínimo (8GB recomendado)
+    - GPU: Opcional (NVIDIA con CUDA)
+    - Almacenamiento: 2GB libres
+  </Card>
+</CardGroup>
+
+## Instalación de Dependencias
+
+### Paso 1: Clonar Repositorio
+
+```bash
+git clone <repository-url>
+cd proyecto_rag_inaoe
+```
+
+### Paso 2: Crear Entorno Virtual
+
+<Tabs>
+  <Tab title="Windows">
+    ```powershell
+    python -m venv venv
+    .\venv\Scripts\activate
+    ```
+  </Tab>
+  <Tab title="macOS/Linux">
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+  </Tab>
+</Tabs>
+
+### Paso 3: Instalar Paquetes Python
+
+```bash
+pip install -r requirements.txt
+```
+
+**Dependencias principales:**
+
+| Paquete | Propósito |
+|---------|-----------|
+| streamlit | Framework web |
+| langchain | Orquestación LLM |
+| faiss-cpu | Base vectorial |
+| spacy | NLP general |
+| transformers | BERT NER |
+| torch | Deep Learning |
+
+### Paso 4: Descargar Modelo spaCy
+
+```bash
+python -m spacy download es_core_news_lg
+```
+
+<Note>
+  El modelo `es_core_news_lg` pesa aproximadamente 560MB.
+</Note>
+
+### Paso 5: Descargar Modelo BERT (Automático)
+
+El modelo BERT Spanish NER se descarga automáticamente la primera vez que ejecutas `procesar_docs.py`. Si deseas descargarlo manualmente:
+
+```python
+from transformers import AutoModelForTokenClassification, AutoTokenizer
+
+model = AutoModelForTokenClassification.from_pretrained("dccuchile/bert-base-spanish-wwm-cased")
+tokenizer = AutoTokenizer.from_pretrained("dccuchile/bert-base-spanish-wwm-cased")
+
+model.save_pretrained("models/bert-spanish-ner")
+tokenizer.save_pretrained("models/bert-spanish-ner")
+```
+
+## Instalación de Ollama (Opcional)
+
+Para usar modelos locales como DeepSeek o Mistral:
+
+<Tabs>
+  <Tab title="Windows">
+    1. Descarga desde [ollama.ai](https://ollama.ai)
+    2. Ejecuta el instalador
+    3. Abre PowerShell y ejecuta:
+    ```powershell
+    ollama pull deepseek-r1:1.5b
+    ollama pull mistral:7b
+    ```
+  </Tab>
+  <Tab title="macOS">
+    ```bash
+    curl -fsSL https://ollama.ai/install.sh | sh
+    ollama pull deepseek-r1:1.5b
+    ollama pull mistral:7b
+    ```
+  </Tab>
+  <Tab title="Linux">
+    ```bash
+    curl -fsSL https://ollama.ai/install.sh | sh
+    ollama pull deepseek-r1:1.5b
+    ollama pull mistral:7b
+    ```
+  </Tab>
+</Tabs>
+
+## Verificar Instalación
+
+Ejecuta este script para verificar que todo esté instalado:
+
+```python
+# verify_installation.py
+import sys
+
+def check_imports():
+    modules = [
+        "streamlit", "langchain", "faiss", 
+        "spacy", "transformers", "torch"
+    ]
+    for module in modules:
+        try:
+            __import__(module)
+            print(f"✅ {module}")
+        except ImportError:
+            print(f"❌ {module}")
+            
+def check_spacy_model():
+    try:
+        import spacy
+        spacy.load("es_core_news_lg")
+        print("✅ spaCy model: es_core_news_lg")
+    except:
+        print("❌ spaCy model not found")
+
+if __name__ == "__main__":
+    check_imports()
+    check_spacy_model()
+```
+
+## Solución de Problemas
+
+<AccordionGroup>
+  <Accordion title="Error: CUDA not available">
+    Si no tienes GPU NVIDIA, el sistema usará CPU automáticamente. No es un error.
+  </Accordion>
+  <Accordion title="Error: spaCy model not found">
+    ```bash
+    python -m spacy download es_core_news_lg
+    ```
+  </Accordion>
+  <Accordion title="Error: Permission denied (Windows)">
+    Ejecuta PowerShell como administrador.
+  </Accordion>
+  <Accordion title="Error: Port 8501 in use">
+    ```bash
+    streamlit run app.py --server.port 8502
+    ```
+  </Accordion>
+</AccordionGroup>

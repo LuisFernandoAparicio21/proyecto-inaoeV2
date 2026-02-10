@@ -1,4 +1,28 @@
-# app.py
+"""Asistente de Investigación INAOE - Aplicación RAG con Streamlit.
+
+Esta aplicación proporciona una interfaz web para consultar documentos
+científicos del INAOE utilizando Retrieval-Augmented Generation (RAG).
+Soporta múltiples proveedores de LLM incluyendo Ollama (local) y APIs
+cloud como Google Gemini, Groq y Together AI.
+
+Modules:
+    streamlit: Framework web para la interfaz de usuario.
+    langchain: Orquestación de cadenas RAG y LLMs.
+    faiss: Base de datos vectorial para búsqueda semántica.
+    torch: Soporte GPU para embeddings.
+
+Example:
+    Para ejecutar la aplicación:
+    
+    $ cd src
+    $ streamlit run app.py
+
+Author:
+    Proyecto INAOE
+    
+Version:
+    1.0.0
+"""
 
 import streamlit as st
 from langchain_community.vectorstores import FAISS
@@ -10,7 +34,7 @@ from pathlib import Path
 import time
 import torch
 import requests
-from typing import List
+from typing import List, Dict, Any, Optional, Callable
 import os
 
 # Configurar variables de entorno para modo offline (comentado temporalmente)
@@ -119,6 +143,31 @@ Debes estructurar tu respuesta de la siguiente manera:
 
 # --- Búsqueda en Internet (fallback) ---
 def buscar_en_internet(consulta: str, max_resultados: int = 5) -> List[str]:
+    """Realiza una búsqueda web usando DuckDuckGo como fallback.
+    
+    Esta función se utiliza cuando el contexto local de la base de datos
+    FAISS es insuficiente para responder la consulta del usuario.
+    
+    Args:
+        consulta (str): El texto de búsqueda a enviar a DuckDuckGo.
+        max_resultados (int, optional): Número máximo de resultados a retornar.
+            Por defecto es 5.
+    
+    Returns:
+        List[str]: Lista de strings formateados con título, resumen y URL
+            de cada resultado. Retorna un mensaje de error si la búsqueda falla.
+    
+    Raises:
+        No lanza excepciones directamente, los errores se capturan y retornan
+        como strings en la lista de resultados.
+    
+    Example:
+        >>> resultados = buscar_en_internet("quaterniones rotación")
+        >>> print(resultados[0])
+        Título: Quaterniones en Rotación 3D
+        Resumen: Los quaterniones son una extensión...
+        Fuente: https://ejemplo.com/quaterniones
+    """
     try:
         from duckduckgo_search import DDGS
     except Exception as e:
@@ -139,8 +188,30 @@ def buscar_en_internet(consulta: str, max_resultados: int = 5) -> List[str]:
 # --- Funciones de Carga y Configuración (Cacheadas) ---
 
 @st.cache_resource
-def cargar_base_datos():
-    """Carga la base de datos vectorial FAISS de forma segura."""
+def cargar_base_datos() -> Optional[FAISS]:
+    """Carga la base de datos vectorial FAISS de forma segura.
+    
+    Inicializa los embeddings de HuggingFace y carga el índice FAISS
+    desde el directorio local. Utiliza GPU si está disponible.
+    
+    El decorador @st.cache_resource asegura que la base de datos
+    solo se cargue una vez por sesión de Streamlit.
+    
+    Args:
+        None
+    
+    Returns:
+        Optional[FAISS]: Instancia de la base de datos vectorial FAISS
+            cargada y lista para consultas, o None si ocurre un error.
+    
+    Raises:
+        Muestra errores en la UI de Streamlit en lugar de lanzar excepciones.
+    
+    Note:
+        - Usa 'cuda' si hay GPU NVIDIA disponible, 'cpu' en caso contrario.
+        - Los modelos se cachean en la carpeta 'models/' del proyecto.
+        - Requiere ejecutar primero `python procesar_docs.py`.
+    """
     if not RUTA_DB.exists():
         st.error(f"❌ No se encontró la base de datos en: {RUTA_DB}")
         st.info("💡 Ejecuta primero: `python procesar_docs.py`")
@@ -150,7 +221,7 @@ def cargar_base_datos():
         embeddings = HuggingFaceEmbeddings(
             model_name="all-MiniLM-L6-v2",
             model_kwargs={'device': device},
-            cache_folder=str(RUTA_PROYECTO / "models"),  # Usar carpeta local para cache
+            cache_folder=str(RUTA_PROYECTO / "models"),
             encode_kwargs={'normalize_embeddings': True}
         )
         return FAISS.load_local(str(RUTA_DB), embeddings, allow_dangerous_deserialization=True)
@@ -158,23 +229,96 @@ def cargar_base_datos():
         st.error(f"Error al cargar la base de datos: {e}")
         return None
 
-@st.cache_data(ttl=300) # Cachear por 5 minutos para no verificar constantemente
-def verificar_ollama():
-    """Verifica si el servicio de Ollama está activo."""
+@st.cache_data(ttl=300)
+def verificar_ollama() -> bool:
+    """Verifica si el servicio de Ollama está activo en localhost.
+    
+    Realiza una petición HTTP GET al endpoint de Ollama para verificar
+    que el servicio está ejecutándose y puede recibir solicitudes.
+    
+    El decorador @st.cache_data con ttl=300 cachea el resultado por
+    5 minutos para evitar verificaciones constantes.
+    
+    Args:
+        None
+    
+    Returns:
+        bool: True si Ollama responde correctamente, False si hay
+            error de conexión o timeout.
+    
+    Example:
+        >>> if verificar_ollama():
+        ...     print("Ollama está listo")
+        ... else:
+        ...     print("Inicia Ollama con: ollama serve")
+    """
     try:
         requests.get("http://localhost:11434", timeout=3)
         return True
     except requests.ConnectionError:
         return False
 
-def format_docs(docs):
-    """Formatea los documentos recuperados para el prompt."""
+
+def format_docs(docs: List[Any]) -> str:
+    """Formatea una lista de documentos LangChain para incluir en el prompt.
+    
+    Extrae el contenido de texto de cada documento y los concatena
+    con doble salto de línea como separador.
+    
+    Args:
+        docs (List[Any]): Lista de objetos Document de LangChain,
+            cada uno con un atributo `page_content`.
+    
+    Returns:
+        str: String con el contenido de todos los documentos concatenados,
+            separados por '\n\n'.
+    
+    Example:
+        >>> from langchain.schema import Document
+        >>> docs = [Document(page_content="Texto 1"), Document(page_content="Texto 2")]
+        >>> print(format_docs(docs))
+        Texto 1
+        
+        Texto 2
+    """
     return "\n\n".join(doc.page_content for doc in docs)
 
 # --- Fábrica de LLMs (LLM Factory) ---
 
-def get_llm(modelo, temperature, timeout):
-    """Fábrica que devuelve una instancia del LLM seleccionado. La estructura está lista para más proveedores."""
+def get_llm(modelo: str, temperature: float, timeout: int) -> Optional[Any]:
+    """Factory que crea instancias de LLM según el proveedor configurado.
+    
+    Implementa el patrón Factory para abstraer la creación de diferentes
+    tipos de LLM (Ollama local, Google Gemini, Groq, Together AI).
+    
+    Args:
+        modelo (str): Identificador del modelo a instanciar. Debe existir
+            como clave en MODEL_CONFIG. Ejemplos: 'gemini-1.5-flash',
+            'mistral:7b', 'deepseek-r1:1.5b'.
+        temperature (float): Controla la creatividad/aleatoriedad de las
+            respuestas. Rango: 0.0 (determinístico) a 1.0 (máximo aleatorio).
+        timeout (int): Tiempo máximo de espera en segundos para la respuesta
+            del modelo. Solo aplica a algunos proveedores.
+    
+    Returns:
+        Optional[Any]: Instancia del LLM configurado (ChatGoogleGenerativeAI,
+            ChatOllama, ChatGroq, o Together), o None si hay error en la
+            configuración o el proveedor no está disponible.
+    
+    Raises:
+        Muestra errores en la UI de Streamlit en lugar de lanzar excepciones:
+        - Si falta la API key requerida
+        - Si Ollama no está ejecutándose
+        - Si el proveedor no está soportado
+    
+    Example:
+        >>> llm = get_llm("gemini-1.5-flash", temperature=0.2, timeout=120)
+        >>> if llm:
+        ...     response = llm.invoke("¿Qué es un quaternión?")
+    
+    Note:
+        Las API keys deben estar configuradas en `.streamlit/secrets.toml`.
+    """
     config = MODEL_CONFIG.get(modelo, {})
     provider = config.get("provider")
 
@@ -190,7 +334,6 @@ def get_llm(modelo, temperature, timeout):
             return None
         return ChatOllama(model=modelo, temperature=temperature, timeout=timeout)
         
-    # --- Lógica para futuros proveedores (ya está lista) ---
     elif provider == "groq":
         if 'GROQ_API_KEY' not in st.secrets:
             st.error("🚨 Falta la API Key de Groq en .streamlit/secrets.toml.")
@@ -209,8 +352,26 @@ def get_llm(modelo, temperature, timeout):
 
 # --- Funciones de la Interfaz de Usuario ---
 
-def render_sidebar():
-    """Renderiza la barra lateral con todas las opciones de configuración."""
+def render_sidebar() -> tuple[str, int, float, int]:
+    """Renderiza la barra lateral con opciones de configuración del usuario.
+    
+    Crea todos los widgets de configuración en el sidebar de Streamlit:
+    selector de modelo, número de documentos, temperatura y timeout.
+    
+    Args:
+        None
+    
+    Returns:
+        tuple[str, int, float, int]: Tupla con:
+            - modelo_seleccionado (str): ID del modelo LLM elegido
+            - chunk_size (int): Número de documentos a recuperar (3-10)
+            - temperature (float): Nivel de creatividad del LLM (0.0-1.0)
+            - timeout (int): Timeout en segundos (30-300)
+    
+    Example:
+        >>> modelo, chunks, temp, timeout = render_sidebar()
+        >>> print(f"Usando {modelo} con {chunks} documentos")
+    """
     st.sidebar.header("⚙️ Configuración")
     
     modelo_seleccionado = st.sidebar.selectbox(
@@ -219,10 +380,8 @@ def render_sidebar():
         index=0
     )
     
-    
     assert modelo_seleccionado is not None, "selectbox no debería devolver None con las opciones dadas"
 
-    # Ahora esta línea es segura para el analizador
     st.sidebar.info(MODEL_CONFIG[modelo_seleccionado]["info"])
 
     with st.sidebar.expander("🔧 Configuración Avanzada"):

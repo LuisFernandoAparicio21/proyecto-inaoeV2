@@ -1,0 +1,64 @@
+# Docker Compose para Asistente INAOE
+# Orquesta los servicios del sistema RAG
+
+version: '3.8'
+
+services:
+  # Frontend Streamlit
+  frontend:
+    build:
+      context: ../..
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ../../data:/app/data:ro
+      - ../../.streamlit:/app/.streamlit:ro
+    environment:
+      - PYTHONPATH=/app
+    depends_on:
+      - backend
+    networks:
+      - inaoe-network
+    restart: unless-stopped
+
+  # Backend API (opcional, para cuando se implemente FastAPI)
+  backend:
+    build:
+      context: ../..
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../../data:/app/data
+    environment:
+      - PYTHONPATH=/app
+      - DEBUG=false
+    networks:
+      - inaoe-network
+    restart: unless-stopped
+
+  # Nginx Reverse Proxy (opcional)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - frontend
+    networks:
+      - inaoe-network
+    restart: unless-stopped
+    profiles:
+      - production
+
+networks:
+  inaoe-network:
+    driver: bridge
+
+volumes:
+  data:
+    driver: local
