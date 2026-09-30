@@ -22,7 +22,6 @@
 
 <!-- Infra -->
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
 <sub>Multi-LLM: Ollama (local) · Google Gemini · Groq · Together AI · UI legacy en Streamlit</sub>
