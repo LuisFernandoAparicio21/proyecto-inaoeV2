@@ -1,10 +1,21 @@
-﻿# 🤖 Asistente de Investigación INAOE
+﻿<div align="center">
 
-> **Sistema RAG (Retrieval-Augmented Generation) para consulta inteligente de documentos científicos**
+# 🤖 Asistente de Investigación INAOE
 
-[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.0+-red.svg)](https://streamlit.io/)
-[![LangChain](https://img.shields.io/badge/LangChain-Latest-green.svg)](https://langchain.com/)
+**Sistema RAG (Retrieval-Augmented Generation) para consulta inteligente de documentos científicos — respuestas precisas citadas desde la fuente original.**
+
+<br>
+
+![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
+![FAISS](https://img.shields.io/badge/Vector_DB-FAISS-0467DF?style=for-the-badge&logo=meta&logoColor=white)
+![spaCy](https://img.shields.io/badge/NLP-spaCy-09A3D5?style=for-the-badge&logo=spacy&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+<sub>Multi-LLM: Ollama (local) · Google Gemini · Groq · Together AI</sub>
+
+</div>
 
 ---
 
